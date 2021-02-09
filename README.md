@@ -3,6 +3,3 @@ A Web Based Application for Vehicle Sales, Purchase and Inventory Management
 
 Contributors:
 - Seth Whitaker
-
-
-Test (just ignore this)
