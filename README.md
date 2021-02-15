@@ -5,4 +5,3 @@ Contributors:
 - Seth Whitaker
 - Taylor Cook
 - Fatih Gurbuz
-- Brady Neumann
