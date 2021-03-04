@@ -7,10 +7,7 @@ class App extends Component {
   render(){
     return(
         <div>
-
-            <div class="jumbotron">
-                <Navbar />
-            </div>
+          <Navbar />
         
         </div>
     );
