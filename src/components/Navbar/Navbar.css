@@ -11,7 +11,7 @@
     color: white;
     justify-self: start;
     margin-left: 20px;
-    width: 35%;
+    width: 50%;
     cursor: pointer;
 }
 
@@ -59,7 +59,7 @@
     .NavbarItems {
         position: relative;
         width: 100%;
-        height: 100px;
+        height: 80px;
     }
 
     .nav-menu {
