@@ -1,6 +1,7 @@
 import React, { Component} from "react";
 import {hot} from "react-hot-loader";
 import Button from 'react-bootstrap/Button';
+import Navbar from './components/Navbar/Navbar';
 
 class App extends Component {
   render(){
@@ -8,9 +9,7 @@ class App extends Component {
         <div>
 
             <div class="jumbotron">
-                <h1 class="display-4">Hello World</h1>
-                <p class="lead">Team Project</p>
-                <Button>Example Button</Button>
+                <Navbar />
             </div>
         
         </div>
