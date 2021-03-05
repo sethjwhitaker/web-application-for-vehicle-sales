@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import Carousel from 'react-bootstrap/Carousel'
+import React, { Component } from 'react';
+import Carousel from 'react-bootstrap/Carousel';
 
-export class Header extends Component {
+class Header extends Component {
     render() {
         return (
             <div>
