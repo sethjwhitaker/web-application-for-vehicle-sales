@@ -9,6 +9,7 @@ class App extends Component {
     return(
         <div>
           <Navbar />
+          <Header />
         
         </div>
     );
