@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
     return (
         <footer>
-            <p>This is my footer element</p>
+            &copy; {new Date().getFullYear()} Copyright: CSCI 441 Dealership
         </footer>
     )
 }

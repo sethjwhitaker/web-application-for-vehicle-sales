@@ -10,21 +10,21 @@ class Header extends Component {
                         <Carousel.Item style = {{'height': "300px"}}>
                             <img style = {{'height' : "300px"}} className="d-block w-100" src = {'img/car-header.jpg'} />
                             <Carousel.Caption>
-                                <h3>Test 1</h3>
+                                <h3>All the cars you could ever want.</h3>
                             </Carousel.Caption>
                         </Carousel.Item>
 
                         <Carousel.Item style = {{'height': "300px"}}>
                             <img style = {{'height' : "300px"}} className="d-block w-100" src = {'img/parts-header.jpg'} />
                             <Carousel.Caption>
-                                <h3>Test 2</h3>
+                                <h3>All the parts you will ever need.</h3>
                             </Carousel.Caption>
                         </Carousel.Item>
 
                         <Carousel.Item style = {{'height': "300px"}}>
                             <img style = {{'height' : "300px"}} className="d-block w-100" src = {'img/logo-header.png'} />
                             <Carousel.Caption>
-                                <h3>Test 3</h3>
+                                <h3>All in one convenient online store.</h3>
                             </Carousel.Caption>
                         </Carousel.Item>
                     </Carousel>
