@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import styles from "./login.css";
 
 export default function Register() {
     const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ export default function Register() {
 
 
     return (
-    <div className="Register">
+    <div className="Login">
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>
@@ -35,10 +36,13 @@ export default function Register() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button block type="submit" disabled={!validateForm()}>
+        <Button className="loginButton" block type="submit" disabled={!validateForm()}>
           Register
         </Button>
       </Form>
+
+      <br></br>
+      <a href=''>Sign Up</a>
     </div>
   );
 }
