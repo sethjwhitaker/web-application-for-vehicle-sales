@@ -10,5 +10,5 @@ app.use("/dist", express.static(path.join(__dirname, '../dist')));
 app.use(bodyParser.json());
 testTable(app);
 const server = app.listen(port, () => {
-    console.log(`Websocket server started on port ` + port);
+    console.log(`Vehicle Sales Web App server started on port ` + port);
 });
