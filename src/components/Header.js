@@ -15,7 +15,7 @@ class Header extends Component {
                         </Carousel.Item>
 
                         <Carousel.Item style = {{'height': "300px", 'width':"100%"}}>
-                            <img style = {{'height' : "300px"}} className="d-block w-100" src = {'img/parts-header.png'} />
+                            <img style = {{'height' : "300px"}} className="d-block w-100" src = {'img/parts-header.jpg'} />
                             <Carousel.Caption>
                                 <h3>All the parts you will ever need.</h3>
                             </Carousel.Caption>
