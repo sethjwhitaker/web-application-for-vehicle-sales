@@ -17,8 +17,7 @@ class App extends Component {
                 <p className="lead">Team Project</p>
                 <Button>Example Button</Button>
             </div>
-        
-            <Login />
+      
         </div>
     );
   }

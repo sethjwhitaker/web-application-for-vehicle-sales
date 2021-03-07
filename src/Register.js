@@ -39,10 +39,10 @@ export default function Register() {
         <Button className="loginButton" block type="submit" disabled={!validateForm()}>
           Register
         </Button>
-      </Form>
 
-      <br></br>
-      <a href=''>Sign Up</a>
+        <br></br>
+        <a href=''>Sign Up</a>
+      </Form>
     </div>
   );
 }
