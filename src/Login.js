@@ -42,7 +42,7 @@ export default function Login() {
         </Button>
 
         <br></br>
-        <a href=''>Login</a>
+        <a href=''>Sign Up</a>
       </Form>
 
       

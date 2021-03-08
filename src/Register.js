@@ -41,7 +41,7 @@ export default function Register() {
         </Button>
 
         <br></br>
-        <a href=''>Sign Up</a>
+        <a href=''>Login</a>
       </Form>
     </div>
   );
