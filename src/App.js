@@ -7,8 +7,6 @@ import Login from './Login.js';
 import Navbar from './components/Navbar/Navbar';
 import Header from './components/Header';
 import { Form } from "react-bootstrap";
-import Navbar from './components/Navbar/Navbar';
-import Header from './components/Header';
 
 class App extends Component {
   render(){
