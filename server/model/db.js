@@ -1,5 +1,10 @@
-const mysql = require("mysql");
-const dbConfig = require("../config/db.config.js");
+import mysql from "mysql";
+import dotenv from 'dotenv';
+import pdburl from "parse-database-url";
+
+dotenv.config();
+
+const dbConfig = pdburl(process.env.DATABASE_URL);
 
 // Create a connection to the database
 const connection = mysql.createPool({
