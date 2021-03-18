@@ -4,7 +4,7 @@ import pdburl from "parse-database-url";
 
 dotenv.config();
 
-const dbConfig = pdburl(process.env.DATABASE_URL);
+const dbConfig = pdburl(process.env['DATABASE_URL']);
 
 console.log(dbConfig);
 // Create a connection to the database
