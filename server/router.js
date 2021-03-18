@@ -27,6 +27,8 @@ export default app => {
     
     app.post("/users/register/:type", usersController.registerAdmin);
 
+    app.post("/users/create-first-admin", usersController.createFirstAdmin);
+
     app.post("/users/login", usersController.login);
 
     app.get("/users", usersController.readAll);

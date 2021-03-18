@@ -124,10 +124,7 @@ class Controller {
     }
 
     static async verifyUser(token, types, callback) {
-        console.log("verify user");
         jwt.verify(token, process.env.SESSION_KEY, (err, decoded) => {
-            console.log(err);
-            console.log(decoded);
             if(err) {
                 callback(err, null);
             } else if(!types.includes(decoded.type)) {

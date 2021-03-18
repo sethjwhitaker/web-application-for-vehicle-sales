@@ -13,6 +13,7 @@ export default class UserController extends Controller {
 
         this.register = this.register.bind(this);
         this.registerAdmin = this.registerAdmin.bind(this);
+        this.createFirstAdmin = this.createFirstAdmin.bind(this);
         this.login = this.login.bind(this);
     }
 
@@ -90,12 +91,11 @@ export default class UserController extends Controller {
             })
             return;
         }*/
-        console.log("Register Admin");
         Controller.verifyUser(req.cookies.token, ["admin"], async (err, response) => {
             if(err) {
                 if(err == "Unauthorized") {
                     res.status(403).send({
-                        message: "You are not authorized to access this data."
+                        message: "You are not authorized to make this request."
                     })
                 } else {
                     res.status(401).send({
@@ -156,6 +156,69 @@ export default class UserController extends Controller {
             }
         })
     }
+
+    async createFirstAdmin(req, res) {
+    
+        // Only create first admin if there are no other users
+        this.model.readAll(async (err, data) => {
+            if(data.length != 0) {
+                res.status(403).send({
+                    message: "Unauthorized"
+                })
+            } else {
+                
+                let message = undefined;
+        
+                if(!req.body) {
+                    message = "Empty Request Body";
+                } else if (!req.body.first_name) {
+                    message = "Missing data: first_name";
+                } else if (!req.body.last_name) {
+                    message = "Missing data: last_name";
+                } else if (!req.body.email) {
+                    message = "Missing data: email";
+                } else if (!req.body.password) {
+                    message = "Missing data: password";
+                }
+
+                if (message) {
+                    res.status(400).send({
+                        message: message
+                    });
+                }
+
+                // hash the newly created password
+                const salt = await bcrypt.genSalt(10);
+                const hash = await bcrypt.hash(req.body.password, salt);
+
+                const obj = {
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    email: req.body.email,
+                    type: "admin",
+                    password_hash: hash,
+                    password_hash_algorithm: "bcrypt"
+                }
+
+                // Save User in the database
+                this.model.create(obj, (err, data) => {
+                    if (err)
+                    res.status(500).send({
+                        message:
+                        err.message || `An error occurred while creating First Admin.`
+                    });
+                    else {
+                        res.send({
+                            message: "Successfully created user " + data.email
+                        });
+                    }
+                });
+            }
+        });
+
+        
+    }
+
 
     async login(req, res) {
         /*
