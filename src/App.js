@@ -2,7 +2,7 @@ import React, { Component} from "react";
 import {hot} from "react-hot-loader";
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-import SearchBar from './components/SearchBar/SearchBar';
+import SearchBar from './components/Searchbar/Searchbar';
 import Main from './components/Main/Main';
 import Header from './components/Header';
 import axios from "axios"
