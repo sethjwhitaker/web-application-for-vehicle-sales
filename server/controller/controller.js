@@ -135,6 +135,19 @@ class Controller {
         });
     }
 
+    static sendError(err, res) {
+        if(err == "Unauthorized") {
+            res.status(403).send({
+                message: "You are not authorized to make this request."
+            })
+        } else {
+            res.status(401).send({
+                message:
+                "Invalid or Expired Credentials."
+            });
+        }
+    }
+
 }
 
 export default Controller;

@@ -85,24 +85,9 @@ export default class UserController extends Controller {
         */
         
         // Authenticate
-        /*if(!req.cookies) {
-            res.status(400).send({
-                message: "Authorization Cookie required"
-            })
-            return;
-        }*/
-        Controller.verifyUser(req.cookies.token, ["admin"], async (err, response) => {
+        Controller.verifyUser(req.cookies.token, ["admin"], async (err, decoded) => {
             if(err) {
-                if(err == "Unauthorized") {
-                    res.status(403).send({
-                        message: "You are not authorized to make this request."
-                    })
-                } else {
-                    res.status(401).send({
-                        message:
-                        "Invalid or Expired Credentials."
-                    })
-                }
+                Controller.sendError(err, res);
             } else {
                 // Validate request
                 let message = undefined;
@@ -278,6 +263,42 @@ export default class UserController extends Controller {
                 }
                 
                 
+            }
+        });
+    }
+
+    read(req, res) {
+        Controller.verifyUser(req.cookies.token, ["admin", "employee", "customer"], (err, decoded) => {
+            if(err) {
+                Controller.sendError(err, res);
+            } else if(decoded.user_id != req.params.id && decoded.type != "admin") {
+                Controller.sendError("Unauthorized", res);
+            } else {
+                super.read();
+            }
+        });
+    }
+
+    update(req, res) {
+        Controller.verifyUser(req.cookies.token, ["admin", "employee", "customer"], (err, decoded) => {
+            if(err) {
+                Controller.sendError(err, res);
+            } else if(decoded.user_id != req.params.id && decoded.type != "admin") {
+                Controller.sendError("Unauthorized", res);
+            } else {
+                super.update();
+            }
+        });
+    }
+
+    delete(req, res) {
+        Controller.verifyUser(req.cookies.token, ["admin", "employee", "customer"], (err, decoded) => {
+            if(err) {
+                Controller.sendError(err, res);
+            } else if(decoded.user_id != req.params.id && decoded.type != "admin") {
+                Controller.sendError("Unauthorized", res);
+            } else {
+                super.delete();
             }
         });
     }

@@ -37,6 +37,12 @@ export default app => {
 
     app.get("/users", usersController.readAll);
 
+    app.put("/users/:id", usersController.update);
+  
+    app.delete("/users/:id", usersController.delete);
+  
+    app.delete("/users", usersController.deleteAll);
+
     // Vehicles
     const vehiclesController = new VehiclesController();
 
