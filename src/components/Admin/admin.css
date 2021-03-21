@@ -3,3 +3,9 @@
     overflow-x:auto;
     overflow-y:auto;
 }
+
+th {
+    position: sticky;
+    top: 0;
+    background-color: lightblue;
+}
