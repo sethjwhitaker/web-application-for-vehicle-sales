@@ -1,14 +1,21 @@
-import db from '../db.js';
+import db from './db';
 
-export default class TestModel {
-    constructor(item) {
-        this.email = item.email;
-        this.name = item.name;
-        this.active = item.active;
+class Model {
+    /*
+        config: {
+            tableName:
+        }
+    */
+    constructor(config) {
+        this.tableName = config.tableName;
+        this.db = db;
     }
+    
+    create(newItem, result) {
+        const query = `INSERT INTO ?? SET ?`;
+        const values = [this.tableName, newItem];
 
-    static create(newItem, result) {
-        db.query("INSERT INTO test_table SET ?", newItem, (err, res) => {
+        this.db.query(query, values, (err, res) => {
             if (err) {
                 console.log("error: ", err);
                 result(err, null);
@@ -20,8 +27,10 @@ export default class TestModel {
         });
     }
 
-    static read(itemId, result) {
-        db.query(`SELECT * FROM test_table WHERE id = ${itemId}`, (err, res) => {
+    read(itemId, result) {
+        const query = `SELECT * FROM ?? WHERE id = ?`;
+        const values = [this.tableName, itemId];
+        this.db.query(query, values, (err, res) => {
             if (err) {
                 console.log("error: ", err);
                 result(err, null);
@@ -39,8 +48,10 @@ export default class TestModel {
         });
     }
     
-    static readAll(result) {
-        db.query("SELECT * FROM test_table", (err, res) => {
+    readAll(result) {
+        const query = `SELECT * FROM ??`;
+        const value = this.tableName;
+        this.db.query(query, value, (err, res) => {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -52,11 +63,10 @@ export default class TestModel {
         });
     }
 
-    static update(id, item, result) {
-        db.query(
-            "UPDATE test_table SET email = ?, name = ?, active = ? WHERE id = ?",
-            [item.email, item.name, item.active, id],
-            (err, res) => {
+    update(id, item, result) {
+        const query =  `UPDATE ?? SET ? WHERE id = ?`;
+        const values = [this.tableName, item, id];
+        this.db.query(query, values, (err, res) => {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -74,8 +84,10 @@ export default class TestModel {
         });
     }
 
-    static delete(id, result) {
-        db.query("DELETE FROM test_table WHERE id = ?", id, (err, res) => {
+    delete(id, result) {
+        const query =  `DELETE FROM ?? WHERE id = ?`;
+        const values = [this.tableName, id];
+        this.db.query(query, values, (err, res) => {
             if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -93,8 +105,11 @@ export default class TestModel {
         });
     }
 
-    static deleteAll(result) {
-        db.query("DELETE FROM test_table", (err, res) => {
+    deleteAll(result) {
+        const query = `DELETE FROM ??`;
+        const value = this.tableName;
+
+        this.db.query(query, value, (err, res) => {
             if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -106,3 +121,5 @@ export default class TestModel {
         });
     }
 }
+
+export default Model;
