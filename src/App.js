@@ -3,7 +3,7 @@ import {hot} from "react-hot-loader";
 import Admin_Interface from './components/Admin/Admin_Interface.js';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-import SearchBar from './components/SearchBar/SearchBar';
+import Searchbar from './components/Searchbar/Searchbar';
 import Main from './components/Main/Main';
 import Header from './components/Header';
 import axios from "axios"
@@ -64,7 +64,7 @@ class App extends Component {
           <div>
                  <Navbar />
                  <Header />
-                 <SearchBar searched={this.searched}/>
+                 <Searchbar searched={this.searched}/>
                  <Main modelSelected={this.modelSelected} carBrands={this.state.carBrands} optionSelected={this.optionSelected} dataCar={this.state.cars}data={this.state.searchedProducts}/>
                  <Admin_Interface />
                  <Footer />
