@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 class Controller {
     /*
         config: {
@@ -19,7 +20,6 @@ class Controller {
     }
 
     create(req, res) {
-        console.log(this);
         // Validate request
         if (!req.body) {
             res.status(400).send({
@@ -122,6 +122,19 @@ class Controller {
             else res.send({ message: `Every ${this.itemName} was deleted successfully!` });
           });
     }
+
+    static async verifyUser(token, types, callback) {
+        jwt.verify(token, process.env.SESSION_KEY, (err, decoded) => {
+            if(err) {
+                callback(err, null);
+            } else if(!types.includes(decoded.type)) {
+                callback("Unauthorized", null);
+            } else {
+                callback(null, decoded);
+            }
+        });
+    }
+
 }
 
 export default Controller;

@@ -17,15 +17,21 @@
     "autoprefixer": "^10.2.4",
     "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "bootstrap": "4.6.0",
+    "cookie-parser": "^1.4.5",
     "css-loader": "^5.1.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jquery": "^3.6.0",
+    "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.7",
+    "parse-database-url": "^0.3.0",
     "path": "^0.12.7",
     "popper.js": "^1.16.1",
+    "postcss": "^8.2.8",
     "postcss-loader": "^5.0.0",
     "precss": "^4.0.0",
     "react": "^17.0.1",
@@ -52,6 +58,7 @@
     "start": "webpack --mode production && nodemon --exec babel-node server/server.js"
   },
   "devDependencies": {
+    "crypto": "^1.0.1",
     "webpack-dev-server": "^3.11.2"
   }
 }
