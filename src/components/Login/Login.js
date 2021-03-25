@@ -39,11 +39,12 @@ export default function Login() {
           />
         </Form.Group>
         <Button className="loginButton" block type="submit" disabled={!validateForm()}>
-          <Link style="color: white" to='/admin'>Login</Link>
+          Login
         </Button>
 
         <br></br>
         <Link to='/register'>Sign Up</Link>
+        <Link to='/admin'>Admin</Link>
       </Form>
 
       
