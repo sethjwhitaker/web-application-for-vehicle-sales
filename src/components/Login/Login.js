@@ -39,7 +39,7 @@ export default function Login() {
           />
         </Form.Group>
         <Button className="loginButton" block type="submit" disabled={!validateForm()}>
-          Login
+          <Link to='/admin'><p>Login</p></Link>
         </Button>
 
         <br></br>
