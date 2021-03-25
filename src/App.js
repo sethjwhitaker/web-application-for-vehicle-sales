@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import {hot} from "react-hot-loader";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import Admin_Interface from './components/Admin/Admin_Interface.js';
 import Home from './pages/Home';
 import Login from './components/Login/Login';
@@ -12,7 +12,7 @@ class App extends Component {
   render(){
     return(      
       <div className="jumbotron">
-        <BrowserRouter>
+        <HashRouter>
           <div>
             <Navbar />
             <Switch>
@@ -22,7 +22,7 @@ class App extends Component {
               <Route path='/admin' component={Admin_Interface} />
             </Switch>
           </div>
-        </BrowserRouter>
+        </HashRouter>
         <Footer />
       </div>
       
