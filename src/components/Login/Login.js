@@ -44,7 +44,8 @@ export default function Login() {
 
         <br></br>
         <Link to='/register'>Sign Up</Link>
-        <Link to='/admin'>Admin</Link>
+        <br></br>
+        <Link to='/admin'>Admin Page</Link>
       </Form>
 
       
