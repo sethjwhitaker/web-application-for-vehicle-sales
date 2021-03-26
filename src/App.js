@@ -22,7 +22,7 @@ class App extends Component {
   }
  
   componentDidMount(){
-     axios.get('http://localhost:8000/cars').then(response =>{
+     axios.get(`${window.location.protocol}//${window.location.hostname}/vehicles`).then(response =>{
        this.setState({cars:response.data, searchedProducts:response.data})
      console.log("Data Loaded!")
      console.log(response.data);

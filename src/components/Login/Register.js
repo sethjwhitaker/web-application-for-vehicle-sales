@@ -11,60 +11,57 @@ export default function Register() {
     const [lastName, setlastName] = useState("");
 
     function validateForm() {
-        return email.length > 0 && password.length > 0;
+        return true;//email.length > 0 && password.length > 0;
     }
 
     function handleSubmit(event) {
         event.preventDefault();
+        // POST request using fetch()
+    fetch(`${window.location.protocol}//${window.location.hostname}/users/register`, {
+          
+
+        // Adding method type
+        method: "POST",
+          
+        // Adding body or contents to send
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email: newEmail,
+          password: newPassword
+      }),
+          
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+  
+      // Converting to JSON
+      .then(response => response.json())
+  
+      // Displaying results to console
+      .then(json => console.log(json));
     }
 
-    fetch('https://web-app-for-vehicle-sales-dev.herokuapp.com/vehicles', {
-      mode: 'no-cors',  
+    function getVehicles() {
+        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles`, {
 
-      headers: {
-      "Access-Control-Allow-Origin" : "*", 
-      "Access-Control-Allow-Credentials" : true,
-      "Content-type": "application/json"
-      }
-    })
-      .then(response => console.log(response))
-      .then(data => console.log("data is" + data))
+            headers: {
+            "Content-type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("data is:");
+            console.log(data);
 
-      /*
-      // POST request using fetch()
-    fetch("https://web-app-for-vehicle-sales-dev.herokuapp.com/users/register", {
-          
-      mode: 'no-cors',
-
-      // Adding method type
-      method: "POST",
-        
-      // Adding body or contents to send
-      body: {
-        first_name: firstName,
-        last_name: lastName,
-        email: newEmail,
-        password: newPassword
-    },
-        
-      // Adding headers to the request
-      headers: {
-          "Content-type": "application/json; charset=UTF-8"
-      }
-    })
-
-    // Converting to JSON
-    .then(response => response.json())
-
-    // Displaying results to console
-    .then(json => console.log(json));*/
+        });
+    }
 
     return (
-      <div>
-      </div>
 
-
-    /*<div className="Login">
+    <div className="Login">
       <Form onSubmit={handleSubmit}>
       <Form.Group controlId="firstName">
           <Form.Label>First Name</Form.Label>
@@ -106,6 +103,6 @@ export default function Register() {
         <br></br>
         <a href=''>Login</a>
       </Form>
-    </div>*/
+    </div>
   );
 }
