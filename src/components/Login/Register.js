@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import styles from "./login.css";
+import {Link} from "react-router-dom";
 
 export default function Register() {
     const [email, setEmail] = useState("");
@@ -41,7 +42,7 @@ export default function Register() {
         </Button>
 
         <br></br>
-        <a href=''>Login</a>
+        <Link to='/login'>Login</Link>
       </Form>
     </div>
   );
