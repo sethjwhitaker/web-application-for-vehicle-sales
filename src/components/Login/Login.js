@@ -5,8 +5,7 @@ import styles from "./login.css";
 
 export default function Login() {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
+    const [newPassword, setPassword] = useState("");
 
     function validateForm() {
         return email.length > 0 && password.length > 0;
@@ -14,6 +13,27 @@ export default function Login() {
 
     function handleSubmit(event) {
         event.preventDefault();
+
+        /*
+        // POST request using fetch()
+        fetch("https://web-app-for-vehicle-sales-dev.herokuapp.com//users/login", {
+              
+          mode: 'no-cors',
+
+          // Adding method type
+          method: "POST",
+            
+          // Adding body or contents to send
+          body: {
+            email: newEmail,
+            password: newPassword
+        },
+            
+          // Adding headers to the request
+          headers: {
+              "Content-type": "application/json; charset=UTF-8"
+          }
+        })*/
     }
 
 
@@ -29,11 +49,11 @@ export default function Login() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="password">
+        <Form.Group controlId="newPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            type="password"
-            value={password}
+            type="newPassword"
+            value={newPassword}
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
@@ -45,6 +65,7 @@ export default function Login() {
         <a href=''>Sign Up</a>
       </Form>
 
+      
       
     </div>
   );

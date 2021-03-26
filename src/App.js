@@ -6,9 +6,13 @@ import Footer from './components/Footer/Footer';
 import Searchbar from './components/Searchbar/Searchbar';
 import Main from './components/Main/Main';
 import Header from './components/Header';
+import Register from './components/Login/Register.js';
+import Login from './components/Login/Login.js';
 import axios from "axios"
 
 class App extends Component {
+
+  
   
   state = {
     cars:[],
@@ -66,7 +70,7 @@ class App extends Component {
                  <Header />
                  <Searchbar searched={this.searched}/>
                  <Main modelSelected={this.modelSelected} carBrands={this.state.carBrands} optionSelected={this.optionSelected} dataCar={this.state.cars}data={this.state.searchedProducts}/>
-                 <Admin_Interface />
+                 <Register />
                  <Footer />
             </div>  
       </div>
