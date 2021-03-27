@@ -9,3 +9,24 @@ th {
     top: 0;
     background-color: lightblue;
 }
+
+.Login {
+    /* background color to show div size */
+    background-color: rgb(201, 206, 230);
+    height: 60vh;
+    width: 60vw;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginForm {
+    margin: auto;
+    width: 320px;
+}
+
+.loginButton {
+    margin: auto;
+    width: 320px;
+}

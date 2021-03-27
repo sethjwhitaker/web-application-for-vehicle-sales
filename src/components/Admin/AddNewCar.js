@@ -8,9 +8,52 @@ export default function AddNewCar() {
     const [model, setModel] = useState("");
     const [price, setPrice] = useState("");
 
+    /*
+    **************copied code from Register********************
+
     function handleSubmit(event) {
         event.preventDefault();
+        // POST request using fetch()
+        fetch(`${window.location.protocol}//${window.location.hostname}/users/register`, {
+          
+        // Adding method type
+        method: "POST",
+          
+        // Adding body or contents to send
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email: newEmail,
+          password: newPassword
+      }),
+          
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+  
+      // Converting to JSON
+      .then(response => response.json())
+  
+      // Displaying results to console
+      .then(json => console.log(json));
     }
+
+    function getVehicles() {
+        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles`, {
+
+            headers: {
+            "Content-type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("data is:");
+            console.log(data);
+
+        });
+    }*/
 
     return (
         <div className="container">
