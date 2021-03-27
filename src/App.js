@@ -16,6 +16,7 @@ class App extends Component {
       <div className="jumbotron">
         <HashRouter>
           <div>
+            <Link to="/car/vehicles/4">Product Link</Link>
             <Navbar />
             <Switch>
               <Route path ='/' component={Home} exact />
@@ -28,7 +29,6 @@ class App extends Component {
           </div>
         </HashRouter>
         <Footer />
-        <Link to="/car/vehicles/4">Product Link</Link>
       </div>
       
     );
