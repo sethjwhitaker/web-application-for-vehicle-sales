@@ -13,7 +13,7 @@ export default class CarInfo extends Component {
         super(props);
 
         this.state = {
-            data: null,
+            data: null
         };
     }
 
