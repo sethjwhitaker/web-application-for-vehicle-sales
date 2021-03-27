@@ -7,6 +7,8 @@ import Login from './components/Login/Login';
 import Register from './components/Login/Register';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import CarInfo from './pages/Info/CarInfo';
+import PartInfo from './pages/Info/PartInfo';
 
 class App extends Component {
   render(){
@@ -20,6 +22,8 @@ class App extends Component {
               <Route path ='/login' component={Login} />
               <Route path ='/register' component={Register} />
               <Route path='/admin' component={Admin_Interface} />
+              <Route path='/car' component={CarInfo} />
+              <Route path='/part' component={PartInfo} />
             </Switch>
           </div>
         </HashRouter>
