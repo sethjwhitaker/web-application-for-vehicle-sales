@@ -8,6 +8,28 @@ import './CarInfo.css';
 
 
 export default class CarInfo extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            data: null,
+        };
+    }
+
+    componentDidMount() {
+        fetch(`${window.location.protocol}//${window.location.hostname}/car/vehicles/id`, {
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("data is:");
+            console.log(data);
+        });
+    }
+
     render() {
         return (
         <div>
