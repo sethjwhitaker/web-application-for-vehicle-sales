@@ -13,7 +13,9 @@ class CarInfo extends Component {
         
         componentDidMount() 
         {
-            fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${this.props.match.params.id}`, {
+            const id = this.props.match.params.id;
+            
+            fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${id}`, {
                 headers: {
                     "Content-type": "application/json"
                 }
