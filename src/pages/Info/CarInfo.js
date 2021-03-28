@@ -38,7 +38,7 @@ export default function CarInfo () {
             price_header = "Price"
             title = "?"
             mileage = "?"
-            price = {data.price}
+            price = {this.data.price}
             />
             
             <Row>
