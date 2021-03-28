@@ -9,6 +9,11 @@ import './CarInfo.css';
 
 
 class CarInfo extends Component {
+
+    state = {
+        car: []
+    }
+
     componentDidMount() {
         const id = this.props.match.params.id;
 
@@ -21,9 +26,10 @@ class CarInfo extends Component {
         .then(data => {
             console.log("data is:");
             console.log(data);
+            this.setState(car)
         })
     }
-    
+
     render() {
         return (
         <div>
@@ -35,7 +41,7 @@ class CarInfo extends Component {
                 price_header = "Price"
                 title = "?"
                 mileage = "?"
-                price = "?"
+                price = {this.state.car.price}
                 />
                 
                 <Row>
