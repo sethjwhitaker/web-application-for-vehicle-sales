@@ -9,24 +9,22 @@ import './CarInfo.css';
 
 
 class CarInfo extends Component {
-    render() {
-        
-        componentDidMount() 
-        {
-            const id = this.props.match.params.id;
-            
-            fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${id}`, {
-                headers: {
-                    "Content-type": "application/json"
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("data is:");
-                console.log(data);
-            })
-        }
+    componentDidMount() {
+        const id = this.props.match.params.id;
+
+        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${id}`, {
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("data is:");
+            console.log(data);
+        })
+    }
     
+    render() {
         return (
         <div>
             <Container className="flex-container">
