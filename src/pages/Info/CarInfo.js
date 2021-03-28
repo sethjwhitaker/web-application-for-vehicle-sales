@@ -6,10 +6,11 @@ import Description from '../../components/Info/Description';
 import ProductHeader from '../../components/Info/ProductHeader';
 import ProductInfo from '../../components/Info/ProductInfo';
 import './CarInfo.css';
-import { data } from 'autoprefixer';
 
 
 export default function CarInfo () {
+
+    
     
     let params = useParams();
     
@@ -21,7 +22,8 @@ export default function CarInfo () {
     .then(response => response.json())
     .then(data => {
         console.log("data is:");
-        console.log(data);
+        console.log(data.price);
+        
     })
 
 
@@ -35,7 +37,7 @@ export default function CarInfo () {
             price_header = "Price"
             title = "?"
             mileage = "?"
-            price = {data.price}
+            price = "?"
             />
             
             <Row>
