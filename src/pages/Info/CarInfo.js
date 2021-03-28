@@ -18,7 +18,7 @@ export default class CarInfo extends Component {
     }
 
     componentDidMount() {
-        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/id`, {
+        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${id}`, {
             headers: {
                 "Content-type": "application/json"
             }
