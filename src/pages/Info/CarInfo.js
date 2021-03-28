@@ -26,7 +26,7 @@ class CarInfo extends Component {
         .then(data => {
             console.log("data is:");
             console.log(data);
-            this.setState(car)
+            this.setState({car : data})
         })
     }
 
