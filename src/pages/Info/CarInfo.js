@@ -27,6 +27,8 @@ class CarInfo extends Component {
             console.log("data is:");
             console.log(data);
             this.setState({car : data})
+            console.log("price is:")
+            console.log(this.state.car.price)
         })
     }
 
