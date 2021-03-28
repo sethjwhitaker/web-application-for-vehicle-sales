@@ -6,6 +6,7 @@ import Description from '../../components/Info/Description';
 import ProductHeader from '../../components/Info/ProductHeader';
 import ProductInfo from '../../components/Info/ProductInfo';
 import './CarInfo.css';
+import { data } from 'autoprefixer';
 
 
 export default function CarInfo () {
@@ -34,7 +35,7 @@ export default function CarInfo () {
             price_header = "Price"
             title = "?"
             mileage = "?"
-            price = "?"
+            price = {data.price}
             />
             
             <Row>
