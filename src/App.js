@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import {hot} from "react-hot-loader";
-import { HashRouter, Route, Switch, Link } from 'react-router-dom';
+import { HashRouter, Route, Switch, Link,} from 'react-router-dom';
 import Admin_Interface from './components/Admin/Admin_Interface.js';
 import Home from './pages/Home';
 import Login from './components/Login/Login';
@@ -22,7 +22,7 @@ class App extends Component {
               <Route path ='/login' component={Login} />
               <Route path ='/register' component={Register} />
               <Route path='/admin' component={Admin_Interface} />
-              <Route path='/car' component={CarInfo} />
+              <Route path='/car/:id' component={CarInfo} />
               <Route path='/part' component={PartInfo} />
             </Switch>
           </div>
