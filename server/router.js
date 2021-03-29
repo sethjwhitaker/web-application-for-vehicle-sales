@@ -1,5 +1,7 @@
 import SalesController from "./controller/sales.controller";
+import SaleItemsController from "./controller/sale_items.controller";
 import UsersController from "./controller/users.controller";
+import PartsController from "./controller/parts.controller";
 import VehiclesController from "./controller/vehicles.controller";
 import MakesController from "./controller/makes.controller";
 import TypesController from "./controller/types.controller";
@@ -24,6 +26,21 @@ export default app => {
   
     app.delete("/sales", salesController.deleteAll);
 
+    // SaleItems
+    const saleItemsController = new SaleItemsController();
+
+    app.post("/saleItems", saleItemsController.create);
+
+    app.get("/saleItems/:id", saleItemsController.read);
+  
+    app.get("/saleItems", saleItemsController.readAll);
+  
+    app.put("/saleItems/:id", saleItemsController.update);
+  
+    app.delete("/saleItems/:id", saleItemsController.delete);
+  
+    app.delete("/saleItems", saleItemsController.deleteAll);
+
     // Users
     const usersController = new UsersController();
 
@@ -42,6 +59,21 @@ export default app => {
     app.delete("/users/:id", usersController.delete);
   
     app.delete("/users", usersController.deleteAll);
+
+    // Parts
+    const partsController = new PartsController();
+
+    app.post("/parts", partsController.create);
+
+    app.get("/parts/:id", partsController.read);
+  
+    app.get("/parts", partsController.readAll);
+  
+    app.put("/parts/:id", partsController.update);
+  
+    app.delete("/parts/:id", partsController.delete);
+  
+    app.delete("/parts", partsController.deleteAll);
 
     // Vehicles
     const vehiclesController = new VehiclesController();

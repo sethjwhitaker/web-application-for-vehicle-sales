@@ -51,13 +51,33 @@ CREATE TABLE IF NOT EXISTS vehicles (
     FOREIGN KEY (class_id) REFERENCES classes(id)
 );
 
+CREATE TABLE IF NOT EXISTS parts (
+    id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    price DECIMAL(8, 2) NOT NULL,
+    quantity int(11) NOT NULL DEFAULT 1,
+    short_description VARCHAR(255) NOT NULL,
+    description VARCHAR(65535),
+    image LONGBLOB
+);
+
+CREATE TABLE IF NOT EXISTS sale_items (
+    id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    sale_id int(11) NOT NULL,
+    vehicle_id int(11),
+    part_id int(11),
+    quantity int(11) NOT NULL DEFAULT 1,
+    FOREIGN KEY (sale_id) REFERENCES sales(id),
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id),
+    FOREIGN KEY (part_id) REFERENCES parts(id),
+    CONSTRAINT vehicle_or_part CHECK 
+        ((vehicle_id IS NULL OR part_id IS NULL) AND NOT
+        (vehicle_id IS NULL AND part_id IS NULL))
+);
+
 CREATE TABLE IF NOT EXISTS sales (
     id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, 
     user_id int(11) NOT NULL,
-    vehicle_id int(11) NOT NULL,
-    quantity int(11) NOT NULL DEFAULT 1,
     order_status ENUM('processing', 'complete', 'canceled') NOT NULL,
     date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
