@@ -36,7 +36,3 @@ table.table-bordered > tbody.info-body > tr > td {
     justify-content: center;
     text-align: center;
 }
-
-.form-control {
-    width: 100%;
-}

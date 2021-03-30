@@ -20,7 +20,7 @@ export default class Email extends Component {
                             <tr>
                                 <td>
                                     <Form className="form">
-                                        <Form.Group className="form-group">
+                                        <Form.Group>
                                             <Form.Control type="email" id="email" placeholder="Email Address*" required />
                                         </Form.Group>
 
