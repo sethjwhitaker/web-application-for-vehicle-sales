@@ -23,7 +23,7 @@ table.table-bordered > thead > tr > th {
 
 table.table-bordered > tbody > tr > td {
     border: 2px solid black;
-    background-color: rgb(145, 204, 241);
+    background-color: rgb(173 216 230);
     text-align: left;
     width: 50%;
 }
@@ -33,7 +33,12 @@ table.table-bordered > tbody.info-body > tr > td {
 }
 
 .form {
-    justify-content: center;  
+    justify-content: center;
+    text-align: center;
+}
+
+.form-group {
+    text-align: center;
 }
 
 .form-control {
