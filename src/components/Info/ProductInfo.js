@@ -11,13 +11,13 @@ class ProductInfo extends Component {
         if (prod_type == "vehicle") {
             return (
             <VehicleTable 
-            class
-            type
-            engine
-            transmission
-            MPG
-            exterior_color
-            interior_color
+            class = {props.class}
+            type = {props.type}
+            engine = {props.engine}
+            transmission = {props.transmission}
+            MPG = {props.MPG}
+            exterior_color = {props.exterior_color}
+            interior_color = {props.interior_color}
             />
             )
         }
