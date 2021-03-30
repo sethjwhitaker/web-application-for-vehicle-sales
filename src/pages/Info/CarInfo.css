@@ -37,10 +37,6 @@ table.table-bordered > tbody.info-body > tr > td {
     text-align: center;
 }
 
-.form-group {
-    text-align: center;
-}
-
 .form-control {
-    width: 80%;
+    width: 100%;
 }
