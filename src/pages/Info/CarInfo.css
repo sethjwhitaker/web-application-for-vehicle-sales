@@ -33,9 +33,7 @@ table.table-bordered > tbody.info-body > tr > td {
 }
 
 .form {
-    display: block;
-    text-align: center;
-    
+    justify-content: center;  
 }
 
 .form-control {

@@ -46,7 +46,7 @@ class ProductHeader extends Component {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p>{ this.props.price }</p></td>
+                                    <td><p>${ this.props.price }</p></td>
                                 </tr>
                             </tbody>
                         </Table>
