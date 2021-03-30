@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import {hot} from "react-hot-loader";
-import { HashRouter, Route, Switch} from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import Admin_Interface from './components/Admin/Admin_Interface.js';
 import Home from './pages/Home';
 import Login from './components/Login/Login';
