@@ -16,7 +16,7 @@ class ProductHeader extends Component {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p>{ this.props.title }</p></td>
+                                    <td><p>{ this.props.year } {this.props.make} {this.props.model}</p></td>
                                 </tr>
                             </tbody>
                         </Table>

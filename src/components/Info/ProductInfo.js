@@ -9,7 +9,17 @@ class ProductInfo extends Component {
     productTable(props) {
         const prod_type = props.prod;
         if (prod_type == "vehicle") {
-            return <VehicleTable />;
+            return (
+            <VehicleTable 
+            class
+            type
+            engine
+            transmission
+            MPG
+            exterior_color
+            interior_color
+            />
+            )
         }
 
         else {

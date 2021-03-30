@@ -13,24 +13,32 @@ class VehicleTable extends Component {
                 
                 <tbody className="info-body">
                     <tr>
+                        <td>Class:</td>
+                        <td>{this.props.class}</td>
+                    </tr>
+                    <tr>
+                        <td>Type:</td>
+                        <td>{this.props.type}</td>
+                    </tr>
+                    <tr>
                         <td>Engine:</td>
-                        <td></td>
+                        <td>{this.props.engine}</td>
                     </tr>
                     <tr>
                         <td>Transmission:</td>
-                        <td></td>
+                        <td>{this.props.transmission}</td>
                     </tr>
                     <tr>
                         <td>MPG:</td>
-                        <td></td>
+                        <td>{this.props.MPG}</td>
                     </tr>
                     <tr>
                         <td>Exterior color:</td>
-                        <td></td>
+                        <td>{this.props.exterior_color}</td>
                     </tr>
                     <tr>
                         <td>Interior color:</td>
-                        <td></td>
+                        <td>{this.props.interior_color}</td>
                     </tr>
                 </tbody>
             </Table>

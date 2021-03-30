@@ -26,9 +26,7 @@ class CarInfo extends Component {
         .then(data => {
             console.log("data is:");
             console.log(data);
-            this.setState({car : data})
-            console.log("price is:")
-            console.log(this.state.car.price)
+            this.setState({car : data});
         })
     }
 
@@ -41,8 +39,10 @@ class CarInfo extends Component {
                 title_header = "Vehicle Title"
                 mileage_header = "Mileage"
                 price_header = "Price"
-                title = "?"
-                mileage = "?"
+                make = {this.state.car.make}
+                model = {this.state.car.model}
+                year = {this.state.car.year}
+                mileage = {this.state.car.mileage}
                 price = {this.state.car.price}
                 />
                 
@@ -50,12 +50,18 @@ class CarInfo extends Component {
                     <ProductInfo
                     imgURL = "https://www.linkpicture.com/q/LPic604691ad669e8533277294.jpg"
                     prod = "vehicle"
-    
+                    class = {this.state.car.class}
+                    type = {this.state.car.type}
+                    engine = {this.state.car.engine}
+                    transmission = {this.state.car.transmission}
+                    MPG = {this.state.car.mileage}
+                    exterior_color = {this.state.car.exterior_color}
+                    interior_color = {this.state.car.interior_color}
                     />
     
                     <Col className="col-6">
                         <Description 
-                        desc = "A text description about the vehicle here with everything a customer will need to know."
+                        desc = {this.state.car.description}
                         />
                         <Email />
     
