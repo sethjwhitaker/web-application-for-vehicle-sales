@@ -4,7 +4,9 @@ import styles from "./admin.css"
 
 export default function AdminPartsTable() {
     return (
-        <div className="tablediv">
+        <div className="tablediv container-fluid">
+            <h2>Part Table</h2>
+
             {/*Display full inventory of parts*/}
             {/*Same option to display differently as above*/}
             <Table striped bordered hover>

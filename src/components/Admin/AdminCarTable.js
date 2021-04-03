@@ -3,8 +3,28 @@ import Table from 'react-bootstrap/Table'
 import styles from "./admin.css"
 
 export default function AdminCarTable() {
+
+    function getVehicles() {
+        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles`, {
+
+            headers: {
+            "Content-type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("data is:");
+            console.log(data);
+
+        });
+    }
+
+    
+
     return (
-        <div className="tablediv">
+        <div className="tablediv container-fluid">
+            <h2>Car Table</h2>
+
             {/*Display full inventory of cars*/}
             {/*Alternatively, we can reuse the home page car display
             and add in delete/update functionality*/}

@@ -61,7 +61,7 @@ export default function AddNewPart() {
 
             <h2>Add New Part</h2>
             <div className="VehicleForm">
-                <Form onSubmit={handleSubmit}>
+                <Form>
                     <Form.Group controlId="make">
                     <Form.Label>Make</Form.Label>
                     <Form.Control

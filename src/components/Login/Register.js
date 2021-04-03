@@ -17,8 +17,17 @@ export default function Register() {
 
 
     return (
-    <div className="Login">
-      <Form onSubmit={handleSubmit}>
+    <div className="container Login">
+      
+      <Form className="loginForm" onSubmit={handleSubmit}>
+
+
+
+      <h2>Register</h2>
+      <br></br>
+
+
+
         <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control

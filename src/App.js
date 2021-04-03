@@ -6,6 +6,8 @@ import Footer from './components/Footer/Footer';
 import Searchbar from './components/Searchbar/Searchbar';
 import Main from './components/Main/Main';
 import Header from './components/Header';
+import Login from './components/Login/Login';
+import Register from './components/Login/Register';
 import axios from "axios"
 
 class App extends Component {
@@ -55,6 +57,7 @@ class App extends Component {
     axios.get(`http://localhost:8000/cars?model=${models}`).
     then(response => this.setState({searchedProducts:response.data}))
   } 
+  
 
 
   //Rendering
@@ -62,12 +65,28 @@ class App extends Component {
     return(      
       <div>
           <div>
-                 <Navbar />
+                 {/*<Navbar />
                  <Header />
                  <Searchbar searched={this.searched}/>
-                 <Main modelSelected={this.modelSelected} carBrands={this.state.carBrands} optionSelected={this.optionSelected} dataCar={this.state.cars}data={this.state.searchedProducts}/>
+                 <Main modelSelected={this.modelSelected} carBrands={this.state.carBrands} optionSelected={this.optionSelected} dataCar={this.state.cars}data={this.state.searchedProducts}/>*/}
                  <Admin_Interface />
-                 <Footer />
+
+                 <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+                 {/*<Login />
+
+                 <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+                 <Register />
+                 {/*<Footer />*/}
             </div>  
       </div>
       

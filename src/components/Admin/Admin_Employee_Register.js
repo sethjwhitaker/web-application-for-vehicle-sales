@@ -46,7 +46,9 @@ export default function Admin_Employee_Register() {
     }
 
     return (
-    <div className="Login">
+    <div className="container">
+
+        <h2>Admin/Employee Register</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="firstName">
             <Form.Label>First Name</Form.Label>
@@ -88,7 +90,7 @@ export default function Admin_Employee_Register() {
                 onChange={(e) => setnewType(e.target.value)}
             />
         </Form.Group>
-        <Button className="loginButton" block type="submit" disabled={!validateForm()}>
+        <Button className="" block type="submit" disabled={!validateForm()}>
           Register
         </Button>
 
