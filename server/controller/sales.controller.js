@@ -11,9 +11,110 @@ export default class SalesController extends Controller {
 
         this.itemsModel = new SaleItemsModel();
         this.readByStatus = this.readByStatus.bind(this);
+        this.addItem = this.addItem.bind(this);
+        this.removeItem = this.removeItem.bind(this);
     }
 
-    // New Methods
+    addItem(req, res) {
+        Controller.verifyUser(req.cookies.token, ["admin", "employee", "customer"], (err, decoded) => {
+            this.model.getUserId(req.params.id, (err, data) => {
+                if(err) {
+                    Controller.sendError(err, res);
+                } else if (decoded.type =="customer" && data.user_id != decoded.user_id) {
+                    Controller.sendError("Unauthorized", res);
+                } else {
+
+                    let message = "";
+
+                    if (!req.body.vehicle_id && !req.body.part_id) {
+                        message = "Missing data: sale_item " + i + " vehicle_id or part_id";
+                    } else if (req.body.vehicle_id && req.body.part_id) {
+                        message = "sale_item " + i + " only one of part_id or vehicle_id can be specified";
+                    }
+
+                    if (message) {
+                        success = false;
+                        res.status(400).send({
+                            message: message
+                        });
+                    } else {
+                        const new_item = {
+                            sale_id: req.params.id
+                        };
+
+                        if (req.body.vehicle_id) new_item.vehicle_id = req.body.vehicle_id;
+                        if (req.body.part_id) new_item.part_id = req.body.part_id;
+                        if (req.body.quantity) new_item.quantity = req.body.quantity;
+
+                        this.itemsModel.create(new_item, (err, data) => {
+                            if (err) {
+                                res.status(500).send({
+                                    message:
+                                    err.message || `An error occurred while creating sale_item.`
+                                });
+                            } else {
+                                res.send({
+                                    message: `Successfully modified sale: ${req.params.id}`
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    }
+
+    removeItem(req, res) {
+        Controller.verifyUser(req.cookies.token, ["admin", "employee", "customer"], (err, decoded) => {
+            this.model.getUserId(req.params.id, (err, data) => {
+                if(err) {
+                    Controller.sendError(err, res);
+                } else if (decoded.type =="customer" && data.user_id != decoded.user_id) {
+                    Controller.sendError("Unauthorized", res);
+                } else {
+
+                    let message = "";
+
+                    if (!req.body.vehicle_id && !req.body.part_id) {
+                        message = "Missing data: sale_item " + i + " vehicle_id or part_id";
+                    } else if (req.body.vehicle_id && req.body.part_id) {
+                        message = "sale_item " + i + " only one of part_id or vehicle_id can be specified";
+                    }
+
+                    if (message) {
+                        success = false;
+                        res.status(400).send({
+                            message: message
+                        });
+                    } else {
+                        const obj = {};
+
+                        if (req.body.vehicle_id) {
+                            obj.key = "vehicle_id";
+                            obj.value = req.body.vehicle_id;
+                        } else if (req.body.part_id) {
+                            obj.key = "part_id";
+                            obj.value = req.body.part_id;
+                        } 
+
+                        this.itemsModel.deleteByKeyValue(obj, (err, data) => {
+                            if (err) {
+                                res.status(500).send({
+                                    message:
+                                    err.message || `An error occurred while removing sale_item.`
+                                });
+                            } else {
+                                res.send({
+                                    message: `Successfully modified sale: ${req.params.id}`
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    }
+
     readByStatus(req, res) {
         Controller.verifyUser(req.cookies.token, ["admin", "employee"], (err, decoded) => {
             if(err) {
@@ -44,10 +145,45 @@ export default class SalesController extends Controller {
 
     readAll(req, res) {
         Controller.verifyUser(req.cookies.token, ["admin", "employee"], (err, decoded) => {
+            console.log(decoded);
             if(err) {
                 Controller.sendError(err, res);
             } else {
-                super.readAll(req, res);
+                this.model.readAll((err, data) => {
+                    if (err) {
+                      if (err.kind === "not_found") {
+                        res.status(404).send({
+                          message: `Not found: sales`
+                        });
+                      } else {
+                        res.status(500).send({
+                          message:
+                          err.message || `An error occurred while retrieving sales.`
+                        });
+                      }
+                    } else {
+                        if(data.length <= 0) {
+                            res.send(data);
+                        } else {
+                            for(let i = 0; i < data.length; i++) {
+                                this.itemsModel.readBySaleId(data[i].id, (err, d) => {
+                                    if (err) {
+                                        success = false;
+                                        res.status(500).send({
+                                            message:
+                                            err.message || `An error occurred while retrieving sale_item with sale_id ${data[i].id}.`
+                                        });
+                                    } else {
+                                        data[i].sale_items = d;
+                                        if(i == data.length-1) {
+                                            res.send(data);
+                                        }
+                                    }
+                                });   
+                            }
+                        }
+                    }
+                });
             }
         });
     }
@@ -141,26 +277,20 @@ export default class SalesController extends Controller {
                                                 message:
                                                 err.message || `An error occurred while creating sale_item.`
                                             });
+                                        } else if(i == sale_items.length-1) {
+                                            res.send({
+                                                message: `Successfully added sale: ${sale_id}`
+                                            });
                                         }
-                                        
                                     });
                                 }
 
-                            }
-                            if(success) {
-                                res.send({
-                                    message: `Successfully added sale: ${sale_id}`
-                                });
                             }
                            
                         }
 
                     });
                 }
-
-                
-                
-
             }
         });
     }
@@ -205,7 +335,8 @@ export default class SalesController extends Controller {
 
     update(req, res) {
         Controller.verifyUser(req.cookies.token, ["admin", "employee", "customer"], (err, decoded) => {
-            this.model.getUserId(req.body.id, (err, data) => {
+            console.log(err);
+            this.model.getUserId(req.params.id, (err, data) => {
                 if(err) {
                     Controller.sendError(err, res);
                 } else if (decoded.type =="customer" && data.user_id != decoded.user_id) {
@@ -219,8 +350,8 @@ export default class SalesController extends Controller {
 
     delete(req, res) {
         Controller.verifyUser(req.cookies.token, ["admin", "employee", "customer"], (err, decoded) => {
-            this.model.getUserId(req.body.id, (err, data) => {
-                if(err) {
+            this.model.getUserId(req.params.id, (err, data) => {
+                if(err) {   
                     Controller.sendError(err, res);
                 } else if (decoded.type =="customer" && data.user_id != decoded.user_id) {
                     Controller.sendError("Unauthorized", res);

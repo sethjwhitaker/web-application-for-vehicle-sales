@@ -1,11 +1,12 @@
+DROP TABLE IF EXISTS sale_items;
 DROP TABLE IF EXISTS sales;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS vehicles;
 DROP TABLE IF EXISTS makes;
 DROP TABLE IF EXISTS types;
 DROP TABLE IF EXISTS classes;
-DROP TABLE IF EXISTS vehicles;
 DROP TABLE IF EXISTS parts;
-DROP TABLE IF EXISTS sale_items;
+
 
 
 
@@ -81,9 +82,9 @@ CREATE TABLE IF NOT EXISTS sale_items (
     vehicle_id int(11),
     part_id int(11),
     quantity int(11) NOT NULL DEFAULT 1,
-    FOREIGN KEY (sale_id) REFERENCES sales(id),
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id),
-    FOREIGN KEY (part_id) REFERENCES parts(id),
+    FOREIGN KEY (sale_id) REFERENCES sales(id) ON DELETE CASCADE,
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id) ON DELETE CASCADE,
+    FOREIGN KEY (part_id) REFERENCES parts(id) ON DELETE CASCADE,
     CONSTRAINT vehicle_or_part CHECK 
         ((vehicle_id IS NULL OR part_id IS NULL) AND NOT
         (vehicle_id IS NULL AND part_id IS NULL))

@@ -21,6 +21,10 @@ export default app => {
     app.get("/sales", salesController.readAll);
   
     app.put("/sales/:id", salesController.update);
+
+    app.put("/sales/:id/add_item", salesController.addItem);
+
+    app.put("/sales/:id/remove_item", salesController.removeItem);
   
     app.delete("/sales/:id", salesController.delete);
   

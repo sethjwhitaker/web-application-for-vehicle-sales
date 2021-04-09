@@ -47,4 +47,23 @@ export default class SalesModel extends Model {
             result({ kind: "not_found" }, null);
         })
     }
+
+    /*delete(id, result) {
+        const query =  `DELETE FROM ?? WHERE id = ?`;
+        const values = [this.tableName, id];
+        this.db.query(query, values, (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(null, err);
+                return;
+            } else if (res.affectedRows == 0) {
+                // not found item with the id
+                result({ kind: "not_found" }, null);
+                return;
+            } else {
+                console.log("deleted item with id: ", id);
+                result(null, res);
+            }
+        });
+    }*/
 }

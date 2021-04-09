@@ -5,6 +5,25 @@ export default class SaleItemsModel extends Model {
         super({tableName: "sale_items"});
     }
 
+    deleteByKeyValue(obj, result) {
+        const query =  `DELETE FROM ?? WHERE ?? = ?`;
+        const values = [this.tableName, obj.key, obj.value];
+        this.db.query(query, values, (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(null, err);
+                return;
+            } else if (res.affectedRows == 0) {
+                // not found item with the id
+                result({ kind: "not_found" }, null);
+                return;
+            } else {
+                console.log("deleted item with " + obj.key + ": " + obj.value);
+                result(null, res);
+            }
+        });
+    }
+
     readBySaleId(id, result) {
         const query = `SELECT vehicle_id, part_id, quantity FROM ?? WHERE sale_id = ?`;
         const values = [this.tableName, id];
