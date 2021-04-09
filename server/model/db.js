@@ -6,7 +6,6 @@ dotenv.config();
 
 const dbConfig = pdburl(process.env.CLEARDB_DATABASE_URL);
 
-console.log(dbConfig);
 // Create a connection to the database
 const connection = mysql.createPool({
   host: dbConfig.host,

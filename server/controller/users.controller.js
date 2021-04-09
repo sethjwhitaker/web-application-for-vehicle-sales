@@ -15,17 +15,15 @@ export default class UserController extends Controller {
         this.registerAdmin = this.registerAdmin.bind(this);
         this.createFirstAdmin = this.createFirstAdmin.bind(this);
         this.login = this.login.bind(this);
+        /*this.readAll = this.readAll.bind(this);
+        this.read = this.read.bind(this);
+        this.update = this.update.bind(this);
+        this.delete = this.delete.bind(this);
+        this.deleteAll = this.deleteAll.bind(this);*/
+
     }
 
     async register(req, res) {
-        /*
-            body: {
-                first_name
-                last_name
-                email
-                password
-            }
-        */
         // Validate request
         let message = undefined;
         
@@ -75,14 +73,6 @@ export default class UserController extends Controller {
     }
 
     async registerAdmin(req, res) {
-        /*
-            body: {
-                first_name
-                last_name
-                email
-                password
-            }
-        */
         
         // Authenticate
         Controller.verifyUser(req.cookies.token, ["admin"], async (err, decoded) => {
@@ -110,34 +100,36 @@ export default class UserController extends Controller {
                     res.status(400).send({
                         message: message
                     });
-                }
+                } else {
+                    // hash the newly created password
+                    const salt = await bcrypt.genSalt(10);
+                    const hash = await bcrypt.hash(req.body.password, salt);
 
-                // hash the newly created password
-                const salt = await bcrypt.genSalt(10);
-                const hash = await bcrypt.hash(req.body.password, salt);
-
-                const obj = {
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    type: req.params.type,
-                    password_hash: hash,
-                    password_hash_algorithm: "bcrypt"
-                }
-
-                // Save User in the database
-                this.model.create(obj, (err, data) => {
-                    if (err)
-                    res.status(500).send({
-                        message:
-                        err.message || `An error occurred while creating ${this.itemName}.`
-                    });
-                    else {
-                        res.send({
-                            message: `Successfully created ${req.params.type} user ` + data.email
-                        });
+                    const obj = {
+                        first_name: req.body.first_name,
+                        last_name: req.body.last_name,
+                        email: req.body.email,
+                        type: req.params.type,
+                        password_hash: hash,
+                        password_hash_algorithm: "bcrypt"
                     }
-                });
+
+                    // Save User in the database
+                    this.model.create(obj, (err, data) => {
+                        if (err)
+                        res.status(500).send({
+                            message:
+                            err.message || `An error occurred while creating ${this.itemName}.`
+                        });
+                        else {
+                            res.send({
+                                message: `Successfully created ${req.params.type} user ` + data.email
+                            });
+                        }
+                    });
+                }
+
+                
             }
         })
     }
@@ -152,6 +144,7 @@ export default class UserController extends Controller {
                 })
             } else {
                 
+                // Validate data
                 let message = undefined;
         
                 if(!req.body) {
@@ -170,34 +163,37 @@ export default class UserController extends Controller {
                     res.status(400).send({
                         message: message
                     });
-                }
+                } else {
 
-                // hash the newly created password
-                const salt = await bcrypt.genSalt(10);
-                const hash = await bcrypt.hash(req.body.password, salt);
+                    // hash the newly created password
+                    const salt = await bcrypt.genSalt(10);
+                    const hash = await bcrypt.hash(req.body.password, salt);
 
-                const obj = {
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    type: "admin",
-                    password_hash: hash,
-                    password_hash_algorithm: "bcrypt"
-                }
-
-                // Save User in the database
-                this.model.create(obj, (err, data) => {
-                    if (err)
-                    res.status(500).send({
-                        message:
-                        err.message || `An error occurred while creating First Admin.`
-                    });
-                    else {
-                        res.send({
-                            message: "Successfully created user " + data.email
-                        });
+                    const obj = {
+                        first_name: req.body.first_name,
+                        last_name: req.body.last_name,
+                        email: req.body.email,
+                        type: "admin",
+                        password_hash: hash,
+                        password_hash_algorithm: "bcrypt"
                     }
-                });
+
+                    // Save User in the database
+                    this.model.create(obj, (err, data) => {
+                        if (err)
+                        res.status(500).send({
+                            message:
+                            err.message || `An error occurred while creating First Admin.`
+                        });
+                        else {
+                            res.send({
+                                message: "Successfully created user " + data.email
+                            });
+                        }
+                    });
+                }
+
+                
             }
         });
 
@@ -206,13 +202,6 @@ export default class UserController extends Controller {
 
 
     async login(req, res) {
-        /*
-            body: {
-                email
-                password
-            }
-        */
-
         // Validate Request
         let message = undefined;
         
@@ -228,41 +217,51 @@ export default class UserController extends Controller {
             res.status(400).send({
                 message: message
             });
-        }
-
-        this.model.readByEmail(req.body.email, async (err, data) => {
-            if(err) {
-                if (err.kind === "not_found") {
-                    res.status(401).send({
-                        message: `Not found: user with email ${req.body.email}.`
-                    });
-                } else {
-                    res.status(500).send({
-                        message:
-                        err.message || `An error occurred while logging in.`
-                    });
-                }
-            } else {
-                // if password matches, then authorize
-                if (await bcrypt.compare(req.body.password, data.password_hash)) {
-                    const tokenData = {
-                        user_id: data.id,
-                        type: data.type
+        } else {
+            this.model.readByEmail(req.body.email, async (err, data) => {
+                if(err) {
+                    if (err.kind === "not_found") {
+                        res.status(401).send({
+                            message: `Not found: user with email ${req.body.email}.`
+                        });
+                    } else {
+                        res.status(500).send({
+                            message:
+                            err.message || `An error occurred while logging in.`
+                        });
                     }
-                    const token = jwt.sign(tokenData, process.env.SESSION_KEY, {expiresIn: "7d"});
-                    res.cookie('token', token, {httpOnly: true});
-                    res.send({
-                        user_id: data.id,
-                        first_name: data.first_name,
-                        last_name: data.last_name
-                    });
                 } else {
-                    res.status(401).send({
-                        message: "Incorrect Password."
-                    });
+                    // if password matches, then authorize
+                    if (await bcrypt.compare(req.body.password, data.password_hash)) {
+                        const tokenData = {
+                            user_id: data.id,
+                            type: data.type
+                        }
+                        const token = jwt.sign(tokenData, process.env.SESSION_KEY, {expiresIn: "7d"});
+                        res.cookie('token', token, {httpOnly: true});
+                        res.send({
+                            user_id: data.id,
+                            first_name: data.first_name,
+                            last_name: data.last_name
+                        });
+                    } else {
+                        res.status(401).send({
+                            message: "Incorrect Password."
+                        });
+                    }
                 }
-                
-                
+            });
+        }
+    }
+
+    readAll(req, res) {
+        Controller.verifyUser(req.cookies.token, ["admin"], (err, decoded) => {
+            if(err) {
+                Controller.sendError(err, res);
+            } else if(decoded.type != "admin") {
+                Controller.sendError("Unauthorized", res);
+            } else {
+                super.readAll(req, res);
             }
         });
     }
@@ -274,7 +273,7 @@ export default class UserController extends Controller {
             } else if(decoded.user_id != req.params.id && decoded.type != "admin") {
                 Controller.sendError("Unauthorized", res);
             } else {
-                super.read();
+                super.read(req, res);
             }
         });
     }
@@ -286,7 +285,7 @@ export default class UserController extends Controller {
             } else if(decoded.user_id != req.params.id && decoded.type != "admin") {
                 Controller.sendError("Unauthorized", res);
             } else {
-                super.update();
+                super.update(req, res);
             }
         });
     }
@@ -298,7 +297,19 @@ export default class UserController extends Controller {
             } else if(decoded.user_id != req.params.id && decoded.type != "admin") {
                 Controller.sendError("Unauthorized", res);
             } else {
-                super.delete();
+                super.delete(req, res);
+            }
+        });
+    }
+
+    deleteAll(req, res) {
+        Controller.verifyUser(req.cookies.token, ["admin"], (err, decoded) => {
+            if(err) {
+                Controller.sendError(err, res);
+            } else if(decoded.type != "admin") {
+                Controller.sendError("Unauthorized", res);
+            } else {
+                super.deleteAll(req, res);
             }
         });
     }

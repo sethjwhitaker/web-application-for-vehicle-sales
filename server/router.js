@@ -29,17 +29,17 @@ export default app => {
     // SaleItems
     const saleItemsController = new SaleItemsController();
 
-    app.post("/saleItems", saleItemsController.create);
+    app.post("/sale_items", saleItemsController.create);
 
-    app.get("/saleItems/:id", saleItemsController.read);
+    app.get("/sale_items/:id", saleItemsController.read);
   
-    app.get("/saleItems", saleItemsController.readAll);
+    app.get("/sale_items", saleItemsController.readAll);
   
-    app.put("/saleItems/:id", saleItemsController.update);
+    app.put("/sale_items/:id", saleItemsController.update);
   
-    app.delete("/saleItems/:id", saleItemsController.delete);
+    app.delete("/sale_items/:id", saleItemsController.delete);
   
-    app.delete("/saleItems", saleItemsController.deleteAll);
+    app.delete("/sale_items", saleItemsController.deleteAll);
 
     // Users
     const usersController = new UsersController();
@@ -51,6 +51,8 @@ export default app => {
     app.post("/users/create-first-admin", usersController.createFirstAdmin);
 
     app.post("/users/login", usersController.login);
+
+    app.get("/users/:id", usersController.read);
 
     app.get("/users", usersController.readAll);
 

@@ -8,7 +8,7 @@ export default class SalesModel extends Model {
     }
 
     readByStatus(status, result) {
-        const query = `SELECT * FROM ?? WHERE order_status = ?`;
+        const query = `SELECT * FROM ?? WHERE status = ?`;
         const values = [this.tableName, status];
         this.db.query(query, values, (err, res) => {
             if (err) {

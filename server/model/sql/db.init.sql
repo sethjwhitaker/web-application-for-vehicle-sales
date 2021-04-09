@@ -4,6 +4,8 @@ DROP TABLE IF EXISTS makes;
 DROP TABLE IF EXISTS types;
 DROP TABLE IF EXISTS classes;
 DROP TABLE IF EXISTS vehicles;
+DROP TABLE IF EXISTS parts;
+DROP TABLE IF EXISTS sale_items;
 
 
 
@@ -57,7 +59,20 @@ CREATE TABLE IF NOT EXISTS parts (
     quantity int(11) NOT NULL DEFAULT 1,
     short_description VARCHAR(255) NOT NULL,
     description VARCHAR(65535),
+    warranty VARCHAR(255),
+    compatibility VARCHAR(255),
+    color VARCHAR(255),
+    product_id VARCHAR(255),
     image LONGBLOB
+);
+
+CREATE TABLE IF NOT EXISTS sales (
+    id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+    user_id int(11) NOT NULL,
+    status ENUM('processing', 'complete', 'canceled') NOT NULL,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    address VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS sale_items (
@@ -72,12 +87,4 @@ CREATE TABLE IF NOT EXISTS sale_items (
     CONSTRAINT vehicle_or_part CHECK 
         ((vehicle_id IS NULL OR part_id IS NULL) AND NOT
         (vehicle_id IS NULL AND part_id IS NULL))
-);
-
-CREATE TABLE IF NOT EXISTS sales (
-    id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-    user_id int(11) NOT NULL,
-    order_status ENUM('processing', 'complete', 'canceled') NOT NULL,
-    date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id)
 );
