@@ -162,6 +162,15 @@ export default function AddNewCar() {
                     />
                     </Form.Group>
 
+                    <Form.Group controlId="newShortDescription">
+                    <Form.Label>Short Description</Form.Label>
+                    <Form.Control
+                        type="newShortDescription"
+                        value={newShortDescription}
+                        onChange={(e) => setnewShortDescription(e.target.value)}
+                    />
+                    </Form.Group>
+
                     <Form.Group controlId="newIntColor">
                     <Form.Label>Interior Color (optional)</Form.Label>
                     <Form.Control
@@ -195,15 +204,6 @@ export default function AddNewCar() {
                         type="newMilage"
                         value={newMilage}
                         onChange={(e) => setnewMilage(e.target.value)}
-                    />
-                    </Form.Group>
-
-                    <Form.Group controlId="newShortDescription">
-                    <Form.Label>Short Description (optional)</Form.Label>
-                    <Form.Control
-                        type="newShortDescription"
-                        value={newShortDescription}
-                        onChange={(e) => setnewShortDescription(e.target.value)}
                     />
                     </Form.Group>
 
