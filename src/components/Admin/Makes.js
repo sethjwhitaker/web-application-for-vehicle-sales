@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Table from 'react-bootstrap/Table';
 
 export default function Makes() {
     const [newMake, setnewMake] = useState("");
@@ -78,48 +79,30 @@ export default function Makes() {
         </Form>
 
         <h2>Makes List:</h2>
-        <Table singleLine>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Id</Table.HeaderCell>
-            <Table.HeaderCell>Make Name</Table.HeaderCell>
-            <Table.HeaderCell>Update?</Table.HeaderCell>
-            <Table.HeaderCell>Delete?</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Make Name</th>
+                    <th>Update?</th>
+                    <th>Delete?</th>
+                </tr>
+            </thead>
 
-        <Table.Body>
-            <h5>Data</h5>
-          {data.map(el => {
-            return (
-                <Table.Row key={el.id}>
-                <Table.Cell>{el.id}</Table.Cell>
-                <Table.Cell>
-                  {el.name}
-                </Table.Cell>
-                <Table.Cell>Update Button</Table.Cell>
-                <Table.Cell>Delete Button</Table.Cell>
-              </Table.Row>
-            );
-          })}
-        </Table.Body>
-
-        <Table.Body>
-            <h5>Response</h5>
-          {response.map(el => {
-            return (
-              <Table.Row key={el.id}>
-                <Table.Cell>{el.id}</Table.Cell>
-                <Table.Cell>
-                  {el.name}
-                </Table.Cell>
-                <Table.Cell>Update Button</Table.Cell>
-                <Table.Cell>Delete Button</Table.Cell>
-              </Table.Row>
-            );
-          })}
-        </Table.Body>
-      </Table>
+            <tbody>
+                <h5>Response</h5>
+                {data.map(el => {
+                    return (
+                        <tr key={el.make_id}>
+                        <td>{el.id}</td>
+                        <td>{el.name}</td>
+                        <td>Update Button</td>
+                        <td>Delete Button</td>
+                    </tr>
+                    );
+                })}
+            </tbody>
+        </Table>
 
         
     </div>
