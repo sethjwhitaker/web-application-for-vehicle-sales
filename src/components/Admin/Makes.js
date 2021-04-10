@@ -52,11 +52,9 @@ export default function Makes() {
       .then(json => console.log(json));
     }
 
-    function MyComponent() {
-        useEffect(() => {
-          getMakes();
-        }, []);
-    }
+    
+    getMakes();
+
 
     return (
     <div className="container">
