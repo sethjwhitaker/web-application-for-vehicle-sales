@@ -77,21 +77,6 @@ export default function AddNewCar() {
       .then(json => console.log(json));
     }
 
-    function getVehicles() {
-        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles`, {
-
-            headers: {
-            "Content-type": "application/json"
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("data is:");
-            console.log(data);
-
-        });
-    }
-
     return (
         <div className="container">
             {/*Section for adding new cars*/}

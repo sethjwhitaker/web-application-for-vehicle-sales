@@ -15,8 +15,6 @@ export default function Admin_Employee_Register() {
 
     function handleSubmit(event) {
 
-        /******************* Need to implement auth check here ******************/
-
         event.preventDefault();
         // POST request using fetch()
         fetch(`${window.location.protocol}//${window.location.hostname}/users/register/${newType}`, {

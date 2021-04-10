@@ -5,6 +5,9 @@ import AddNewCar from "./AddNewCar";
 import AddNewPart from "./AddNewPart";
 import DisplaySalesHistory from "./DisplaySalesHistory";
 import Admin_Employee_Register from "./Admin_Employee_Register";
+import Makes from "./Makes";
+import Types from "./Types";
+import Classes from "./Classes";
 
 export default function Admin_Interface() {
     
@@ -19,6 +22,9 @@ export default function Admin_Interface() {
             case 'adminCarTable': return <AdminCarTable />;
             case 'adminPartTable': return <AdminPartsTable />;
             case 'displaySalesHistory': return <DisplaySalesHistory />;
+            case 'makes': return <Makes />;
+            case 'types': return <Types />;
+            case 'classes': return <Classes />;
 
             default: return <h1>This shouldn't happen, the switch statement is broken</h1>;
         }
@@ -35,6 +41,9 @@ export default function Admin_Interface() {
                 <button onClick={() => setres('addNewPart')}>Add New Part</button>
                 <button onClick={() => setres('displaySalesHistory')}>Sales History</button>
                 <button onClick={() => setres('adminEmployeeRegister')}>Register New Admin/Employee</button>
+                <button onClick={() => setres('makes')}>View Makes</button>
+                <button onClick={() => setres('types')}>View Types</button>
+                <button onClick={() => setres('classes')}>View Classes</button>
             </div>
 
             {/* Actual rendering of selected component */}
