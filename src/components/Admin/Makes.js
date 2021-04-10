@@ -53,7 +53,7 @@ export default function Makes() {
     }
 
     
-    getMakes();
+    const data = getMakes();
 
 
     return (
