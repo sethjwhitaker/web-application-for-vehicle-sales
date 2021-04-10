@@ -20,7 +20,7 @@ export default function Makes() {
         .then(response => response.json())
         .then(data => {
             console.log("data is:");
-            console.log(data.Array[0]);
+            console.log(data[0]);
         });
         
     }
