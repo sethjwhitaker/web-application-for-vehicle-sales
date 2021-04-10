@@ -20,10 +20,13 @@ export default function Makes() {
         .then(response => response.json())
         .then(data => {
             console.log("data is:");
-            console.log(data[0]);
+            console.log(data);
+            return data;
         });
         
     }
+
+    const makes = getMakes();
 
     function handleSubmit(event) {
 
@@ -85,7 +88,7 @@ export default function Makes() {
 
             <tbody>
                 <h5>Response</h5>
-                {data.map(el => {
+                {makes.map(el => {
                     return (
                         <tr key={el.id}>
                         <td>{el.id}</td>
