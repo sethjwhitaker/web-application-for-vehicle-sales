@@ -21,9 +21,9 @@ export default function Makes() {
         .then(data => {
             console.log("data is:");
             console.log(data);
-
+            return data;
         });
-        return data;
+        
     }
 
     function handleSubmit(event) {
