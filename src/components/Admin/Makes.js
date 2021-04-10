@@ -78,7 +78,48 @@ export default function Makes() {
         </Form>
 
         <h2>Makes List:</h2>
+        <Table singleLine>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Id</Table.HeaderCell>
+            <Table.HeaderCell>Make Name</Table.HeaderCell>
+            <Table.HeaderCell>Update?</Table.HeaderCell>
+            <Table.HeaderCell>Delete?</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
 
+        <Table.Body>
+            <h5>Data</h5>
+          {data.map(el => {
+            return (
+                <Table.Row key={el.id}>
+                <Table.Cell>{el.id}</Table.Cell>
+                <Table.Cell>
+                  {el.name}
+                </Table.Cell>
+                <Table.Cell>Update Button</Table.Cell>
+                <Table.Cell>Delete Button</Table.Cell>
+              </Table.Row>
+            );
+          })}
+        </Table.Body>
+
+        <Table.Body>
+            <h5>Response</h5>
+          {response.map(el => {
+            return (
+              <Table.Row key={el.id}>
+                <Table.Cell>{el.id}</Table.Cell>
+                <Table.Cell>
+                  {el.name}
+                </Table.Cell>
+                <Table.Cell>Update Button</Table.Cell>
+                <Table.Cell>Delete Button</Table.Cell>
+              </Table.Row>
+            );
+          })}
+        </Table.Body>
+      </Table>
 
         
     </div>
