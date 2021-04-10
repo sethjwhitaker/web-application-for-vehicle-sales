@@ -51,7 +51,11 @@ export default function Makes() {
       .then(json => console.log(json));
     }
 
-    getMakes();
+    function MyComponent() {
+        useEffect(() => {
+          getMakes();
+        }, []);
+    }
 
     return (
     <div className="container">
@@ -67,7 +71,7 @@ export default function Makes() {
             </Form.Group>
             
             <Button className="" block type="submit" disabled={!validateForm()}>
-            Register
+                Add
             </Button>
 
             <br></br>
