@@ -27,6 +27,7 @@ export default function Admin_Interface() {
     return (
 
         <div>
+            <h1>Test</h1>
             <button onClick={() => setres('adminCarTable')}>Car Table</button>
             <button onClick={() => setres('adminPartTable')}>Part Table</button>
             <button onClick={() => setres('addNewCar')}>Add New Car</button>
