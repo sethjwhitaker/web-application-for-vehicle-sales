@@ -20,8 +20,7 @@ export default function Makes() {
         .then(response => response.json())
         .then(data => {
             console.log("data is:");
-            console.log(data);
-            return data;
+            console.log(data.Array[0]);
         });
         
     }
@@ -52,10 +51,6 @@ export default function Makes() {
       // Displaying results to console
       .then(json => console.log(json));
     }
-
-    
-    const data = getMakes();
-
 
     return (
     <div className="container">
