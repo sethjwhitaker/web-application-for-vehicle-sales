@@ -23,6 +23,7 @@ export default function Makes() {
             console.log(data);
 
         });
+        return data;
     }
 
     function handleSubmit(event) {
