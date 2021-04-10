@@ -27,13 +27,15 @@ export default function Admin_Interface() {
     return (
 
         <div>
-            <h1>Test</h1>
-            <button onClick={() => setres('adminCarTable')}>Car Table</button>
-            <button onClick={() => setres('adminPartTable')}>Part Table</button>
-            <button onClick={() => setres('addNewCar')}>Add New Car</button>
-            <button onClick={() => setres('addNewPart')}>Add New Part</button>
-            <button onClick={() => setres('displaySalesHistory')}>Sales History</button>
-            <button onClick={() => setres('adminEmployeeRegister')}>Register New Admin/Employee</button>
+            <div className="container-fluid">
+                <h1>Admin Interface</h1>
+                <button onClick={() => setres('adminCarTable')}>Car Table</button>
+                <button onClick={() => setres('adminPartTable')}>Part Table</button>
+                <button onClick={() => setres('addNewCar')}>Add New Car</button>
+                <button onClick={() => setres('addNewPart')}>Add New Part</button>
+                <button onClick={() => setres('displaySalesHistory')}>Sales History</button>
+                <button onClick={() => setres('adminEmployeeRegister')}>Register New Admin/Employee</button>
+            </div>
 
             {/* Actual rendering of selected component */}
             <div>{ render() }</div>
