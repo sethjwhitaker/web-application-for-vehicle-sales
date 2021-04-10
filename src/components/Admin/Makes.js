@@ -93,7 +93,7 @@ export default function Makes() {
                 <h5>Response</h5>
                 {data.map(el => {
                     return (
-                        <tr key={el.make_id}>
+                        <tr key={el.id}>
                         <td>{el.id}</td>
                         <td>{el.name}</td>
                         <td>Update Button</td>
