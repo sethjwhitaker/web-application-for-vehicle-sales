@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FinanceInfo from "../../components/Finance/FinanceInfo"
+import FinanceInfo from "../../components/Finance/FinanceInfo";
 import Calculator from "../../components/Finance/Calculator";
 import "./Finance.css";
 

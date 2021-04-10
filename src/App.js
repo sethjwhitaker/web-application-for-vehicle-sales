@@ -25,7 +25,7 @@ class App extends Component {
               <Route path='/admin' component={Admin_Interface} />
               <Route path='/car/:id' component={CarInfo} />
               <Route path='/part' component={PartInfo} />
-              <Route path='/financing' coponent={Finance} />
+              <Route path='/financing' component={Finance} />
             </Switch>
           </div>
         </HashRouter>
