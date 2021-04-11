@@ -9,7 +9,7 @@ function updateSubmit(e, id) {
     console.log(id);
 }
 
-function updateDelete(id) {
+function updateDelete(e, id) {
     e.preventDefault();
     console.log(id);
 }
