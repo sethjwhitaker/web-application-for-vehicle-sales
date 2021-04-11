@@ -48,9 +48,31 @@ class MakeTable extends React.Component {
         this.setState({makes: data, loading: false})
     }
 
-    handleDelete() {
-        
+    handleDelete(idToDelete) {
+        // POST request using fetch()
+        fetch(`${window.location.protocol}//${window.location.hostname}/makes/${id}`, {
+            
+        // Adding method type
+        method: "DELETE",
+            
+        // Adding body or contents to send
+        body: JSON.stringify({
+            id: idToDelete
+        }),
+            
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+        })
+    
+        // Converting to JSON
+        .then(response => response.json())
+    
+        // Displaying results to console
+        .then(json => console.log(json));
     }
+    
 
     render() {
         if (this.state.loading) {
@@ -84,7 +106,7 @@ class MakeTable extends React.Component {
                                         {/*<MakeUpdateButton />*/}
                                     </td>
                                     <td>
-                                        <Form className="Delete" onSubmit={handleDelete(e.id)}>
+                                        <Form className="Delete" onSubmit={this.handleDelete(e.id)}>
                                             <Button className="DeleteButton" block type="submit">
                                                 Delete
                                             </Button>
