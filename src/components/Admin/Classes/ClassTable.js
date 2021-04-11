@@ -1,53 +1,49 @@
 import React from 'react'
 import 'regenerator-runtime/runtime';
 import Table from 'react-bootstrap/Table'
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import styles from "./admin.css"
 
-
-class Classes extends React.Component {
+class ClassTable extends React.Component {
 
     state = {
         loading: true,
-        makes: null,
+        classes: null,
     }
 
     async componentDidMount() {
-        const response =  await fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
+        const response =  await fetch(`${window.location.protocol}//${window.location.hostname}/classes`, {
             headers: {
             "Content-type": "application/json"
             }
         });
         const data = await response.json();
-        this.setState({makes: data, loading: false})
+        this.setState({classes: data, loading: false})
     }
 
     render() {
         if (this.state.loading) {
-            return <div>loading...</div>
+            return <div class= "container-fluid">loading...</div>
         }
 
-        if (!this.state.makes) {
-            return <div>There are not any makes to display.</div>
+        if (!this.state.classes) {
+            return <div class= "container-fluid">There are not any classes to display.</div>
         }
 
         return  (
             <div className = "container-fluid">
-                <h2>Makes List</h2>
+                <h2>Classes List</h2>
                 <div className="tablediv">
                     <Table striped bordered hover>
                         <thead>
                             <tr>
-                                <th>Make ID</th>
-                                <th>Make Name</th>
+                                <th>Class ID</th>
+                                <th>Class Name</th>
                                 <th>Update?</th>
                                 <th>Delete?</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {/*loop to display each make on a row*/}
-                            {this.state.makes.map((e) => (
+                            {/*loop to display each class on a row*/}
+                            {this.state.classes.map((e) => (
                                 <tr key={e.id}>
                                     <td>{e.id}</td>
                                     <td>{e.name}</td>
@@ -57,11 +53,6 @@ class Classes extends React.Component {
                             ))}
                         </tbody>
                     </Table>
-                    {/*test makes returns*/}
-                    <div>{this.state.makes[0].id}</div>
-                    <div>{this.state.makes[0].name}</div>
-                    <div>{this.state.makes[1].id}</div>
-                    <div>{this.state.makes[1].name}</div>
                 </div>
             </div>
         );
@@ -69,4 +60,4 @@ class Classes extends React.Component {
     
 }
 
-export default Classes;
+export default ClassTable;

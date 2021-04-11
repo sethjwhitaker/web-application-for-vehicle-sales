@@ -5,9 +5,9 @@ import AddNewCar from "./AddNewCar";
 import AddNewPart from "./AddNewPart";
 import DisplaySalesHistory from "./DisplaySalesHistory";
 import Admin_Employee_Register from "./Admin_Employee_Register";
-import Makes from "./Makes";
-import Types from "./Types";
-import Classes from "./Classes";
+import Types from "./Types/Types";
+import Classes from "./Classes/Classes";
+import Makes from './Makes/Makes';
 
 export default function Admin_Interface() {
     

@@ -3,29 +3,12 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Table from 'react-bootstrap/Table';
 
-export default function Makes() {
+export default function AddMake() {
     const [newMake, setnewMake] = useState("");
 
     function validateForm() {
         return newMake.length > 0;
     }
-
-    function getMakes() {
-        fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
-
-            headers: {
-            "Content-type": "application/json"
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("data is:");
-            console.log(data);
-        });
-        
-    }
-
-    const makes = getMakes();
 
     function handleSubmit(event) {
 
@@ -72,35 +55,7 @@ export default function Makes() {
             </Button>
 
             <br></br>
-        </Form>
-
-        <h2>Makes List:</h2>
-        <Table striped bordered hover>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Make Name</th>
-                    <th>Update?</th>
-                    <th>Delete?</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <h5>Response</h5>
-                {makes.map(el => {
-                    return (
-                        <tr key={el.id}>
-                        <td>{el.id}</td>
-                        <td>{el.name}</td>
-                        <td>Update Button</td>
-                        <td>Delete Button</td>
-                    </tr>
-                    );
-                })}
-            </tbody>
-        </Table>
-
-        
+        </Form>        
     </div>
   );
 }
