@@ -11,7 +11,7 @@ export default function Makes() {
     }
 
     async function getMakes() {
-        await fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
+        fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
 
             headers: {
             "Content-type": "application/json"
@@ -21,12 +21,11 @@ export default function Makes() {
         .then(data => {
             console.log("data is:");
             console.log(data);
-            return data;
         });
         
     }
 
-    const makes = getMakes();
+    const makes = await getMakes();
 
     function handleSubmit(event) {
 

@@ -11,7 +11,7 @@ import Classes from "./Classes";
 
 export default function Admin_Interface() {
     
-    const [res, setres] = useState('adminCarTable')
+    const [res, setres] = useState('types')
 
     //chooses what to render based on res
     const render = () => {
