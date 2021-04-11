@@ -3,11 +3,7 @@ import 'regenerator-runtime/runtime';
 import Table from 'react-bootstrap/Table'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
-function handleUpdate(event, id) {
-    event.preventDefault();
-    console.log(id);
-}
+import MakeUpdateButton from './MakeUpdateButton';
 
 function handleDelete(event, id) {
     event.preventDefault();
@@ -60,18 +56,16 @@ class MakeTable extends React.Component {
                                     <td>{e.id}</td>
                                     <td>{e.name}</td>
                                     <td>
-                                        <Form className="Update" onSubmit={handleUpdate(e.id)}>
-                                            <Button className="UpdateButton" block type="submit">
-                                                Update
-                                            </Button>
-                                        </Form>
+                                        <MakeUpdateButton />
                                     </td>
                                     <td>
+                                        {/*
                                         <Form className="Delete" onSubmit={handleDelete(e.id)}>
                                             <Button className="DeleteButton" block type="submit">
                                                 Delete
                                             </Button>
                                         </Form>
+                                        */}
                                     </td>
                                 </tr>
                             ))}
