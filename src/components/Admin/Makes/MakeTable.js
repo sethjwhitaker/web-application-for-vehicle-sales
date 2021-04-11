@@ -6,8 +6,6 @@ import Button from "react-bootstrap/Button";
 import MakeUpdateButton from './MakeUpdateButton';
 
 function handleDelete(event, id) {
-
-    event.preventDefault();
     // POST request using fetch()
     fetch(`${window.location.protocol}//${window.location.hostname}/users/register/makes/${id}`, {
         
