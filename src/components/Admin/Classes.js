@@ -25,25 +25,22 @@ class Classes extends React.Component {
     }
 
     render() {
-        return <div>Nothing</div>
-        /*
         if (this.state.loading) {
             return <div>loading...</div>
         }
 
         if (!this.state.person) {
-            return <div>Didn't get a person</div>
+            return <div>There are not any makes to display.</div>
         }
 
         return  (
             <div>
-                <div>{this.state.person.name.title}</div>
-                <div>{this.state.person.name.first}</div>
-                <div>{this.state.person.name.last}</div>
-                <img src={this.state.person.picture.large} />
+                <div>{this.state[0].id}</div>
+                <div>{this.state[0].name}</div>
+                <div>{this.state[1].id}</div>
+                <div>{this.state[2].name}</div>
             </div>
         );
-        */
     }
     
 }
