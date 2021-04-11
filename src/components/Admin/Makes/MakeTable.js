@@ -6,6 +6,13 @@ import Button from "react-bootstrap/Button";
 import MakeUpdateButton from './MakeUpdateButton';
 
 class MakeTable extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            products: [],
+            response: {}
+        }
+    }
 
     state = {
         loading: true,
@@ -22,7 +29,7 @@ class MakeTable extends React.Component {
         this.setState({makes: data, loading: false})
     }
 
-    handleDelete = (idToDelete) => {
+    deleteID(idToDelete) {
         // POST request using fetch()
         fetch(`${window.location.protocol}//${window.location.hostname}/makes/${id}`, {
             
@@ -46,7 +53,31 @@ class MakeTable extends React.Component {
         // Displaying results to console
         .then(json => console.log(json));
     }
+
+    editID(idToEdit) {
+        // POST request using fetch()
+        fetch(`${window.location.protocol}//${window.location.hostname}/makes/${id}`, {
+            
+        // Adding method type
+        method: "DELETE",
+            
+        // Adding body or contents to send
+        body: JSON.stringify({
+            id: idToDelete
+        }),
+            
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+        })
     
+        // Converting to JSON
+        .then(response => response.json())
+    
+        // Displaying results to console
+        .then(json => console.log(json));
+    }
 
     render() {
         if (this.state.loading) {
@@ -77,10 +108,12 @@ class MakeTable extends React.Component {
                                     <td>{e.id}</td>
                                     <td>{e.name}</td>
                                     <td>
-                                        {/*<MakeUpdateButton />*/}
+                                        <Button className="EditButton" onClick={() => this.props.editID(e.id)} block>
+                                            Edit
+                                        </Button>
                                     </td>
                                     <td>
-                                        <Button className="DeleteButton" onClick={handleDelete(e.id)} block type="submit">
+                                        <Button className="DeleteButton" onClick={() => this.props.deleteID(e.id)} block>
                                             Delete
                                         </Button>
                                     </td>
