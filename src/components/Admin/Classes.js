@@ -19,7 +19,14 @@ class Classes extends React.Component {
         });
         const data = await response.json();
         this.setState({makes: data, loading: false})
-        console.log(data);
+        console.log(data[0].id);
+        console.log(data[0].name);
+        console.log(data.Array[0].id);
+        console.log(data.Array[0].name);
+        console.log(data[1].id);
+        console.log(data[1].name);
+        console.log(data.Array[1].id);
+        console.log(data.Array[1].name);
     }
 
     render() {
