@@ -4,13 +4,13 @@ import Table from 'react-bootstrap/Table'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function updateSubmit(e, id) {
-    e.preventDefault();
+function updateSubmit(event, id) {
+    event.preventDefault();
     console.log(id);
 }
 
-function updateDelete(e, id) {
-    e.preventDefault();
+function updateDelete(event, id) {
+    event.preventDefault();
     console.log(id);
 }
 
