@@ -35,10 +35,10 @@ class Classes extends React.Component {
 
         return  (
             <div>
-                <div>{this.state[0].id}</div>
-                <div>{this.state[0].name}</div>
-                <div>{this.state[1].id}</div>
-                <div>{this.state[2].name}</div>
+                <div>{this.state.makes[0].id}</div>
+                <div>{this.state.makes[0].name}</div>
+                <div>{this.state.makes[1].id}</div>
+                <div>{this.state.makes[1].name}</div>
             </div>
         );
     }
