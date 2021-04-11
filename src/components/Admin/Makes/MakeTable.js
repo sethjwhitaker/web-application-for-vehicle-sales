@@ -1,6 +1,16 @@
 import React from 'react'
 import 'regenerator-runtime/runtime';
 import Table from 'react-bootstrap/Table'
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
+function updateSubmit(event, id) {
+    console.log(id);
+}
+
+function updateDelete(event, id) {
+    console.log(id);
+}
 
 class MakeTable extends React.Component {
 
@@ -21,11 +31,11 @@ class MakeTable extends React.Component {
 
     render() {
         if (this.state.loading) {
-            return <div class= "container-fluid">loading...</div>
+            return <div className= "container-fluid">loading...</div>
         }
 
         if (!this.state.makes) {
-            return <div class= "container-fluid">There are not any makes to display.</div>
+            return <div className= "container-fluid">There are not any makes to display.</div>
         }
 
         return  (
@@ -47,8 +57,20 @@ class MakeTable extends React.Component {
                                 <tr key={e.id}>
                                     <td>{e.id}</td>
                                     <td>{e.name}</td>
-                                    <td>-</td>
-                                    <td>-</td>
+                                    <td>
+                                        <Form className="Update" onSubmit={updateSubmit(e.id)}>
+                                            <Button className="UpdateButton" block type="submit">
+                                                Update
+                                            </Button>
+                                        </Form>
+                                    </td>
+                                    <td>
+                                        <Form className="Delete" onSubmit={updateDelete(e.id)}>
+                                            <Button className="DeleteButton" block type="submit">
+                                                Delete
+                                            </Button>
+                                        </Form>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

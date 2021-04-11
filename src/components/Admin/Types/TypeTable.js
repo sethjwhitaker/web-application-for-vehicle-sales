@@ -17,15 +17,16 @@ class TypeTable extends React.Component {
         });
         const data = await response.json();
         this.setState({types: data, loading: false})
+        console.log(data)
     }
 
     render() {
         if (this.state.loading) {
-            return <div class= "container-fluid">loading...</div>
+            return <div className= "container-fluid">loading...</div>
         }
 
         if (!this.state.types) {
-            return <div class= "container-fluid">There are not any types to display.</div>
+            return <div className= "container-fluid">There are not any types to display.</div>
         }
 
         return  (
