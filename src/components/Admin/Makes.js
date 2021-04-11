@@ -10,8 +10,8 @@ export default function Makes() {
         return newMake.length > 0;
     }
 
-    function getMakes() {
-        fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
+    async function getMakes() {
+        await fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
 
             headers: {
             "Content-type": "application/json"
