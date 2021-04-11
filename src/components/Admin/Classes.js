@@ -23,7 +23,7 @@ class Classes extends React.Component {
     }
 
     render() {
-
+        return <div>Nothing</div>
         /*
         if (this.state.loading) {
             return <div>loading...</div>

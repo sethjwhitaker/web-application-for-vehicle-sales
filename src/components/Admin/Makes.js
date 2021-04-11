@@ -10,7 +10,7 @@ export default function Makes() {
         return newMake.length > 0;
     }
 
-    async function getMakes() {
+    function getMakes() {
         fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
 
             headers: {
@@ -25,7 +25,7 @@ export default function Makes() {
         
     }
 
-    const makes = await getMakes();
+    const makes = getMakes();
 
     function handleSubmit(event) {
 
