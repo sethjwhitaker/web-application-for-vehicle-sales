@@ -6,9 +6,32 @@ import Button from "react-bootstrap/Button";
 import MakeUpdateButton from './MakeUpdateButton';
 
 function handleDelete(event, id) {
+
     event.preventDefault();
-    console.log(id);
+    // POST request using fetch()
+    fetch(`${window.location.protocol}//${window.location.hostname}/users/register/makes/${id}`, {
+        
+    // Adding method type
+    method: "DELETE",
+        
+    // Adding body or contents to send
+    body: JSON.stringify({
+        id: id
+    }),
+        
+    // Adding headers to the request
+    headers: {
+        "Content-type": "application/json; charset=UTF-8"
+    }
+    })
+
+    // Converting to JSON
+    .then(response => response.json())
+
+    // Displaying results to console
+    .then(json => console.log(json));
 }
+
 
 class MakeTable extends React.Component {
 
@@ -56,16 +79,14 @@ class MakeTable extends React.Component {
                                     <td>{e.id}</td>
                                     <td>{e.name}</td>
                                     <td>
-                                        <MakeUpdateButton />
+                                        {/*<MakeUpdateButton />*/}
                                     </td>
                                     <td>
-                                        {/*
                                         <Form className="Delete" onSubmit={handleDelete(e.id)}>
                                             <Button className="DeleteButton" block type="submit">
                                                 Delete
                                             </Button>
                                         </Form>
-                                        */}
                                     </td>
                                 </tr>
                             ))}
