@@ -4,12 +4,12 @@ import Table from 'react-bootstrap/Table'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function updateSubmit(event, id) {
+function handleUpdate(event, id) {
     event.preventDefault();
     console.log(id);
 }
 
-function updateDelete(event, id) {
+function handleDelete(event, id) {
     event.preventDefault();
     console.log(id);
 }
@@ -60,14 +60,14 @@ class MakeTable extends React.Component {
                                     <td>{e.id}</td>
                                     <td>{e.name}</td>
                                     <td>
-                                        <Form className="Update" onSubmit={updateSubmit(e.id)}>
+                                        <Form className="Update" onSubmit={handleUpdate(e.id)}>
                                             <Button className="UpdateButton" block type="submit">
                                                 Update
                                             </Button>
                                         </Form>
                                     </td>
                                     <td>
-                                        <Form className="Delete" onSubmit={updateDelete(e.id)}>
+                                        <Form className="Delete" onSubmit={handleDelete(e.id)}>
                                             <Button className="DeleteButton" block type="submit">
                                                 Delete
                                             </Button>
