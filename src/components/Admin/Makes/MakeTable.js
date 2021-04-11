@@ -22,7 +22,7 @@ class MakeTable extends React.Component {
         this.setState({makes: data, loading: false})
     }
 
-    handleDelete(idToDelete) {
+    handleDelete = (idToDelete) => {
         // POST request using fetch()
         fetch(`${window.location.protocol}//${window.location.hostname}/makes/${id}`, {
             
@@ -80,11 +80,9 @@ class MakeTable extends React.Component {
                                         {/*<MakeUpdateButton />*/}
                                     </td>
                                     <td>
-                                        <Form className="Delete" onSubmit={this.handleDelete(e.id)}>
-                                            <Button className="DeleteButton" block type="submit">
-                                                Delete
-                                            </Button>
-                                        </Form>
+                                        <Button className="DeleteButton" onClick={this.handleDelete(e.id)} block type="submit">
+                                            Delete
+                                        </Button>
                                     </td>
                                 </tr>
                             ))}
