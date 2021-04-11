@@ -29,7 +29,7 @@ class Classes extends React.Component {
             return <div>loading...</div>
         }
 
-        if (!this.state.person) {
+        if (!this.state.makes) {
             return <div>There are not any makes to display.</div>
         }
 
