@@ -80,7 +80,7 @@ class MakeTable extends React.Component {
                                         {/*<MakeUpdateButton />*/}
                                     </td>
                                     <td>
-                                        <Button className="DeleteButton" onClick={this.handleDelete(e.id)} block type="submit">
+                                        <Button className="DeleteButton" onClick={handleDelete(e.id)} block type="submit">
                                             Delete
                                         </Button>
                                     </td>
