@@ -5,32 +5,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import MakeUpdateButton from './MakeUpdateButton';
 
-function handleDelete(event, id) {
-    // POST request using fetch()
-    fetch(`${window.location.protocol}//${window.location.hostname}/users/register/makes/${id}`, {
-        
-    // Adding method type
-    method: "DELETE",
-        
-    // Adding body or contents to send
-    body: JSON.stringify({
-        id: id
-    }),
-        
-    // Adding headers to the request
-    headers: {
-        "Content-type": "application/json; charset=UTF-8"
-    }
-    })
-
-    // Converting to JSON
-    .then(response => response.json())
-
-    // Displaying results to console
-    .then(json => console.log(json));
-}
-
-
 class MakeTable extends React.Component {
 
     state = {
@@ -46,6 +20,31 @@ class MakeTable extends React.Component {
         });
         const data = await response.json();
         this.setState({makes: data, loading: false})
+    }
+
+    handleDelete(id) {
+        // POST request using fetch()
+        fetch(`${window.location.protocol}//${window.location.hostname}/makes/${id}`, {
+                
+        // Adding method type
+        method: "DELETE",
+            
+        // Adding body or contents to send
+        body: JSON.stringify({
+            id: id
+        }),
+            
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+        })
+
+        // Converting to JSON
+        .then(response => response.json())
+
+        // Displaying results to console
+        .then(json => console.log(json));
     }
 
     render() {
