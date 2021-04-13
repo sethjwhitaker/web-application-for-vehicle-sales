@@ -9,32 +9,52 @@ export default function Login() {
     const [newPassword, setPassword] = useState("");
 
     function validateForm() {
-        return email.length > 0 && password.length > 0;
+        return email.length > 0 && newPassword.length > 0;
     }
 
-    function handleSubmit(event) {
+    //Test auth
+    /*async function retrieveSales() {
+        try {
+            const response = await fetch(`${window.location.protocol}//${window.location.hostname}/sales`);
+            const data = await response.json();
+            console.log(data);
+
+        } catch(e) {
+            console.log(e);
+        }
+    }*/
+
+    async function handleSubmit(event) {
         event.preventDefault();
 
-        /*
-        // POST request using fetch()
-        fetch("https://web-app-for-vehicle-sales-dev.herokuapp.com//users/login", {
-              
-          mode: 'no-cors',
+        const options = {
 
-          // Adding method type
-          method: "POST",
-            
-          // Adding body or contents to send
-          body: {
-            email: newEmail,
-            password: newPassword
-        },
-            
-          // Adding headers to the request
-          headers: {
-              "Content-type": "application/json; charset=UTF-8"
-          }
-        })*/
+            // Adding method type
+            method: "POST",
+              
+            // Adding body or contents to send
+            body: JSON.stringify({
+              email: email,
+              password: newPassword
+          }),
+              
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+          };
+
+        try {
+            // POST request using fetch()
+            const response = await fetch(`${window.location.protocol}//${window.location.hostname}/users/login`, options);
+            const data = await response.json();
+            console.log(data);
+
+            retrieveSales();
+        } catch (e) {
+            console.log(e);
+        }
+        
     }
 
 
