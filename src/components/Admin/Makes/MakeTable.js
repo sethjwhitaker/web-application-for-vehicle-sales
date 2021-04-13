@@ -22,7 +22,7 @@ class MakeTable extends React.Component {
         this.state.idToDelete = e.target.getAttribute('value');
 
         // POST request using fetch()
-        fetch(`${window.location.protocol}//${window.location.hostname}/makes/${id}`, {
+        fetch(`${window.location.protocol}//${window.location.hostname}/makes/${this.state.idToDelete}`, {
             
         // Adding method type
         method: "DELETE",
