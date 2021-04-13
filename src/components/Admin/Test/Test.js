@@ -1,16 +1,14 @@
-import React from 'react'
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
 import 'regenerator-runtime/runtime';
 import Table from 'react-bootstrap/Table'
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import MakeUpdateButton from './MakeUpdateButton';
 
-class MakeTable extends React.Component {
+class Test extends React.Component {
     constructor() {
         super();
         this.state = {
             loading: true,
-            makes: null,
+            makes: [{id: 1, name: 'test1'}, {id: 2, name: 'test2'}],
             deleted: false,
             idToDelete: 0,
           };
@@ -19,47 +17,14 @@ class MakeTable extends React.Component {
     }
 
     onDelete = (e) => {
+        e.preventDefault();
+        console.log(e.target.getAttribute('value'));
         this.state.idToDelete = e.target.getAttribute('value');
-
-        // POST request using fetch()
-        fetch(`${window.location.protocol}//${window.location.hostname}/makes/${id}`, {
-            
-        // Adding method type
-        method: "DELETE",
-            
-        // Adding body or contents to send
-        body: JSON.stringify({
-            id: this.state.idToDelete
-        }),
-            
-        // Adding headers to the request
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        }
-        })
-    
-        // Converting to JSON
-        .then(response => response.json())
-    
-        // Displaying results to console
-        .then(json => console.log(json));
-    }
-    
-    async componentDidMount() {
-        const response =  await fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
-            headers: {
-            "Content-type": "application/json"
-            }
-        });
-        const data = await response.json();
-        this.setState({makes: data, loading: false})
+        window.alert(this.state.idToDelete);
     }
 
-    deleteID(idToDelete) {
-        
-    }
-
-    render() {
+    render() {        
+        /*
         if (this.state.loading) {
             return <div className= "container-fluid">loading...</div>
         }
@@ -67,6 +32,7 @@ class MakeTable extends React.Component {
         if (!this.state.makes) {
             return <div className= "container-fluid">There are not any makes to display.</div>
         }
+        */
 
         return  (
             <div className = "container-fluid">
@@ -102,4 +68,5 @@ class MakeTable extends React.Component {
     
 }
 
-export default MakeTable;
+export default Test;
+

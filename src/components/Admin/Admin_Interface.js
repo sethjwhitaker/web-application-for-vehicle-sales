@@ -8,10 +8,11 @@ import Admin_Employee_Register from "./Admin_Employee_Register";
 import Types from "./Types/Types";
 import Classes from "./Classes/Classes";
 import Makes from './Makes/Makes';
+import Test from './Test/Test';
 
 export default function Admin_Interface() {
     
-    const [res, setres] = useState('types')
+    const [res, setres] = useState('test')
 
     //chooses what to render based on res
     const render = () => {
@@ -25,6 +26,7 @@ export default function Admin_Interface() {
             case 'makes': return <Makes />;
             case 'types': return <Types />;
             case 'classes': return <Classes />;
+            case 'test': return <Test />;
 
             default: return <h1>This shouldn't happen, the switch statement is broken</h1>;
         }
@@ -44,6 +46,7 @@ export default function Admin_Interface() {
                 <button onClick={() => setres('makes')}>View Makes</button>
                 <button onClick={() => setres('types')}>View Types</button>
                 <button onClick={() => setres('classes')}>View Classes</button>
+                <button onClick={() => setres('test')}>Test</button>
             </div>
 
             {/* Actual rendering of selected component */}
