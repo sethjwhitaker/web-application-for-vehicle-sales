@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import 'regenerator-runtime/runtime';
 import Table from 'react-bootstrap/Table'
+import Test1 from './Test1';
 
 class Test extends React.Component {
     constructor() {
@@ -17,10 +18,10 @@ class Test extends React.Component {
     }
 
     onDelete = (e) => {
-        e.preventDefault();
-        console.log(e.target.getAttribute('value'));
         this.state.idToDelete = e.target.getAttribute('value');
-        window.alert(this.state.idToDelete);
+        window.alert("Deleted");
+        console.log(2);
+        this.forceUpdate();
     }
 
     render() {        
@@ -37,31 +38,8 @@ class Test extends React.Component {
         return  (
             <div className = "container-fluid">
                 <h2>Makes List</h2>
-                <div className="tablediv">
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Make ID</th>
-                                <th>Make Name</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {/*loop to display each make on a row*/}
-                            {this.state.makes.map((e) => (
-                                <tr key={e.id}>
-                                    <td>{e.id}</td>
-                                    <td>{e.name}</td>
-                                    <td>
-                                        <Button className="" value={e.id} onClick={this.onDelete} block type="submit">
-                                            Delete
-                                        </Button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                </div>
+                <p>Note: Makes cannot be deleted if they exist in either sales history or current inventory.</p>
+                <Test1></Test1>
             </div>
         );
     }
