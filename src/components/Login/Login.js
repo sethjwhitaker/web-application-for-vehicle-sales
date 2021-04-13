@@ -50,7 +50,7 @@ export default function Login() {
             const data = await response.json();
             console.log(data);
 
-            retrieveSales();
+            //retrieveSales();
         } catch (e) {
             console.log(e);
         }
