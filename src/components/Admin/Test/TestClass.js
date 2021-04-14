@@ -10,14 +10,13 @@ class TestClass extends React.Component {
         this.state = {
             loading: true,
             makes: null,
+            makes2: [{id: 1, name: 'test1'}, {id: 2, name: 'test2'}],
             deleted: false,
             idToDelete: 0,
           };
-        // Binding method
-        this.onDelete = this.onDelete.bind(this);
     }
 
-    async componentDidMount() {
+    fetchData() {
         const response =  await fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
             headers: {
             "Content-type": "application/json"
@@ -27,15 +26,14 @@ class TestClass extends React.Component {
         this.setState({makes: data, loading: false})
     }
 
+    async componentDidMount() {
+        this.fetchData();
+    }
+
     componentDidUpdate() {
         console.log("Update");
         this.state.makes = this.state.makes2;
         console.log(this.state.makes);
-    }
-
-    onDelete = (e) => {
-        this.state.idToDelete = e.target.getAttribute('value');
-        console.log(this.state.idToDelete);
     }
 
     render() {

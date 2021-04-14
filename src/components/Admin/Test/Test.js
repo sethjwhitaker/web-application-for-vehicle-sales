@@ -18,10 +18,28 @@ const Test = (props) => {
     }, [deleted])
 
     function handleDelete(e) {
-        e.preventDefault();
-        console.log(e);
-        console.log("ID to delete: " + idToDelete);
-        console.log("Deleted: " + deleted);
+        // POST request using fetch()
+        fetch(`${window.location.protocol}//${window.location.hostname}/makes/${idToDelete}`, {
+            
+        // Adding method type
+        method: "DELETE",
+            
+        // Adding body or contents to send
+        body: JSON.stringify({
+            id: this.state.idToDelete
+        }),
+            
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+        })
+    
+        // Converting to JSON
+        .then(response => response.json())
+    
+        // Displaying results to console
+        .then(json => console.log(json));
     }
 
     return (
