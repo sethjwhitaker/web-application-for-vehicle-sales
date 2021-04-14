@@ -14,7 +14,7 @@ import TestClass from './Test/TestClass';
 
 export default function Admin_Interface() {
     
-    const [res, setres] = useState('test1')
+    const [res, setres] = useState('testClass')
 
     //chooses what to render based on res
     const render = () => {

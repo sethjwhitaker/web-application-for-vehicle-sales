@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import 'regenerator-runtime/runtime';
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
+import Test from './Test';
 
 const Test1 = (props) => {
     const [makes, setMakes] = useState([{id: 1, name: 'test1'}, {id: 2, name: 'test2'}])

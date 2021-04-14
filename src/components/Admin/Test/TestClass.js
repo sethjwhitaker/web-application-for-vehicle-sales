@@ -1,20 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import 'regenerator-runtime/runtime';
 import Table from 'react-bootstrap/Table'
-import Test1 from './Test1';
+import Test from './Test';
 
 class TestClass extends React.Component {
     constructor() {
         super();
         this.state = {
             loading: true,
-            makes: [{id: 1, name: 'test1'}, {id: 2, name: 'test2'}],
+            make1: null,
             deleted: false,
             idToDelete: 0,
           };
         // Binding method
         this.onDelete = this.onDelete.bind(this);
+    }
+
+    async componentDidMount() {
+        const response =  await fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
+            headers: {
+            "Content-type": "application/json"
+            }
+        });
+        const data = await response.json();
+        this.setState({makes: data, loading: false})
+    }
+
+    componentDidUpdate() {
+        console.log("Update");
+        this.state.makes = this.state.makes2;
+        console.log(this.state.makes);
     }
 
     onDelete = (e) => {
@@ -23,41 +39,20 @@ class TestClass extends React.Component {
     }
 
     render() {
+        if (this.state.loading) {
+            return <div className= "container-fluid">loading...</div>
+        }
+
+        if (!this.state.makes) {
+            return <div className= "container-fluid">There are not any makes to display.</div>
+        }
+
         return  (
-            <div className = "container-fluid">
-                <h2>Makes List</h2>
-                <p>Note: Makes cannot be deleted if they exist in either sales history or current inventory.</p>
-                <div className="tablediv">
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Make ID</th>
-                                <th>Make Name</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {/*loop to display each make on a row*/}
-                            {this.state.makes.map((e) => (
-                                <tr key={e.id}>
-                                    <td>{e.id}</td>
-                                    <td>{e.name}</td>
-                                    <td>
-                                        <Button className="" value={e.id} onClick={this.onDelete} block type="submit">
-                                            Delete
-                                        </Button>
-                                    </td>
-                                    <td>
-                                        <Button className="" value={e.id} onClick={this.onDelete} block type="submit">
-                                            Delete
-                                        </Button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                </div>
+            <div>
+                <button onClick={e => {
+                    this.setState({idToDelete: this.state.idToDelete + 1});
+                }}>Click</button>
+                <Test makes={this.state.makes}/>
             </div>
         );
     }
