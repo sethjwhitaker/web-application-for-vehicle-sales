@@ -3,7 +3,6 @@ import 'regenerator-runtime/runtime';
 import Table from 'react-bootstrap/Table'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import MakeUpdateButton from './MakeUpdateButton';
 
 class MakeTable extends React.Component {
     constructor() {
