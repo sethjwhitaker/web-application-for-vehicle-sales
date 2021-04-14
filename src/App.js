@@ -9,6 +9,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import CarInfo from './pages/Info/CarInfo';
 import PartInfo from './pages/Info/PartInfo';
+import Finance from './pages/finance/Finance';
 
 class App extends Component {
   render(){
@@ -24,6 +25,7 @@ class App extends Component {
               <Route path='/admin' component={Admin_Interface} />
               <Route path='/car/:id' component={CarInfo} />
               <Route path='/part' component={PartInfo} />
+              <Route path='/financing' component={Finance} />
             </Switch>
           </div>
         </HashRouter>
