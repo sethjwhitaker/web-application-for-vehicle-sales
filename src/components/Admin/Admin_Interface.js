@@ -9,7 +9,6 @@ import Types from "./Types/Types";
 import Classes from "./Classes/Classes";
 import Makes from './Makes/Makes';
 import Test from './Test/Test';
-import TestClass from './Test/TestClass';
 
 export default function Admin_Interface() {
     
@@ -28,7 +27,6 @@ export default function Admin_Interface() {
             case 'types': return <Types />;
             case 'classes': return <Classes />;
             case 'test': return <Test />;
-            case 'testClass': return <TestClass />;
 
             default: return <h1>This shouldn't happen, the switch statement is broken</h1>;
         }
@@ -49,8 +47,6 @@ export default function Admin_Interface() {
                 <button onClick={() => setres('types')}>View Types</button>
                 <button onClick={() => setres('classes')}>View Classes</button>
                 <button onClick={() => setres('test')}>Test</button>
-                <button onClick={() => setres('test1')}>Test1</button>
-                <button onClick={() => setres('testClass')}>TestClass</button>
             </div>
 
             {/* Actual rendering of selected component */}
