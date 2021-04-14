@@ -16,8 +16,8 @@ class TestClass extends React.Component {
           };
     }
 
-    fetchData() {
-        const response =  await fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
+    async fetchData() {
+        const response = await fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
             headers: {
             "Content-type": "application/json"
             }
@@ -27,7 +27,7 @@ class TestClass extends React.Component {
     }
 
     async componentDidMount() {
-        this.fetchData();
+        await this.fetchData();
     }
 
     componentDidUpdate() {
