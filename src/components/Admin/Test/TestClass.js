@@ -9,7 +9,7 @@ class TestClass extends React.Component {
         super();
         this.state = {
             loading: true,
-            make1: null,
+            makes: null,
             deleted: false,
             idToDelete: 0,
           };
