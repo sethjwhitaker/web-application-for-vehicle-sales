@@ -9,12 +9,11 @@ import Types from "./Types/Types";
 import Classes from "./Classes/Classes";
 import Makes from './Makes/Makes';
 import Test from './Test/Test';
-import Test1 from './Test/Test1';
 import TestClass from './Test/TestClass';
 
 export default function Admin_Interface() {
     
-    const [res, setres] = useState('testClass')
+    const [res, setres] = useState('makes')
 
     //chooses what to render based on res
     const render = () => {
@@ -29,7 +28,6 @@ export default function Admin_Interface() {
             case 'types': return <Types />;
             case 'classes': return <Classes />;
             case 'test': return <Test />;
-            case 'test1': return <Test1 />;
             case 'testClass': return <TestClass />;
 
             default: return <h1>This shouldn't happen, the switch statement is broken</h1>;
