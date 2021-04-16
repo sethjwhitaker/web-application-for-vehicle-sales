@@ -35,7 +35,7 @@ class CarInfo extends Component {
             <Container className="flex-container">
                
                 <ProductHeader
-                prod_type = "part"
+                prod = "part"
                 title_header = "Brand"
                 //mileage_header = "Part Type"
                 price_header = "Price"
