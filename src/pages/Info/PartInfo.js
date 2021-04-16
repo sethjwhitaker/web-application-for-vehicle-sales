@@ -37,20 +37,25 @@ class PartInfo extends Component {
                 <ProductHeader
                 prod = "part"
                 title_header = "Brand"
-                mileage_header = "Quantity"
+                //mileage_header = "Quantity"
                 price_header = "Price"
                 title = {this.state.part.short_description}
-                mileage = {this.state.part.quantity}
+                //mileage = {this.state.part.quantity}
                 price = {this.state.part.price} />
                 
                 <Row>
                     <ProductInfo
                     imgURL = "https://www.linkpicture.com/q/LPic604691ad669e8533277294.jpg"
+                    prod = "part"
+                    prod_num = {this.state.part.product_id}
+                    warranty = {this.state.part.warranty}
+                    compatability = {this.state.part.compatability}
+                    color = {this.state.part.color}
                      />
 
                     <Col className="col-6">
                         <Description
-                        desc = "A text description about the part here with everything a customer will need to know."
+                        desc = {this.state.part.description}
                         />
                         <Email />
 
