@@ -24,7 +24,7 @@ class App extends Component {
               <Route path ='/register' component={Register} />
               <Route path='/admin' component={Admin_Interface} />
               <Route path='/car/:id' component={CarInfo} />
-              <Route path='/part' component={PartInfo} />
+              <Route path='/part/:id' component={PartInfo} />
               <Route path='/financing' component={Finance} />
             </Switch>
           </div>
