@@ -7,7 +7,7 @@ import ProductHeader from '../../components/Info/ProductHeader';
 import ProductInfo from '../../components/Info/ProductInfo';
 import './CarInfo.css';
 
-class CarInfo extends Component {
+class PartInfo extends Component {
 
     state = {
         part: []
