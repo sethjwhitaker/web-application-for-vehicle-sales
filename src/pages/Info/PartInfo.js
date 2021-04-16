@@ -37,10 +37,10 @@ class PartInfo extends Component {
                 <ProductHeader
                 prod = "part"
                 title_header = "Brand"
-                //mileage_header = "Part Type"
+                mileage_header = "Quantity"
                 price_header = "Price"
                 title = {this.state.part.short_description}
-                //mileage = "?"
+                mileage = {this.state.part.quantity}
                 price = {this.state.part.price} />
                 
                 <Row>
