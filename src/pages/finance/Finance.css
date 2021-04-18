@@ -1,0 +1,35 @@
+.display {
+    text-align: center;
+}
+
+.calc-title {
+    text-align: center;
+    padding: 2em 0;
+}
+
+.calc-label {
+    text-align: left;
+}
+
+.calc-form {
+    padding-bottom: 0.5em;
+    padding-left: 30%;
+}
+
+.info-text {
+    text-align: center;
+    font-size: x-large;
+    padding-bottom: 1em;
+    margin: 0 3em;
+    
+}
+
+.list {
+    display: table;
+    margin: 0 auto;
+    font-size: large;
+}
+
+li {
+    padding-bottom: 0.6em;
+}
