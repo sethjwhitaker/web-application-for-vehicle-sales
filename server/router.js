@@ -16,6 +16,8 @@ export default app => {
 
     app.get("/sales/:id", salesController.read);
 
+    app.get("/cart", salesController.getCart);
+
     app.get("/sales/status/:status", salesController.readByStatus);
   
     app.get("/sales", salesController.readAll);

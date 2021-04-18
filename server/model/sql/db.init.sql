@@ -7,9 +7,6 @@ DROP TABLE IF EXISTS types;
 DROP TABLE IF EXISTS classes;
 DROP TABLE IF EXISTS parts;
 
-
-
-
 CREATE TABLE IF NOT EXISTS users (
     id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(50) NOT NULL,
@@ -70,7 +67,7 @@ CREATE TABLE IF NOT EXISTS parts (
 CREATE TABLE IF NOT EXISTS sales (
     id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, 
     user_id int(11) NOT NULL,
-    status ENUM('processing', 'complete', 'canceled') NOT NULL,
+    status ENUM('in_cart', 'processing', 'complete', 'canceled') NOT NULL,
     date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
     address VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(id)
