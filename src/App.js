@@ -4,6 +4,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import Admin_Interface from './components/Admin/Admin_Interface.js';
 import Home from './pages/Home';
 import Login from './components/Login/Login';
+import Logout from './components/Login/Logout';
 import Register from './components/Login/Register';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -20,6 +21,7 @@ class App extends Component {
             <Switch>
               <Route path ='/' component={Home} exact />
               <Route path ='/login' component={Login} />
+              <Route path = '/logout' component={Logout} />
               <Route path ='/register' component={Register} />
               <Route path='/admin' component={Admin_Interface} />
               <Route path='/car/:id' component={CarInfo} />
