@@ -14,19 +14,19 @@ class PartsTable extends Component {
                 <tbody className="info-body">
                     <tr>
                         <td>Product #:</td>
-                        <td></td>
+                        <td>{this.props.prod_num}</td>
                     </tr>
                     <tr>
                         <td>Warranty:</td>
-                        <td></td>
+                        <td>{this.props.warranty}</td>
                     </tr>
                     <tr>
                         <td>Compatability:</td>
-                        <td></td>
+                        <td>{this.props.compatability}</td>
                     </tr>
                     <tr>
                         <td>Color:</td>
-                        <td></td>
+                        <td>{this.props.color}</td>
                     </tr>
                 </tbody>
             </Table>

@@ -5,7 +5,7 @@ class Header extends Component {
     render() {
         return (
             <div>
-                <div className='container-fluid'>
+                <header>
                     <Carousel>
                         <Carousel.Item style = {{'height': "300px", 'width':"100%"}}>
                             <img style = {{'height' : "300px"}} className="d-block w-100" src = {'img/car-header.jpg'} />
@@ -28,7 +28,7 @@ class Header extends Component {
                             </Carousel.Caption>
                         </Carousel.Item>
                     </Carousel>
-                </div>
+                </header>
             </div>
         )
     }
