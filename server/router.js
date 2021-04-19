@@ -57,6 +57,8 @@ export default app => {
     app.post("/users/create-first-admin", usersController.createFirstAdmin);
 
     app.post("/users/login", usersController.login);
+    
+    app.post("/users/logout", usersController.logout);
 
     app.get("/users/:id", usersController.read);
 
