@@ -7,6 +7,29 @@ export default class SalesModel extends Model {
         });
     }
 
+    getCart(user_id, result) {
+        const query = `SELECT * FROM ?? WHERE status = 'in_cart' 
+                        AND user_id = ?
+                        `;
+        const values = [this.tableName, user_id];
+        this.db.query(query, values, (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+                return;
+            }
+        
+            if (res.length) {
+                console.log("found items: ", res);
+                result(null, res);
+                return;
+            }
+        
+            // not found items with the status
+            result({ kind: "not_found" }, null);
+        });
+    }
+
     readByStatus(status, result) {
         const query = `SELECT * FROM ?? WHERE status = ?`;
         const values = [this.tableName, status];
