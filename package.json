@@ -59,7 +59,8 @@
   },
   "scripts": {
     "dev": "webpack serve --mode development",
-    "start": "webpack --mode production && nodemon --exec babel-node server/server.js"
+    "build": "webpack --mode production",
+    "start": "nodemon --exec babel-node server/server.js"
   },
   "devDependencies": {
     "crypto": "^1.0.1",
