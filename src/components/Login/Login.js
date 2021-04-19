@@ -59,8 +59,17 @@ export default function Login() {
 
 
     return (
-    <div className="Login">
+    <div className="container Login">
+      
       <Form className="loginForm" onSubmit={handleSubmit}>
+        
+
+
+      <h2>Login</h2>
+      <br></br>
+
+
+
         <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
