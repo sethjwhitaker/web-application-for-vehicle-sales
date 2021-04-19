@@ -23,7 +23,12 @@ class ProductInfo extends Component {
         }
 
         else {
-            return <PartsTable />
+            return <PartsTable 
+                prod_num = {props.prod_num}
+                warranty = {props.warranty}
+                compatability = {props.compatability}
+                color = {props.color}
+            />
         }
         
     }

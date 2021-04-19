@@ -16,6 +16,8 @@ export default app => {
 
     app.get("/sales/:id", salesController.read);
 
+    app.get("/cart", salesController.getCart);
+
     app.get("/sales/status/:status", salesController.readByStatus);
   
     app.get("/sales", salesController.readAll);
@@ -55,6 +57,8 @@ export default app => {
     app.post("/users/create-first-admin", usersController.createFirstAdmin);
 
     app.post("/users/login", usersController.login);
+    
+    app.post("/users/logout", usersController.logout);
 
     app.get("/users/:id", usersController.read);
 

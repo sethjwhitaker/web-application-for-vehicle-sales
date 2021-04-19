@@ -5,44 +5,79 @@ import styles from "./login.css";
 import {Link} from "react-router-dom";
 
 export default function Register() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [newEmail, setEmail] = useState("");
+    const [newPassword, setPassword] = useState("");
+    const [firstName, setfirstName] = useState("");
+    const [lastName, setlastName] = useState("");
 
     function validateForm() {
-        return email.length > 0 && password.length > 0;
+        return true;//email.length > 0 && password.length > 0;
     }
 
     function handleSubmit(event) {
         event.preventDefault();
+        // POST request using fetch()
+    fetch(`${window.location.protocol}//${window.location.hostname}/users/register`, {
+          
+
+        // Adding method type
+        method: "POST",
+          
+        // Adding body or contents to send
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email: newEmail,
+          password: newPassword
+      }),
+          
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+  
+      // Converting to JSON
+      .then(response => response.json())
+  
+      // Displaying results to console
+      .then(json => console.log(json));
     }
 
-
     return (
-    <div className="container Login">
-      
-      <Form className="loginForm" onSubmit={handleSubmit}>
 
-
-
-      <h2>Register</h2>
-      <br></br>
-
-
-
-        <Form.Group controlId="email">
+    <div className="Login">
+      <Form onSubmit={handleSubmit}>
+      <Form.Group controlId="firstName">
+          <Form.Label>First Name</Form.Label>
+          <Form.Control
+            type="firstName"
+            value={firstName}
+            onChange={(e) => setfirstName(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group controlId="lastName">
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control
+            type="lastName"
+            value={lastName}
+            onChange={(e) => setlastName(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group controlId="newEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control
             autoFocus
-            type="email"
-            value={email}
+            type="newEmail"
+            value={newEmail}
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="password">
+        <Form.Group controlId="newPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            type="password"
-            value={password}
+            type="newPassword"
+            value={newPassword}
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
