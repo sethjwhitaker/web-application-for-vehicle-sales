@@ -5,7 +5,7 @@ import { Link, NavLink } from 'react-router-dom';
 class Navbar extends Component {
     render() {
         return(
-            <ReactBootStrap.Navbar collapseOnSelect expand="md" bg="primary" variant="primary">
+            <ReactBootStrap.Navbar collapseOnSelect expand="md" bg="primary" variant="dark">
                 <ReactBootStrap.Navbar.Brand as={Link} to="/">CSCI 441 Dealership</ReactBootStrap.Navbar.Brand>
                 <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
