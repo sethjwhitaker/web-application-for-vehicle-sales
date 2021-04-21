@@ -26,17 +26,17 @@ export default function MakesTable() {
     //calls delete api with given id
     const onDelete = (e) => {
         setDeleted(deleted + 1);
-        console.log(deleteID);
+        console.log(e.target.value);
 
         // POST request using fetch()
-        fetch(`${window.location.protocol}//${window.location.hostname}/makes/${deleteID}`, {
+        fetch(`${window.location.protocol}//${window.location.hostname}/makes/${e.target.value}`, {
             
         // Adding method type
         method: "DELETE",
             
         // Adding body or contents to send
         body: JSON.stringify({
-            id: deleteID
+            id: e.target.value
         }),
             
         // Adding headers to the request
