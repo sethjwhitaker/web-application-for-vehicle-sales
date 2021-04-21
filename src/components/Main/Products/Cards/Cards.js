@@ -50,7 +50,7 @@ class Cards extends Component {
                             {this.props.car.short_description}
                             </Card.Text>
 
-                            <Link to={`/cars/${this.props.car.id}`}><Button variant="primary">More Info</Button></Link>
+                            <Link to={`/car/${this.props.car.id}`}><Button variant="primary">More Info</Button></Link>
                             <Button variant="primary" onClick={(e) => {this.addToCart(this.props.car.id, "vehicles")}}>Add to Cart</Button>
                         <Button variant="primary">Compare</Button>
                     </Card.Body>
