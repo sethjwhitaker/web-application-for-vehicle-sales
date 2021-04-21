@@ -50,9 +50,9 @@ export default function MakesTable() {
 
     useEffect(async () => {
         const response = await fetch(url);
-        const res = await response.json();
-        data = res;
-        loading = false;
+        const data = await response.json();
+        setData(data);
+        setLoading(false);
     }, [deleted]); //only rerender when deleted changes
     //empty array for onMount only
 
