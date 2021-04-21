@@ -1,65 +1,31 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
-import axios from "axios";
+import {Link} from "react-router-dom";
+import equal from "fast-deep-equal";
+import { Card, Button, Container} from 'react-bootstrap'
 
 class Cart extends Component {
     state = {
-        cart: {},
-        cartItems: []
+        cartItems: [],
+        total: 0
     }
         
     componentDidMount() {
         // TODO: Check if logged in. If not, redirect to login page.
 
         console.log(this.props.userData);
-        this.getCart();
+        this.props.getCart();
     }
-    
-    async getCart() {
-        const options = {
-            method: 'GET'
-        }
 
-        try {
-            const response = await fetch(`${window.location.protocol}//${window.location.hostname}/cart`, options);
-            const data = await response.json();
-            if(data.id) { // there is a cart
-                this.setState({cart:data});
-                console.log(data);
-            } else {
-                this.createCart();
+    componentDidUpdate(prevProps, prevState) {
+        if(!equal(this.props.cart, prevProps.cart)) {
+            if(this.props.cart.sale_items) {
+                this.populateTable();
             }
-        } catch(e) {
-            console.error(e);
         }
     }
 
-    async createCart() {
-        console.log("Creating Cart");
-        console.log(this.props.userData);
-
-        const options = {
-            method: 'POST',
-            body: JSON.stringify({
-                user_id: this.props.userData.user_id,
-                sale_items: []
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        };
-
-        try {
-            const response = await fetch(`${window.location.protocol}//${window.location.hostname}/sales`, options);
-            const data = await response.json();
-            console.log(data);
-            // check message
-        } catch(e) {
-            console.error(e);
-        }
-    }
-
-    async populateItem(id, table, q) {
+    async getItem(id, table, q) {
         try {
             const options = {method: 'GET'};
             const response = await fetch(`${window.location.protocol}//${window.location.hostname}/${table}/${id}`, options);
@@ -72,7 +38,8 @@ class Cart extends Component {
                         item: data,
                         quantity: q
                     }
-                ] 
+                ],
+                total: this.state.total + parseInt(q)*parseFloat(data.price)
             });
             console.log(data);
             
@@ -82,7 +49,8 @@ class Cart extends Component {
     }
 
     populateTable() {
-        const cart = this.state.cart.sale_items;
+        const cart = this.props.cart.sale_items;
+        this.setState({cartItems: []});
         for(let i = 0; i < cart.length; i++) {
             if(cart[i].vehicle_id) {
                 this.getItem(cart[i].vehicle_id, "vehicles", cart[i].quantity);
@@ -107,26 +75,68 @@ class Cart extends Component {
             table = 'parts';
         }
         return (
-        <div>
-            <p>{name}</p>
-            <p>{item.price}</p>
-            <p>{quantity}</p>
-            <button onClick={(e) => this.removeCartItem(item.id, table)}>Remove</button>
-        </div>
+        <Card style={{ width: '18rem' }}>
+            
+            <Card.Body>
+                <Card.Title>{name}</Card.Title>
+
+                <Card.Text>{"$" + item.price.toFixed(2)}</Card.Text>
+                <Card.Text>Quantity: {quantity}</Card.Text>
+
+                <Button variant="danger" onClick={(e) => this.removeCartItem(item.id, table)}>Remove</Button>
+            </Card.Body>
+        </Card>
         );
     }
 
 
-    removeCartItem(id, table) {
+    async removeCartItem(id, table) {
+        console.log(`Remove ${table} ${id}`);
 
+        const body = {};
+
+        if(table === "parts") {
+            body.part_id = id;
+        } else if (table === "vehicles") {
+            body.vehicle_id = id;
+        }
+
+        const options = {
+            method: 'PUT',
+            body: JSON.stringify(body),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        };
+        
+        try {
+            
+            const response = await fetch(`${window.location.protocol}//${window.location.hostname}/sales/${this.props.cart.id}/remove_item`, options);
+            const data = await response.json();
+
+            this.props.getCart();
+            
+        } catch(e) {
+            console.error(e);
+        }
     }
 
     render() {
         return(
             <div>
                 <Header />
-                <h2>Cart</h2>
-                
+                <Container fluid="md">
+                    <h2>Cart</h2>
+                    {
+                        this.state.cartItems.map(item => {
+                            return this.renderCartItem(item.item, item.quantity);
+                        })
+                    }
+                    <br></br>
+                    Total: {"$" + this.state.total.toFixed(2)}
+                    <br></br>
+                    <Link to="/checkout">Checkout</Link>
+                </Container>
             </div>        
         )   
     }

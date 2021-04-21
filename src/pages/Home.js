@@ -13,7 +13,7 @@ class Home extends Component {
       }
      
       componentDidMount(){
-         axios.get('http://localhost:8000/cars').then(response =>{
+         axios.get(`${window.location.protocol}//${window.location.hostname}/vehicles`).then(response =>{
            this.setState({cars:response.data, searchedProducts:response.data})
          console.log("Data Loaded!")
          console.log(response.data);
@@ -56,7 +56,7 @@ class Home extends Component {
             <div>
                  <Header />
                  <SearchBar searched={this.searched}/>
-                 <Main modelSelected={this.modelSelected} carBrands={this.state.carBrands} optionSelected={this.optionSelected} dataCar={this.state.cars}data={this.state.searchedProducts}/>
+                 <Main cartId={this.props.cartId} modelSelected={this.modelSelected} carBrands={this.state.carBrands} optionSelected={this.optionSelected} dataCar={this.state.cars}data={this.state.searchedProducts}/>
             </div>        
         )   
     }
