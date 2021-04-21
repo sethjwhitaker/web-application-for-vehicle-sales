@@ -209,7 +209,6 @@ export default function MakesTable() {
                                     </td>
                                     <td>
                                         <Button className="" value={e.id} onClick={(e) => {
-                                                setDeleteID(e.target.getAttribute('value'));
                                                 onDelete(e)}
                                             }
                                             block 
