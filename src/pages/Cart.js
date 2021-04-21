@@ -13,6 +13,9 @@ class Cart extends Component {
     componentDidMount() {
         // TODO: Check if logged in. If not, redirect to login page.
         this.props.getCart();
+        if(this.props.cart.sale_items) {
+            this.populateTable();
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -146,10 +149,7 @@ class Cart extends Component {
         return(
             <div>
                 <Header />
-                    
-                
-                
-
+                {this.main(this.props.loggedIn)}
                            
             </div>        
         )   

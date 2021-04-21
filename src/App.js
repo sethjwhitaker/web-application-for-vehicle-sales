@@ -22,11 +22,13 @@ class App extends Component {
     }
 
     componentDidMount() {
+        if(window.localStorage.getItem("IsLoggedIn")=="True")this.setState({isLoggedIn:true});
         this.getCart();
     }
 
     onLogin(userData) {
         console.log("Logged In");
+        window.localStorage.setItem("IsLoggedIn", "True");
         this.setState({userData:userData, isLoggedIn:true});
     }
 
