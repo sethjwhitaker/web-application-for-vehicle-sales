@@ -7,7 +7,6 @@ export default function Makes() {
     return (
         <div>
             <AddMake />
-            <MakeTable />
             <MakesTable />
         </div>
     )

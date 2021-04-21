@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 
 export default function MakesTable() {
     const url = `${window.location.protocol}//${window.location.hostname}/makes`;
+    const [newMake, setnewMake] = useState("");
     const [deleted, setDeleted] = useState(0);
     const [data, setData] = useState(null);
     const [deleteID, setDeleteID] = useState(null);
@@ -14,6 +15,37 @@ export default function MakesTable() {
     const [newEditName, setNewEditName] = useState("");
     const [loading, setLoading] = useState(true);
     const [editClicked, setEditClicked] = useState(false);
+
+    function validateForm() {
+        return newMake.length > 0;
+    }
+
+    function handleSubmit(event) {
+
+        event.preventDefault();
+        // POST request using fetch()
+        fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
+          
+        // Adding method type
+        method: "POST",
+          
+        // Adding body or contents to send
+        body: JSON.stringify({
+          name: newMake,
+      }),
+          
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+  
+      // Converting to JSON
+      .then(response => response.json())
+  
+      // Displaying results to console
+      .then(json => console.log(json));
+    }
 
     useEffect(async () => {
         const response = await fetch(url);
@@ -87,6 +119,26 @@ export default function MakesTable() {
 
     return (
         <div>
+            <div className="container">
+            <h2>Add New Make</h2>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="newMake">
+                    <Form.Label>New Make</Form.Label>
+                    <Form.Control
+                        type="newMake"
+                        value={newMake}
+                        onChange={(e) => setnewMake(e.target.value)}
+                    />
+                </Form.Group>
+                
+                <Button className="" block type="submit" disabled={!validateForm()}>
+                    Add
+                </Button>
+
+                <br></br>
+            </Form>        
+        </div>
+    
             {/*if loading is true, display loading
             if editClicked is true, display edit form
             else display full table*/}
