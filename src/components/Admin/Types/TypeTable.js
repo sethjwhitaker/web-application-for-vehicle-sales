@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function TypeTable() {
-    const url = `${window.location.protocol}//${window.location.hostname}/makes`;
+    const url = `${window.location.protocol}//${window.location.hostname}/types`;
     const [newMake, setnewMake] = useState("");
     const [deleted, setDeleted] = useState(0);
     const [data, setData] = useState(null);
