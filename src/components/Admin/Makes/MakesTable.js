@@ -42,9 +42,9 @@ export default function MakesTable() {
       .then(response => response.json())
   
       // Displaying results to console
-      .then(json => console.log(json));
+      .then(json => console.log(json))
 
-      setDeleted(deleted + 1);
+      .then(setDeleted(deleted + 1));
     }
 
     useEffect(async () => {
@@ -80,9 +80,9 @@ export default function MakesTable() {
         .then(response => response.json())
     
         // Displaying results to console
-        .then(json => console.log(json));
+        .then(json => console.log(json))
 
-        setDeleted(deleted + 1);
+        .then(setDeleted(deleted + 1));
     }
 
     //calls delete api with given id
