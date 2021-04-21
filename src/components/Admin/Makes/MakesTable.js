@@ -57,7 +57,6 @@ export default function MakesTable() {
 
     //calls delete api with given id
     const onDelete = (e) => {
-        setDeleted(deleted + 1);
         console.log(e.target.value);
 
         // POST request using fetch()
@@ -82,6 +81,8 @@ export default function MakesTable() {
     
         // Displaying results to console
         .then(json => console.log(json));
+
+        setDeleted(deleted + 1);
     }
 
     //calls delete api with given id
