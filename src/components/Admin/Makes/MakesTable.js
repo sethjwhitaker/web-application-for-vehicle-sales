@@ -8,6 +8,7 @@ export default function MakesTable() {
     const url = `${window.location.protocol}//${window.location.hostname}/makes`;
     const [deleted, setDeleted] = useState(0);
     const [data, setData] = useState(null);
+    const [deleteID, setDeleteID] = useState(null);
     const [editID, setEditID] = useState(null);
     const [editName, setEditName] = useState(null);
     const [newEditName, setNewEditName] = useState("");
@@ -26,16 +27,64 @@ export default function MakesTable() {
     const onDelete = (e) => {
         setDeleted(deleted + 1);
         console.log(e.target.value);
+        setDeleteID(e.target.value);
+
+        // POST request using fetch()
+        fetch(`${window.location.protocol}//${window.location.hostname}/makes/${deleteID}`, {
+            
+        // Adding method type
+        method: "DELETE",
+            
+        // Adding body or contents to send
+        body: JSON.stringify({
+            id: deleteID
+        }),
+            
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+        })
+    
+        // Converting to JSON
+        .then(response => response.json())
+    
+        // Displaying results to console
+        .then(json => console.log(json));
     }
 
     //calls delete api with given id
     const onEdit = (e) => {
         console.log(newEditName);
+
+        // POST request using fetch()
+        fetch(`${window.location.protocol}//${window.location.hostname}/makes/${editID}`, {
+            
+        // Adding method type
+        method: "PUT",
+            
+        // Adding body or contents to send
+        body: JSON.stringify({
+            id: editID,
+            name: newEditName
+        }),
+            
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+        })
+    
+        // Converting to JSON
+        .then(response => response.json())
+    
+        // Displaying results to console
+        .then(json => console.log(json));
     }
 
     const onEditClick = (e) => {
-        setEditID(e.target.getAttribute('first'));
-        setEditName(e.target.getAttribute('last'));
+        setEditID(e.target.getAttribute('id'));
+        setEditName(e.target.getAttribute('name'));
         setEditClicked(true);
     }
 
@@ -99,7 +148,7 @@ export default function MakesTable() {
                                     <td>{e.id}</td>
                                     <td>{e.name}</td>
                                     <td>
-                                        <Button className="" first={e.id} last={e.name} onClick={(e) => {onEditClick(e)}} block type="submit">
+                                        <Button className="" id={e.id} name={e.name} onClick={(e) => {onEditClick(e)}} block type="submit">
                                             Edit
                                         </Button>
                                     </td>
