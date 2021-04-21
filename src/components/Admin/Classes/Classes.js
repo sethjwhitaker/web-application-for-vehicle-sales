@@ -5,7 +5,6 @@ import ClassTable from './ClassTable.js';
 export default function Classes() {
     return (
         <div>
-            <AddClass />
             <ClassTable />
         </div>
     )
