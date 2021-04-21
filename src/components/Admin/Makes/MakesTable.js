@@ -45,13 +45,14 @@ export default function MakesTable() {
       .then(json => console.log(json))
 
       .then(setDeleted(deleted + 1));
+      
     }
 
     useEffect(async () => {
         const response = await fetch(url);
-        const data = await response.json();
-        setData(data);
-        setLoading(false);
+        const res = await response.json();
+        data = res;
+        loading = false;
     }, [deleted]); //only rerender when deleted changes
     //empty array for onMount only
 
