@@ -21,8 +21,6 @@ export default function MakesTable() {
     }
 
     function handleSubmit(event) {
-
-        event.preventDefault();
         // POST request using fetch()
         fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
           
@@ -45,6 +43,8 @@ export default function MakesTable() {
   
       // Displaying results to console
       .then(json => console.log(json));
+
+      setDeleted(deleted + 1);
     }
 
     useEffect(async () => {

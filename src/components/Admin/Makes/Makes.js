@@ -6,7 +6,6 @@ import MakesTable from './MakesTable.js';
 export default function Makes() {
     return (
         <div>
-            <AddMake />
             <MakesTable />
         </div>
     )
