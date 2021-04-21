@@ -26,8 +26,7 @@ export default function MakesTable() {
     //calls delete api with given id
     const onDelete = (e) => {
         setDeleted(deleted + 1);
-        console.log(e.target.value);
-        setDeleteID(e.target.value);
+        console.log(deleteID);
 
         // POST request using fetch()
         fetch(`${window.location.protocol}//${window.location.hostname}/makes/${deleteID}`, {
@@ -55,8 +54,6 @@ export default function MakesTable() {
 
     //calls delete api with given id
     const onEdit = (e) => {
-        console.log(newEditName);
-
         // POST request using fetch()
         fetch(`${window.location.protocol}//${window.location.hostname}/makes/${editID}`, {
             
@@ -148,12 +145,21 @@ export default function MakesTable() {
                                     <td>{e.id}</td>
                                     <td>{e.name}</td>
                                     <td>
-                                        <Button className="" id={e.id} name={e.name} onClick={(e) => {onEditClick(e)}} block type="submit">
+                                        <Button className="" id={e.id} name={e.name} onClick={(e) => {
+                                                onEditClick(e)}
+                                            }
+                                            block
+                                            type="submit">
                                             Edit
                                         </Button>
                                     </td>
                                     <td>
-                                        <Button className="" value={e.id} onClick={(e) => {onDelete(e)}} block type="submit">
+                                        <Button className="" value={e.id} onClick={(e) => {
+                                                setDeleteID(e.target.getAttribute('value'));
+                                                onDelete(e)}
+                                            }
+                                            block 
+                                            type="submit">
                                             Delete
                                         </Button>
                                     </td>
