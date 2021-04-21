@@ -11,8 +11,18 @@ import Footer from './components/Footer/Footer';
 import CarInfo from './pages/Info/CarInfo';
 import PartInfo from './pages/Info/PartInfo';
 import Finance from './pages/finance/Finance';
+import Cart from './pages/Cart';
 
 class App extends Component {
+    state = {
+        userData: {},
+        isLoggedIn: false
+    }
+
+    onLogin(userData) {
+        console.log("Logged In");
+        this.setState({userData:userData, isLoggedIn:true});
+    }
   render(){
     return(      
       <div className="jumbotron">
@@ -21,13 +31,14 @@ class App extends Component {
             <Navbar />
             <Switch>
               <Route path ='/' component={Home} exact />
-              <Route path ='/login' component={Login} />
+              <Route path ='/login' render={(props) => (<Login {...props} onLogin={this.onLogin.bind(this)} />)} />
               <Route path = '/logout' component={Logout} />
               <Route path ='/register' component={Register} />
               <Route path='/admin' component={Admin_Interface} />
               <Route path='/car/:id' component={CarInfo} />
               <Route path='/part/:id' component={PartInfo} />
               <Route path='/financing' component={Finance} />
+              <Route path='/cart' render={(props) => (<Cart {...props} userData={this.state.userData} />)} />
             </Switch>
           </div>
         </HashRouter>
