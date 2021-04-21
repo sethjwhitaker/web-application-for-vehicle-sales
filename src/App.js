@@ -43,7 +43,7 @@ class App extends Component {
                 this.setState({cart:data});
                 console.log(data);
             } else {
-                this.createCart();
+                if(this.state.isLoggedIn) this.createCart();
             }
         } catch(e) {
             console.error(e);
@@ -90,7 +90,7 @@ class App extends Component {
               <Route path='/car/:id' component={CarInfo} />
               <Route path='/part/:id' component={PartInfo} />
               <Route path='/financing' component={Finance} />
-              <Route path='/cart' render={(props) => (<Cart {...props} getCart={this.getCart.bind(this)} userData={this.state.userData} cart={this.state.cart} />)} />
+              <Route path='/cart' render={(props) => (<Cart {...props} getCart={this.getCart.bind(this)} loggedIn={this.state.isLoggedIn} cart={this.state.cart} />)} />
             </Switch>
           </div>
         </HashRouter>

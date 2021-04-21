@@ -12,8 +12,6 @@ class Cart extends Component {
         
     componentDidMount() {
         // TODO: Check if logged in. If not, redirect to login page.
-
-        console.log(this.props.userData);
         this.props.getCart();
     }
 
@@ -121,10 +119,9 @@ class Cart extends Component {
         }
     }
 
-    render() {
-        return(
-            <div>
-                <Header />
+    main(loggedIn) {
+        if(loggedIn) {
+            return (
                 <Container fluid="md">
                     <h2>Cart</h2>
                     {
@@ -137,6 +134,23 @@ class Cart extends Component {
                     <br></br>
                     <Link to="/checkout">Checkout</Link>
                 </Container>
+            );
+        } else {
+            return (
+                <h2>Please Log In to view Cart</h2>
+            )
+        }
+    }
+
+    render() {
+        return(
+            <div>
+                <Header />
+                    
+                
+                
+
+                           
             </div>        
         )   
     }
