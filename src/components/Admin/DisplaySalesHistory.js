@@ -185,7 +185,9 @@ export default function DisplaySalesHistory() {
                     :
 
             <div className="tablediv">
-                <Button className="" onClick={(e) =>            {setReload(reload + 1)}} block type="submit">
+                <h2>Sales Table</h2>
+                <Button className="" onClick={(e) =>            
+                    {setReload(reload + 1)}} block type="submit">
                     Reload Table
                 </Button>
                 <Table striped bordered hover>
