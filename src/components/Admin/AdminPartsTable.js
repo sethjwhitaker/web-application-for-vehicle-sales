@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function AdminPartsTable() {
+    const url = `${window.location.protocol}//${window.location.hostname}/parts`;
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
 
