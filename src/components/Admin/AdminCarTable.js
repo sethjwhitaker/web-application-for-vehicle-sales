@@ -113,8 +113,8 @@ export default function AdminCarTable() {
     const onEditClick = (e) => {
         setEditID(e.target.getAttribute('id'));
         setMake(e.target.getAttribute('make'));
-        setType(e.target.getAttribute('type'));
-        setEditClass(e.target.getAttribute('class'));
+        setType(e.target.getAttribute('editType'));
+        setEditClass(e.target.getAttribute('editClass'));
         setModel(e.target.getAttribute('model'));
         setYear(e.target.getAttribute('year'));
         setPrice(e.target.getAttribute('price'));
@@ -325,15 +325,15 @@ export default function AdminCarTable() {
                                         className="" 
                                         id={e.id} 
                                         make={e.make}
-                                        type={e.type}
-                                        class={e.class}
+                                        editType={e.type}
+                                        editClass={e.class}
                                         model={e.model}
                                         year={e.year}
                                         price={e.price}
                                         exterior_color={e.exterior_color}
                                         interior_color={e.interior_color}
                                         engine={e.engine}
-                                        transmision={e.transmission}
+                                        transmission={e.transmission}
                                         mileage={e.mileage}
                                         short_description={e.short_description}
                                         description={e.description}
