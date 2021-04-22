@@ -43,6 +43,7 @@ export default function AddNewCar() {
         const data = await response.json();
         setMakes(data);
         setMakesLoading(false);
+        console.log(makes);
     }, []);
 
     function handleSubmit(event) {
@@ -92,7 +93,7 @@ export default function AddNewCar() {
             {makesLoading ? 
 
                 //render loading
-                <div className = "container-fluid"> ...loading</div>
+                <div className = "container-fluid"> loading...</div>
                 
                 //else
                 :
@@ -104,7 +105,7 @@ export default function AddNewCar() {
                         <Form onSubmit={handleSubmit}>
                             <Form.Group controlId="make">
                                 <Form.Label>Make</Form.Label>
-                                <select>
+                                <Form.Control as="select">
                                     {makes.map((e) => {
                                         <option 
                                         key={e.id} 
@@ -112,7 +113,7 @@ export default function AddNewCar() {
                                                 {e.name}
                                         </option>
                                     })}
-                                </select>
+                                </Form.Control>
                             </Form.Group>
 
                             <Form.Group controlId="type">
