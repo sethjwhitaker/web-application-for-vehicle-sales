@@ -12,7 +12,7 @@ import Test from './Test/Test';
 
 export default function Admin_Interface() {
     
-    const [res, setres] = useState('makes')
+    const [res, setres] = useState('test')
 
     //chooses what to render based on res
     const render = () => {
