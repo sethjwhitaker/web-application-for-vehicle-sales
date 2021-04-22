@@ -31,7 +31,7 @@ export default function AddNewCar() {
     
     //only allows for button press once all required fields are filled out
     function validateForm() {
-        return make.length > 0 && type.length > 0 && newClass.length > 0 && newModel.length > 0 && newYear.length > 0
+        return newModel.length > 0 && newYear.length > 0
         && newPrice.length > 0 && newExtColor.length > 0;
     }
 
@@ -105,7 +105,7 @@ export default function AddNewCar() {
         <div className="container">
             {/*if loading is true, display loading
             else display full table*/}
-            {makesLoading && classesLoading && typesLoading ? 
+            {makesLoading || classesLoading || typesLoading ? 
 
                 //render loading
                 <div className = "container-fluid"> loading...</div>
