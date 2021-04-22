@@ -221,7 +221,7 @@ export default function DisplaySalesHistory() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data1.map((e, index) => {
+                        {data.map((e, index) => {
                             return (
                                 <tr key={index} value={e.id}>
 
