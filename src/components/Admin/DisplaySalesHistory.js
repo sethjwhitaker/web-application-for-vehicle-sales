@@ -2,9 +2,20 @@ import React from 'react'
 import Table from 'react-bootstrap/Table'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import styles from "./admin.css"
 
 export default function DisplaySalesHistory() {
+    const url = `${window.location.protocol}//${window.location.hostname}/sales`;
+    const [deleted, setDeleted] = useState(0);
+    const [data, setData] = useState(null);
+    const [deleteID, setDeleteID] = useState(null);
+    const [editID, setEditID] = useState(null);
+    const [userID, setUserID] = useState(null);
+    const [saleItems, setSaleItems] = useState(null);
+    const [status, setStatus] = useState(null);
+    const [date, setDate] = useState(null);
+    const [address, setAddress] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [editClicked, setEditClicked] = useState(false);
 
     function updateSubmit(event) {
     }
