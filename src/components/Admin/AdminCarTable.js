@@ -90,7 +90,7 @@ export default function AdminCarTable() {
         console.log(e.target.value);
 
         // POST request using fetch()
-        await fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${e.target.value}`, {
+        var message = await fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${e.target.value}`, {
             
         // Adding method type
         method: "DELETE",
@@ -113,6 +113,8 @@ export default function AdminCarTable() {
         .then(json => console.log(json))
 
         .then(setDeleted(deleted + 1));
+
+        window.alert(message);
     }
 
     //pops up a confirm alert for edit
@@ -127,9 +129,9 @@ export default function AdminCarTable() {
     }
 
     //calls edit api with given id
-    async function onEditConfirm(e) {
+    const onEditConfirm = (e) => {
         // POST request using fetch()
-        await fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${editID}`, {
+        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${editID}`, {
             
         // Adding method type
         method: "PUT",
