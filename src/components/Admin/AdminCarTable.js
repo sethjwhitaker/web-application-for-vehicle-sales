@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 export default function AdminCarTable() {
     const url = `${window.location.protocol}//${window.location.hostname}/vehicles`;
     const [deleted, setDeleted] = useState(0);
+    const [reload, setReload] = useState(0);
     const [data, setData] = useState(null);
     const [deleteID, setDeleteID] = useState(null);
     const [editID, setEditID] = useState(null);
@@ -71,7 +72,7 @@ export default function AdminCarTable() {
         console.log(data);
         setData(data);
         setLoading(false);
-    }, [deleted]); //only rerender when deleted changes
+    }, [deleted, reload]); //only rerender when deleted changes
     //empty array for onMount only
 
     //pops up a confirm alert for delete
@@ -86,11 +87,11 @@ export default function AdminCarTable() {
     }
 
     //calls delete api with given id
-    async function onDeleteConfirm(e) {
+    const onDeleteConfirm = (e) => {
         console.log(e.target.value);
 
         // POST request using fetch()
-        var res = await fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${e.target.value}`, {
+        await fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${e.target.value}`, {
             
         // Adding method type
         method: "DELETE",
@@ -114,7 +115,7 @@ export default function AdminCarTable() {
 
         .then(setDeleted(deleted + 1));
 
-        window.alert(res.message);
+        window.alert("Delete Request Sent");
     }
 
     //pops up a confirm alert for edit
@@ -191,6 +192,11 @@ export default function AdminCarTable() {
 
     return (    
         <div>
+            <div className = "container-fluid">
+            <Button className="" onClick={(e) =>            {setReload(reload + 1)}} block type="submit">
+                    Reload Table
+                </Button>
+            </div>
             {/*if loading is true, display loading
             if editClicked is true, display edit form
             else display full table*/}
