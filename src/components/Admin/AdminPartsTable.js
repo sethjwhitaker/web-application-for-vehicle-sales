@@ -19,7 +19,7 @@ export default function AdminPartsTable() {
     const [short_description, setShort_description] = useState(null);
     const [warranty, setWarranty] = useState(null);
     const [compatibility, setCompatibility] = useState(null);
-    const [color, setColor] = useState(null);
+    const [color, setColor] = useState("");
     const [product_id, setProduct_id] = useState(null);
 
     //api fetch call for part list
@@ -207,7 +207,7 @@ export default function AdminPartsTable() {
                         <Form.Group controlId="color">
                             <Form.Label>Color</Form.Label>
                             <Form.Control
-                                type="color"
+                                type="text"
                                 value={color}
                                 onChange={(e) => setColor(e.target.value)}
                             />
