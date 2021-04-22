@@ -13,13 +13,13 @@ class Checkout extends Component {
     }
 
     componentDidMount() {
-        this.props.getCart();
+        //this.props.getCart();
 
         if(this.props.cart.sale_items) {
             this.populateTable();
         }
     }
-
+/*
     componentDidUpdate(prevProps, prevState) {
         if(!equal(this.props.cart, prevProps.cart)) {
             if(this.props.cart.sale_items) {
@@ -27,6 +27,7 @@ class Checkout extends Component {
             }
         }
     }
+    */
 
     async getItem(id, table, q) {
         try {
@@ -100,14 +101,14 @@ class Checkout extends Component {
 
 
                     <Col className="cart-details pb-4" md="6">
-                        <h2>Cart</h2>
+                        <h2 className="checkout-title">Order Summary</h2>
                         {
                             this.state.cartItems.map(item => {
                                 return this.renderCartItem(item.item, item.quantity);
                             })
                         }
                         <br></br>
-                        Total: {"$" + this.state.total.toFixed(2)}
+                        <h2>Total: {"$" + this.state.total.toFixed(2)}</h2>
                         <br></br>
                     </Col>
                 </Row>
