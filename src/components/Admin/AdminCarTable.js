@@ -192,7 +192,7 @@ export default function AdminCarTable() {
 
     return (    
         <div>
-            <div className = "container-fluid">
+            <div className = "container">
             <Button className="" onClick={(e) =>            {setReload(reload + 1)}} block type="submit">
                     Reload Table
                 </Button>
