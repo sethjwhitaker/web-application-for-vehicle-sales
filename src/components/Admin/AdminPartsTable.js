@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import 'regenerator-runtime/runtime';
 import Table from 'react-bootstrap/Table'
-import styles from "./admin.css"
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export default function AdminPartsTable() {
 
