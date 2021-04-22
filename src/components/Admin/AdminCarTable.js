@@ -90,7 +90,7 @@ export default function AdminCarTable() {
         console.log(e.target.value);
 
         // POST request using fetch()
-        var message = await fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${e.target.value}`, {
+        var res = await fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${e.target.value}`, {
             
         // Adding method type
         method: "DELETE",
@@ -114,7 +114,7 @@ export default function AdminCarTable() {
 
         .then(setDeleted(deleted + 1));
 
-        window.alert(message);
+        window.alert(res.message);
     }
 
     //pops up a confirm alert for edit
