@@ -30,7 +30,41 @@ export default function AdminCarTable() {
     const [type, setType] = useState(null);
     const [year, setYear] = useState(null);
 
-    //api fetch call
+    //objects returned from api call
+    const [makes, setMakes] = useState(null);
+    const [types, setTypes] = useState(null);
+    const [classes, setClasses] = useState(null);
+
+    //loading variables
+    const [makesLoading, setMakesLoading] = useState(true);
+    const [typesLoading, setTypesLoading] = useState(true);
+    const [classesLoading, setClassesLoading] = useState(true);
+
+    //import makes
+    useEffect(async () => {
+        const response = await fetch(`${window.location.protocol}//${window.location.hostname}/makes`);
+        const data = await response.json();
+        setMakes(data);
+        setMakesLoading(false);
+    }, []);
+
+    //import types
+    useEffect(async () => {
+        const response = await fetch(`${window.location.protocol}//${window.location.hostname}/types`);
+        const data = await response.json();
+        setTypes(data);
+        setTypesLoading(false);
+    }, []);
+
+    //import classes
+    useEffect(async () => {
+        const response = await fetch(`${window.location.protocol}//${window.location.hostname}/classes`);
+        const data = await response.json();
+        setClasses(data);
+        setClassesLoading(false);
+    }, []);
+
+    //api fetch call for vehicle list
     useEffect(async () => {
         const response = await fetch(url);
         const data = await response.json();
@@ -148,29 +182,34 @@ export default function AdminCarTable() {
                 <Form onSubmit={(e) => {onEdit(e)}}>
                     <Form.Group controlId="make">
                         <Form.Label>Make</Form.Label>
-                        <Form.Control
-                            type="make"
-                            value={make}
-                            onChange={(e) => setMake(e.target.value)}
-                        />
+                        <Form.Control as="select"
+                            onChange={(e) => setMake(e.target.value)}>
+                                <option>-</option>
+                                {makes.map((e, index) => {
+                                    return (<option key={index} value={e.id}>{e.name}</option>)
+                                })}    
+                        </Form.Control>
                     </Form.Group>
 
                     <Form.Group controlId="type">
-                        <Form.Label>Type</Form.Label>
-                        <Form.Control
-                            type="type"
-                            value={type}
-                            onChange={(e) => setType(e.target.value)}
-                        />
+                    <Form.Control as="select"
+                        onChange={(e) => setType(e.target.value)}>
+                            <option>-</option>
+                            {types.map((e, index) => {
+                                return (<option key={index} value={e.id}>{e.name}</option>)
+                            })}
+                        </Form.Control>
                     </Form.Group>
 
                     <Form.Group controlId="editClass">
                         <Form.Label>Class</Form.Label>
-                        <Form.Control
-                            type="editClass"
-                            value={editClass}
-                            onChange={(e) => setEditClass(e.target.value)}
-                        />
+                        <Form.Control as="select"
+                            onChange={(e) => setEditClass(e.target.value)}>
+                                <option>-</option>
+                                {classes.map((e, index) => {
+                                    return (<option key={index} value={e.id}>{e.name}</option>)
+                                })}
+                        </Form.Control>
                     </Form.Group>
 
                     <Form.Group controlId="model">
