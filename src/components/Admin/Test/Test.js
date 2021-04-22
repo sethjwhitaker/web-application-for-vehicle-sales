@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import TestAdd from "./TestAdd";
+import Testing2 from "./Testing2";
 
 export default function Test() {
     const url = `${window.location.protocol}//${window.location.hostname}/sale_items`;
@@ -62,7 +63,7 @@ export default function Test() {
 
     return (
         <div>
-            <TestAdd />
+            <Testing2 />
             {/*if loading is true, display loading
             if editClicked is true, display edit form
             else display full table*/}
