@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function AdminPartsTable() {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     //api fetch call for vehicle list
     useEffect(async () => {
@@ -13,7 +15,7 @@ export default function AdminPartsTable() {
         console.log(data);
         setData(data);
         setLoading(false);
-    }, [deleted, reload]); //only rerender when deleted changes
+    }, []); //only rerender when deleted changes
     //empty array for onMount only
 
     return (
