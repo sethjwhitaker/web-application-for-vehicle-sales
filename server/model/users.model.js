@@ -6,7 +6,7 @@ export default class UserModel extends Model {
     }
     
     readByEmail(email, result) {
-        const query = `SELECT id, first_name, last_name, password_hash, type FROM users WHERE email = ?`;
+        const query = `SELECT id, first_name, last_name, type, password_hash, type FROM users WHERE email = ?`;
         this.db.query(query, email, (err, res) => {
             if (err) {
                 console.log("error: ", err);

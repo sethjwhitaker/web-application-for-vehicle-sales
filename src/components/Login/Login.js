@@ -3,11 +3,13 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import styles from "./login.css";
 import {Link} from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
 
 class Login extends Component {
     state = {
         email: "",
-        newPassword: ""
+        newPassword: "",
+        status: "loggedOut"
     }
 
     validateForm() {
@@ -51,27 +53,36 @@ class Login extends Component {
             const response = await fetch(`${window.location.protocol}//${window.location.hostname}/users/login`, options);
             const data = await response.json();
             
-            this.props.onLogin(data);
+            if(response.status == 200) {
+                this.setState({status: "success"});
+                this.props.onLogin(data);
+            } else if (response.status == 401) {
+                this.setState({status: "Incorrect Password"});
+            } else if (response.status == 404) {
+                this.setState({status: "Incorrect Email"});
+            } else {
+                this.setState({status: "Something went wrong"});
+            }
+            
 
             //retrieveSales();
         } catch (e) {
+            this.setState({status: "An Error occurred while Logging in."});
             console.log(e);
         }
         
     }
 
-    render() {
+    renderForm(errorMessage) {
         return (
-            <div className="container Login">
-              
-              <Form className="loginForm" onSubmit={this.handleSubmit.bind(this)}>
+            <Form className="loginForm" onSubmit={this.handleSubmit.bind(this)}>
                 
         
         
               <h2>Login</h2>
               <br></br>
         
-        
+                {errorMessage ? <p className="text-danger">{errorMessage}</p> : null}
         
                 <Form.Group controlId="email">
                   <Form.Label>Email</Form.Label>
@@ -99,7 +110,27 @@ class Login extends Component {
                 <br></br>
                 <Link to='/admin'>Admin Page</Link>
               </Form>
-        
+        );
+    }
+
+    renderLogin() {
+        if(this.state.status === "loggedOut") {
+            return this.renderForm();
+        } else if(this.state.status === "submitted") {
+            return (<Spinner animation="border" />);
+        } else if(this.state.status === "success") {
+            return (<h2>Successfully Logged In</h2>);
+        } else {
+            return this.renderForm(this.state.status);
+        }
+    }
+
+    render() {
+        return (
+            <div className="container Login">
+              
+              
+            {this.renderLogin()}
               
               
             </div>
