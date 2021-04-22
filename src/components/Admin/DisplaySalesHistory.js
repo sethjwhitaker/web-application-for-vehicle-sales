@@ -10,6 +10,7 @@ export default function DisplaySalesHistory() {
     const [loading, setLoading] = useState(true);
     const [deleted, setDeleted] = useState(0);
     const [reload, setReload] = useState(0);
+    const [editClicked, setEditClicked] = useState(false);
     const [data1, setData1] = useState([{
         "id": 4,
         "user_id": 4,
