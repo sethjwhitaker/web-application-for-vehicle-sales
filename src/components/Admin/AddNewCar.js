@@ -3,13 +3,10 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function AddNewCar() {
-
-    //variables after checking for the IDs
+    //plain variables
     const [makeID, setmakeID] = useState(null);
     const [typeID, settypeID] = useState(null);
     const [classID, setclassID] = useState(null);
-
-    //variables that can be directly added to post request
     const [newModel, setnewModel] = useState("");
     const [newYear, setnewYear] = useState("");
     const [newPrice, setnewPrice] = useState("");
@@ -20,10 +17,13 @@ export default function AddNewCar() {
     const [newMilage, setnewMilage] = useState("");
     const [newShortDescription, setnewShortDescription] = useState("");
     const [newDescription, setnewDescription] = useState("");
+
+    //objects returned from api call
     const [makes, setMakes] = useState(null);
     const [types, setTypes] = useState(null);
     const [classes, setClasses] = useState(null);
-    const [testMakes, setTestMakes] = useState([{id: 0, name: 'test'}, {id: 1, name: 'test2'}]);
+
+    //loading variables
     const [makesLoading, setMakesLoading] = useState(true);
     const [typesLoading, setTypesLoading] = useState(true);
     const [classesLoading, setClassesLoading] = useState(true);
@@ -60,10 +60,6 @@ export default function AddNewCar() {
     }, []);
 
     function handleSubmit(event) {
-        console.log(makeID);
-        console.log(typeID);
-        console.log(classID);
-
         event.preventDefault();
         // POST request using fetch()
         fetch(`${window.location.protocol}//${window.location.hostname}/vehicles`, {
@@ -99,6 +95,8 @@ export default function AddNewCar() {
   
       // Displaying results to console
       .then(json => console.log(json));
+
+      window.alert("Add Request Sent");
     }
 
     return (
