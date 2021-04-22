@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import 'regenerator-runtime/runtime';
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export default function Testing2() {
     const url = `${window.location.protocol}//${window.location.hostname}/sales`;
