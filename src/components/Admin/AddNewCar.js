@@ -5,9 +5,9 @@ import Button from "react-bootstrap/Button";
 export default function AddNewCar() {
 
     //variables after checking for the IDs
-    const [makeID, setmakeID] = useState("");
-    const [typeID, settypeID] = useState("");
-    const [classID, setclassID] = useState("");
+    const [makeID, setmakeID] = useState(null);
+    const [typeID, settypeID] = useState(null);
+    const [classID, setclassID] = useState(null);
 
     //variables that can be directly added to post request
     const [newModel, setnewModel] = useState("");
@@ -122,6 +122,7 @@ export default function AddNewCar() {
                                 <Form.Label>Make</Form.Label>
                                 <Form.Control as="select"
                                 onChange={(e) => setmakeID(e.target.value)}>
+                                    <option>-</option>
                                     {makes.map((e, index) => {
                                         return (<option key={index} value={e.id}>{e.name}</option>)
                                     })}
@@ -133,6 +134,7 @@ export default function AddNewCar() {
                                 <Form.Label>Type</Form.Label>
                                 <Form.Control as="select"
                                 onChange={(e) => settypeID(e.target.value)}>
+                                    <option>-</option>
                                     {types.map((e, index) => {
                                         return (<option key={index} value={e.id}>{e.name}</option>)
                                     })}
@@ -143,6 +145,7 @@ export default function AddNewCar() {
                                 <Form.Label>Class</Form.Label>
                                 <Form.Control as="select"
                                 onChange={(e) => setclassID(e.target.value)}>
+                                    <option>-</option>
                                     {classes.map((e, index) => {
                                         return (<option key={index} value={e.id}>{e.name}</option>)
                                     })}
