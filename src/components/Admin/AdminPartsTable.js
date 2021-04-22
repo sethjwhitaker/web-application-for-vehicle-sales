@@ -231,10 +231,11 @@ export default function AdminPartsTable() {
 
                 <div className = "container-fluid"> 
                     <h2>Part Table</h2>
-                    <Button className="" onClick={(e) =>            {setReload(reload + 1)}} block type="submit">
-                        Reload Table
-                    </Button>
                     <div className="tablediv">
+                        <Button className="" onClick={(e) =>            
+                                {setReload(reload + 1)}} block type="submit">
+                            Reload Table
+                        </Button>
                         <Table striped bordered hover>
                             <thead>
                                 <tr>

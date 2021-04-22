@@ -9,7 +9,7 @@ export default function MakesTable() {
     const [newMake, setnewMake] = useState("");
     const [deleted, setDeleted] = useState(0);
     const [data, setData] = useState(null);
-    const [deleteID, setDeleteID] = useState(null);
+    const [reload, setReload] = useState(null);
     const [editID, setEditID] = useState(null);
     const [editName, setEditName] = useState(null);
     const [newEditName, setNewEditName] = useState("");
@@ -53,7 +53,7 @@ export default function MakesTable() {
         const data = await response.json();
         setData(data);
         setLoading(false);
-    }, [deleted]); //only rerender when deleted changes
+    }, [deleted, reload]); //only rerender when deleted changes
     //empty array for onMount only
 
     //calls delete api with given id
@@ -183,6 +183,10 @@ export default function MakesTable() {
                 <h2>Makes List</h2>
                 <p>Note: Makes cannot be deleted if they exist in either sales history or current inventory.</p>
                 <div className="tablediv">
+                    <Button className="" onClick={(e) =>            
+                            {setReload(reload + 1)}} block type="submit">
+                        Reload Table
+                    </Button>
                     <Table striped bordered hover>
                         <thead>
                             <tr>

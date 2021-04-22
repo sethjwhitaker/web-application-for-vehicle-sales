@@ -138,9 +138,6 @@ export default function DisplaySalesHistory() {
             //render Edit form
             <div className = "container-fluid"> 
                 <h2>Edit ID {id}</h2>
-                <Button className="" onClick={(e) =>            {setReload(reload + 1)}} block type="submit">
-                    Reload Table
-                </Button>
                 <Form onSubmit={(e) => {onEdit(e)}}>
 
                     <Form.Group controlId="address">
@@ -188,6 +185,9 @@ export default function DisplaySalesHistory() {
                     :
 
             <div className="tablediv">
+                <Button className="" onClick={(e) =>            {setReload(reload + 1)}} block type="submit">
+                    Reload Table
+                </Button>
                 <Table striped bordered hover>
                     <thead>
                         <tr>

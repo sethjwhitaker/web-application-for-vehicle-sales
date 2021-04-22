@@ -189,11 +189,6 @@ export default function AdminCarTable() {
 
     return (    
         <div>
-            <div className = "container">
-                <Button className="" onClick={(e) =>            {setReload(reload + 1)}} block type="submit">
-                    Reload Table
-                </Button>
-            </div>
             {/*if loading is true, display loading
             if editClicked is true, display edit form
             else display full table*/}
@@ -350,6 +345,10 @@ export default function AdminCarTable() {
             <div className = "container-fluid"> 
                 <h2>Car Table</h2>
                 <div className="tablediv">
+                    <Button className="" onClick={(e) =>            
+                            {setReload(reload + 1)}} block type="submit">
+                        Reload Table
+                    </Button>
                     <Table striped bordered hover>
                         <thead>
                             <tr>
