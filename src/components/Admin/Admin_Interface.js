@@ -9,6 +9,7 @@ import Types from "./Types/Types";
 import Classes from "./Classes/Classes";
 import Makes from './Makes/Makes';
 import Test from './Test/Test';
+import Testing2 from './Test/Testing2';
 import Button from "react-bootstrap/Button";
 
 export default function Admin_Interface() {
@@ -27,7 +28,7 @@ export default function Admin_Interface() {
             case 'makes': return <Makes />;
             case 'types': return <Types />;
             case 'classes': return <Classes />;
-            case 'test': return <Test />;
+            case 'test': return <Testing2 />;
 
             default: return <h1>This shouldn't happen, the switch statement is broken</h1>;
         }
