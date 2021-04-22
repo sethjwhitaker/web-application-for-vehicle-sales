@@ -16,7 +16,7 @@ class Products extends Component {
           <Row>
             {this.props.data.map(car => (
               <Col key={car.id}> 
-              <Cards cartId={this.props.cartId} car={car}/> </Col>
+              <Cards cartId={this.props.cartId} car={car} isCar={this.props.isCar}/> </Col>
             ))}
           </Row>
         </Container>

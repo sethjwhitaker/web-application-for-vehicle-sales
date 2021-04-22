@@ -12,6 +12,7 @@ import CarInfo from './pages/Info/CarInfo';
 import PartInfo from './pages/Info/PartInfo';
 import Finance from './pages/finance/Finance';
 import Cart from './pages/Cart';
+import Parts from './pages/Parts';
 import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 
 class App extends Component {
@@ -107,6 +108,7 @@ class App extends Component {
               <Route path='/part/:id' component={PartInfo} />
               <Route path='/financing' component={Finance} />
               <Route path='/cart' render={(props) => (<Cart {...props} getCart={this.getCart.bind(this)} loggedIn={this.state.isLoggedIn} cart={this.state.cart} />)} />
+              <Route path='/parts' render={(props) => (<Parts {...props} cartId={this.state.cart.id} />)} />
             </Switch>
           </div>
         </HashRouter>
