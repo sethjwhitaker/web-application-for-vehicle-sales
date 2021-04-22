@@ -142,77 +142,169 @@ export default function AdminPartsTable() {
 
     return (
         <div>
-            <div className = "container-fluid"> 
-                <h2>Part Table</h2>
-                <Button className="" onClick={(e) =>            {setReload(reload + 1)}} block type="submit">
-                    Reload Table
-                </Button>
-                <div className="tablediv">
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Part ID</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Short Description</th>
-                                <th>Warranty</th>
-                                <th>Compatibility</th>
-                                <th>Color</th>
-                                <th>Product ID</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {data.map((e, index) => {
-                            return (
-                                <tr key={index} value={e.id}>
+            {/*if loading is true, display loading
+            if editClicked is true, display edit form
+            else display full table*/}
+            {loading ? 
 
-                                    <td>{e.id}</td>
-                                    <td>{e.price}</td>
-                                    <td>{e.quantity}</td>
-                                    <td>{e.short_description}</td>
-                                    <td>{e.warranty}</td>
-                                    <td>{e.compatibility}</td>
-                                    <td>{e.color}</td>
-                                    <td>{e.product_id}</td>
-                                    <td>
-                                        <Button 
-                                        className="" 
-                                        id={e.id} 
-                                        price={e.price}
-                                        quantity={e.quantity}
-                                        short_description={e.short_description}
-                                        warranty={e.warranty}
-                                        compatibility={e.compatibility}
-                                        color={e.color}
-                                        product_id={e.product_id}
-                                        block
-                                        type="submit"
-                                        onClick={(e) => {
-                                            onEditClick(e)}
-                                        }>
-                                            Edit
-                                        </Button>
-                                    </td>
-                                    <td>
-                                        <Button 
-                                        className="" 
-                                        value={e.id} 
-                                        block 
-                                        type="submit"
-                                        onClick={(e) => {
-                                            onDelete(e)}
-                                        }>
-                                            Delete
-                                        </Button>
-                                    </td>
-                                </tr>)
-                            })}
-                        </tbody>
-                    </Table>
-                </div>
-            </div>
+                //render loading
+                <div className = "container-fluid">loading...</div> 
+
+                //if editClicked is true...
+                : editClicked ? 
+
+                //render Edit form
+                <div className = "container-fluid"> 
+                    <h2>Edit ID {editID}</h2>
+                    <Form onSubmit={(e) => {onEdit(e)}}>
+                        
+                        <Form.Group controlId="price">
+                            <Form.Label>Price</Form.Label>
+                            <Form.Control
+                                type="price"
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="quantity">
+                            <Form.Label>Quantity</Form.Label>
+                            <Form.Control
+                                type="quantity"
+                                value={quantity}
+                                onChange={(e) => setQuantity(e.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="short_description">
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control
+                                type="short_description"
+                                value={short_description}
+                                onChange={(e) => setShort_description(e.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="warranty">
+                            <Form.Label>Warranty</Form.Label>
+                            <Form.Control
+                                type="warranty"
+                                value={warranty}
+                                onChange={(e) => setWarranty(e.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="compatibility">
+                            <Form.Label>Compatibility</Form.Label>
+                            <Form.Control
+                                type="compatibility"
+                                value={compatibility}
+                                onChange={(e) => setCompatibility(e.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="color">
+                            <Form.Label>Color</Form.Label>
+                            <Form.Control
+                                type="color"
+                                value={color}
+                                onChange={(e) => setColor(e.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="product_id">
+                            <Form.Label>Product ID</Form.Label>
+                            <Form.Control
+                                type="product_id"
+                                value={product_id}
+                                onChange={(e) => setProduct_id(e.target.value)}
+                            />
+                        </Form.Group>
+                        
+                        <Button className="" block type="submit">
+                            Submit
+                        </Button>
+                    </Form>   
+                    <br></br>
+                    <Button className="" onClick={(e) => {setEditClicked(false)}} block type="submit">
+                        Back To Table
+                    </Button>
+                </div> 
+
+                //else
+                :
+
+                <div className = "container-fluid"> 
+                    <h2>Part Table</h2>
+                    <Button className="" onClick={(e) =>            {setReload(reload + 1)}} block type="submit">
+                        Reload Table
+                    </Button>
+                    <div className="tablediv">
+                        <Table striped bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>Part ID</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Short Description</th>
+                                    <th>Warranty</th>
+                                    <th>Compatibility</th>
+                                    <th>Color</th>
+                                    <th>Product ID</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {data.map((e, index) => {
+                                return (
+                                    <tr key={index} value={e.id}>
+
+                                        <td>{e.id}</td>
+                                        <td>{e.price}</td>
+                                        <td>{e.quantity}</td>
+                                        <td>{e.short_description}</td>
+                                        <td>{e.warranty}</td>
+                                        <td>{e.compatibility}</td>
+                                        <td>{e.color}</td>
+                                        <td>{e.product_id}</td>
+                                        <td>
+                                            <Button 
+                                            className="" 
+                                            id={e.id} 
+                                            price={e.price}
+                                            quantity={e.quantity}
+                                            short_description={e.short_description}
+                                            warranty={e.warranty}
+                                            compatibility={e.compatibility}
+                                            color={e.color}
+                                            product_id={e.product_id}
+                                            block
+                                            type="submit"
+                                            onClick={(e) => {
+                                                onEditClick(e)}
+                                            }>
+                                                Edit
+                                            </Button>
+                                        </td>
+                                        <td>
+                                            <Button 
+                                            className="" 
+                                            value={e.id} 
+                                            block 
+                                            type="submit"
+                                            onClick={(e) => {
+                                                onDelete(e)}
+                                            }>
+                                                Delete
+                                            </Button>
+                                        </td>
+                                    </tr>)
+                                })}
+                            </tbody>
+                        </Table>
+                    </div>
+                </div>}
         </div>
     )
 }
