@@ -25,7 +25,7 @@ export default function AdminCarTable() {
     const [mileage, setMileage] = useState(null);
     const [model, setModel] = useState(null);
     const [price, setPrice] = useState(null);
-    const [short_description, SetShort_description] = useState(null);
+    const [short_description, setShort_description] = useState(null);
     const [transmission, setTransmission] = useState(null);
     const [type, setType] = useState(null);
     const [year, setYear] = useState(null);
@@ -72,7 +72,42 @@ export default function AdminCarTable() {
 
     //calls edit api with given id
     const onEdit = (e) => {
-        console.log(e.target.value);
+        // POST request using fetch()
+        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${editID}`, {
+            
+        // Adding method type
+        method: "PUT",
+            
+        // Adding body or contents to send
+        body: JSON.stringify({
+            id: editID,
+            make: make,
+            type: type,
+            class: editClass,
+            model: model,
+            year: year,
+            price: price,
+            exterior_color: exterior_color,
+            interior_color: interior_color,
+            engine: engine,
+            transmission: transmission,
+            mileage: mileage,
+            short_description: short_description,
+            description: description
+
+        }),
+            
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+        })
+    
+        // Converting to JSON
+        .then(response => response.json())
+    
+        // Displaying results to console
+        .then(json => console.log(json));
     }
 
     const onEditClick = (e) => {
@@ -88,7 +123,7 @@ export default function AdminCarTable() {
         setEngine(e.target.getAttribute('engine'));
         setTransmission(e.target.getAttribute('transmission'));
         setMileage(e.target.getAttribute('mileage'));
-        SetShort_description(e.target.getAttribute('short_description'));
+        setShort_description(e.target.getAttribute('short_description'));
         setDescription(e.target.getAttribute('description'));
 
         setEditClicked(true);
@@ -117,6 +152,114 @@ export default function AdminCarTable() {
                             type="make"
                             value={make}
                             onChange={(e) => setMake(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="type">
+                        <Form.Label>Type</Form.Label>
+                        <Form.Control
+                            type="type"
+                            value={type}
+                            onChange={(e) => setType(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="editClass">
+                        <Form.Label>Class</Form.Label>
+                        <Form.Control
+                            type="editClass"
+                            value={editClass}
+                            onChange={(e) => setEditClass(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="model">
+                        <Form.Label>Model</Form.Label>
+                        <Form.Control
+                            type="model"
+                            value={model}
+                            onChange={(e) => setModel(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="year">
+                        <Form.Label>Year</Form.Label>
+                        <Form.Control
+                            type="year"
+                            value={year}
+                            onChange={(e) => setYear(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="price">
+                        <Form.Label>Price</Form.Label>
+                        <Form.Control
+                            type="price"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="exterior_color">
+                        <Form.Label>Exterior Color</Form.Label>
+                        <Form.Control
+                            type="exterior_color"
+                            value={exterior_color}
+                            onChange={(e) => setExterior_color(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="interior_color">
+                        <Form.Label>Interior Color</Form.Label>
+                        <Form.Control
+                            type="interior_color"
+                            value={interior_color}
+                            onChange={(e) => setInterior_color(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="engine">
+                        <Form.Label>Engine</Form.Label>
+                        <Form.Control
+                            type="engine"
+                            value={engine}
+                            onChange={(e) => setEngine(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="transmission">
+                        <Form.Label>Transmission</Form.Label>
+                        <Form.Control
+                            type="transmission"
+                            value={transmission}
+                            onChange={(e) => setTransmission(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="mileage">
+                        <Form.Label>Mileage</Form.Label>
+                        <Form.Control
+                            type="mileage"
+                            value={mileage}
+                            onChange={(e) => setMileage(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="short_description">
+                        <Form.Label>Short Description</Form.Label>
+                        <Form.Control
+                            type="short_description"
+                            value={short_description}
+                            onChange={(e) => setShort_description(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="description">
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control
+                            type="description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </Form.Group>
                     
