@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function Test() {
-    const url = `${window.location.protocol}//${window.location.hostname}/sales`;
+    const url = `${window.location.protocol}//${window.location.hostname}/sale_items`;
     const [deleted, setDeleted] = useState(0);
     const [data, setData] = useState(null);
     const [editID, setEditID] = useState(null);
