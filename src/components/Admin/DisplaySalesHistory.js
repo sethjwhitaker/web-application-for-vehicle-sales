@@ -11,26 +11,12 @@ export default function DisplaySalesHistory() {
     const [deleted, setDeleted] = useState(0);
     const [reload, setReload] = useState(0);
     const [editClicked, setEditClicked] = useState(false);
-    const [data1, setData1] = useState([{
-        "id": 4,
-        "user_id": 4,
-        "status": "in_cart",
-        "date": "2021-04-19T13:08:41.000Z",
-        "address": null,
-        "sale_items": [
-            {
-                "vehicle_id": 14,
-                "part_id": null,
-                "quantity": 1
-            }
-        ]
-    }]);
-    //variables for editing vehicle
+
+    //variables for editing history
     const [id, setID] = useState(null);
     const [address, setAddress] = useState(null);
     const [date, setDate] = useState(null);
     const [status, setStatus] = useState(null);
-    const [user_id, setUser_id] = useState(null);
 
     //api fetch call for part list
     useEffect(async () => {
@@ -41,12 +27,6 @@ export default function DisplaySalesHistory() {
         setLoading(false);
     }, [deleted, reload]); //only rerender when deleted changes
     //empty array for onMount only
-
-    useEffect(async () => {
-        const response = await fetch(`${window.location.protocol}//${window.location.hostname}/sale_items`);
-        const data = await response.json();
-        console.log(data);
-    }, [deleted, reload]);
 
     //pops up a confirm alert for delete
     const onDelete = (e) => {
@@ -158,7 +138,9 @@ export default function DisplaySalesHistory() {
             //render Edit form
             <div className = "container-fluid"> 
                 <h2>Edit ID {id}</h2>
-                <p>Make sure to select a status</p>
+                <Button className="" onClick={(e) =>            {setReload(reload + 1)}} block type="submit">
+                    Reload Table
+                </Button>
                 <Form onSubmit={(e) => {onEdit(e)}}>
 
                     <Form.Group controlId="address">
