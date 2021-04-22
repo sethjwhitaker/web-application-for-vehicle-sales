@@ -156,7 +156,7 @@ export default function AdminPartsTable() {
 
                 //render Edit form
                 <div className = "container-fluid"> 
-                    <h2>Edit ID {editID}</h2>
+                    <h2>Edit ID {id}</h2>
                     <Form onSubmit={(e) => {onEdit(e)}}>
                         
                         <Form.Group controlId="price">
