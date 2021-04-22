@@ -89,7 +89,7 @@ export default function AdminPartsTable() {
     //calls edit api with given id
     const onEditConfirm = (e) => {
         // POST request using fetch()
-        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${id}`, {
+        fetch(`${window.location.protocol}//${window.location.hostname}/parts/${id}`, {
             
         // Adding method type
         method: "PUT",
@@ -98,6 +98,7 @@ export default function AdminPartsTable() {
         body: JSON.stringify({
             id: id,
             price: price,
+            quantity: quantity,
             short_description: short_description,
             warranty: warranty,
             compatibility: compatibility,
