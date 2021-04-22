@@ -9,10 +9,7 @@ export default function AdminCarTable() {
     const [deleted, setDeleted] = useState(0);
     const [reload, setReload] = useState(0);
     const [data, setData] = useState(null);
-    const [deleteID, setDeleteID] = useState(null);
     const [editID, setEditID] = useState(null);
-    const [editName, setEditName] = useState(null);
-    const [newEditName, setNewEditName] = useState("");
     const [loading, setLoading] = useState(true);
     const [editClicked, setEditClicked] = useState(false);
 
