@@ -10,6 +10,7 @@ export default function AdminPartsTable() {
     const [loading, setLoading] = useState(true);
     const [deleted, setDeleted] = useState(0);
     const [reload, setReload] = useState(0);
+    const [editClicked, setEditClicked] = useState(false);
 
     //variables for editing vehicle
     const [id, setID] = useState(null);
