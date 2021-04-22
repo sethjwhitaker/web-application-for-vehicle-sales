@@ -104,8 +104,19 @@ export default function AdminCarTable() {
         .then(setDeleted(deleted + 1));
     }
 
-    //calls edit api with given id
+    //pops up a confirm alert
     const onEdit = (e) => {
+        var res = confirm("Press OK to send update request");
+        if (res == true) {
+            onEditConfirm(e);
+        }
+        else {
+
+        }
+    }
+
+    //calls edit api with given id
+    const onEditConfirm = (e) => {
         // POST request using fetch()
         fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${editID}`, {
             
@@ -141,7 +152,9 @@ export default function AdminCarTable() {
         .then(response => response.json())
     
         // Displaying results to console
-        .then(json => console.log(json));
+        .then(json => console.log(json))
+
+        .then(setDeleted(deleted + 1));
     }
 
     const onEditClick = (e) => {
@@ -179,6 +192,7 @@ export default function AdminCarTable() {
             //render Edit form
             <div className = "container-fluid"> 
                 <h2>Edit ID {editID}</h2>
+                <p>Make sure to select a make, type, and class from dropdowns before submit.</p>
                 <Form onSubmit={(e) => {onEdit(e)}}>
                     <Form.Group controlId="make">
                         <Form.Label>Make</Form.Label>
