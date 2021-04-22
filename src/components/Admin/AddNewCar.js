@@ -4,13 +4,6 @@ import Button from "react-bootstrap/Button";
 
 export default function AddNewCar() {
 
-    //***********Need to add function for getting IDs from make, type, class*/
-
-    //variables for accepting from form
-    const [make, setmake] = useState("");
-    const [type, settype] = useState("");
-    const [newClass, setnewClass] = useState("");
-
     //variables after checking for the IDs
     const [makeID, setmakeID] = useState("");
     const [typeID, settypeID] = useState("");
@@ -28,8 +21,12 @@ export default function AddNewCar() {
     const [newShortDescription, setnewShortDescription] = useState("");
     const [newDescription, setnewDescription] = useState("");
     const [makes, setMakes] = useState(null);
+    const [types, setTypes] = useState(null);
+    const [classes, setClasses] = useState(null);
     const [testMakes, setTestMakes] = useState([{id: 0, name: 'test'}, {id: 1, name: 'test2'}]);
     const [makesLoading, setMakesLoading] = useState(true);
+    const [typesLoading, setTypesLoading] = useState(true);
+    const [classesLoading, setClassesLoading] = useState(true);
 
     
     //only allows for button press once all required fields are filled out
@@ -44,11 +41,29 @@ export default function AddNewCar() {
         const data = await response.json();
         setMakes(data);
         setMakesLoading(false);
-        console.log(data);
-        console.log(makes);
+    }, []);
+
+    //import types
+    useEffect(async () => {
+        const response = await fetch(`${window.location.protocol}//${window.location.hostname}/types`);
+        const data = await response.json();
+        setTypes(data);
+        setTypesLoading(false);
+    }, []);
+
+    //import classes
+    useEffect(async () => {
+        const response = await fetch(`${window.location.protocol}//${window.location.hostname}/classes`);
+        const data = await response.json();
+        setClasses(data);
+        setClassesLoading(false);
     }, []);
 
     function handleSubmit(event) {
+        console.log(makeID);
+        console.log(typeID);
+        console.log(classID);
+
         event.preventDefault();
         // POST request using fetch()
         fetch(`${window.location.protocol}//${window.location.hostname}/vehicles`, {
@@ -71,7 +86,6 @@ export default function AddNewCar() {
           mileage: newMilage,
           short_description: newShortDescription,
           description: newDescription,
-          image: newImage,
       }),
           
         // Adding headers to the request
@@ -90,9 +104,8 @@ export default function AddNewCar() {
     return (
         <div className="container">
             {/*if loading is true, display loading
-            if editClicked is true, display edit form
             else display full table*/}
-            {makesLoading ? 
+            {makesLoading && classesLoading && typesLoading ? 
 
                 //render loading
                 <div className = "container-fluid"> loading...</div>
@@ -107,29 +120,33 @@ export default function AddNewCar() {
                         <Form onSubmit={handleSubmit}>
                             <Form.Group controlId="make">
                                 <Form.Label>Make</Form.Label>
-                                <Form.Control as="select">
+                                <Form.Control as="select"
+                                onChange={(e) => setmakeID(e.target.value)}>
                                     {makes.map((e, index) => {
+                                        return (<option key={index} value={e.id}>{e.name}</option>)
+                                    })}
+                                    
+                                </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group controlId="type">
+                                <Form.Label>Type</Form.Label>
+                                <Form.Control as="select"
+                                onChange={(e) => settypeID(e.target.value)}>
+                                    {types.map((e, index) => {
                                         return (<option key={index} value={e.id}>{e.name}</option>)
                                     })}
                                 </Form.Control>
                             </Form.Group>
 
-                            <Form.Group controlId="type">
-                            <Form.Label>Type</Form.Label>
-                            <Form.Control
-                                type="type"
-                                value={type}
-                                onChange={(e) => settype(e.target.value)}
-                            />
-                            </Form.Group>
-
-                            <Form.Group controlId="newClass">
-                            <Form.Label>Class</Form.Label>
-                            <Form.Control
-                                type="newClass"
-                                value={newClass}
-                                onChange={(e) => setnewClass(e.target.value)}
-                            />
+                            <Form.Group controlId="class">
+                                <Form.Label>Class</Form.Label>
+                                <Form.Control as="select"
+                                onChange={(e) => setclassID(e.target.value)}>
+                                    {classes.map((e, index) => {
+                                        return (<option key={index} value={e.id}>{e.name}</option>)
+                                    })}
+                                </Form.Control>
                             </Form.Group>
 
                             <Form.Group controlId="newModel">
