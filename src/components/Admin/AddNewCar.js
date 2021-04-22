@@ -44,6 +44,7 @@ export default function AddNewCar() {
         setMakes(data);
         setMakesLoading(false);
         console.log(data);
+        console.log(makes);
     }, []);
 
     function handleSubmit(event) {
@@ -109,8 +110,8 @@ export default function AddNewCar() {
                                     {makes.map((e) => {
                                         <option 
                                         key={e.id} 
-                                        value={e.id}>
-                                                {e.name}
+                                        >
+                                            {e.name}
                                         </option>
                                     })}
                                 </Form.Control>
