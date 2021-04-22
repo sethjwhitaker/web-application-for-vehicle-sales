@@ -41,7 +41,7 @@ export default function AddNewCar() {
     useEffect(async () => {
         const response = await fetch(`${window.location.protocol}//${window.location.hostname}/makes`);
         const data = await response.json();
-        setMakes(data);
+        makes = data;
         setMakesLoading(false);
         console.log(data);
         console.log(makes);
