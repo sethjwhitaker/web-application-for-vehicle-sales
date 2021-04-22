@@ -98,7 +98,6 @@ export default function AdminPartsTable() {
         body: JSON.stringify({
             id: id,
             price: price,
-            quantity: quantity,
             short_description: short_description,
             warranty: warranty,
             compatibility: compatibility,
