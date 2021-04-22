@@ -48,7 +48,7 @@ export default function AdminPartsTable() {
         console.log(e.target.value);
 
         // POST request using fetch()
-        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${e.target.value}`, {
+        fetch(`${window.location.protocol}//${window.location.hostname}/parts/${e.target.value}`, {
             
         // Adding method type
         method: "DELETE",
@@ -89,27 +89,21 @@ export default function AdminPartsTable() {
     //calls edit api with given id
     const onEditConfirm = (e) => {
         // POST request using fetch()
-        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${editID}`, {
+        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${id}`, {
             
         // Adding method type
         method: "PUT",
             
         // Adding body or contents to send
         body: JSON.stringify({
-            id: editID,
-            make_id: make,
-            type_id: type,
-            class_id: editClass,
-            model: model,
-            year: year,
+            id: id,
             price: price,
-            exterior_color: exterior_color,
-            interior_color: interior_color,
-            engine: engine,
-            transmission: transmission,
-            mileage: mileage,
+            quantity: quantity,
             short_description: short_description,
-            description: description
+            warranty: warranty,
+            compatibility: compatibility,
+            color: color,
+            product_id: product_id
 
         }),
             
