@@ -28,6 +28,7 @@ export default function AddNewCar() {
     const [newShortDescription, setnewShortDescription] = useState("");
     const [newDescription, setnewDescription] = useState("");
     const [makes, setMakes] = useState(null);
+    const [testMakes, setTestMakes] = useState([{id: 0, name: 'test'}, {id: 1, name: 'test2'}]);
     const [makesLoading, setMakesLoading] = useState(true);
 
     
@@ -41,7 +42,7 @@ export default function AddNewCar() {
     useEffect(async () => {
         const response = await fetch(`${window.location.protocol}//${window.location.hostname}/makes`);
         const data = await response.json();
-        makes = data;
+        setMakes(data);
         setMakesLoading(false);
         console.log(data);
         console.log(makes);
@@ -107,12 +108,8 @@ export default function AddNewCar() {
                             <Form.Group controlId="make">
                                 <Form.Label>Make</Form.Label>
                                 <Form.Control as="select">
-                                    {makes.map((e) => {
-                                        <option 
-                                        key={e.id} 
-                                        >
-                                            {e.name}
-                                        </option>
+                                    {makes.map((e, index) => {
+                                        return (<option key={index} value={e.id}>{e.name}</option>)
                                     })}
                                 </Form.Control>
                             </Form.Group>
