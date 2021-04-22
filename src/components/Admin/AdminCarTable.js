@@ -43,15 +43,54 @@ export default function AdminCarTable() {
     //calls delete api with given id
     const onDelete = (e) => {
         console.log(e.target.value);
+
+        // POST request using fetch()
+        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${e.target.value}`, {
+            
+        // Adding method type
+        method: "DELETE",
+            
+        // Adding body or contents to send
+        body: JSON.stringify({
+            id: e.target.value
+        }),
+            
+        // Adding headers to the request
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+        })
+    
+        // Converting to JSON
+        .then(response => response.json())
+    
+        // Displaying results to console
+        .then(json => console.log(json))
+
+        .then(setDeleted(deleted + 1));
     }
 
-    //calls delete api with given id
+    //calls edit api with given id
     const onEdit = (e) => {
         console.log(e.target.value);
     }
 
     const onEditClick = (e) => {
         setEditID(e.target.getAttribute('id'));
+        setMake(e.target.getAttribute('make'));
+        setType(e.target.getAttribute('type'));
+        setEditClass(e.target.getAttribute('class'));
+        setModel(e.target.getAttribute('model'));
+        setYear(e.target.getAttribute('year'));
+        setPrice(e.target.getAttribute('price'));
+        setExterior_color(e.target.getAttribute('exterior_color'));
+        setInterior_color(e.target.getAttribute('interior_color'));
+        setEngine(e.target.getAttribute('engine'));
+        setTransmission(e.target.getAttribute('transmission'));
+        setMileage(e.target.getAttribute('mileage'));
+        SetShort_description(e.target.getAttribute('short_description'));
+        setDescription(e.target.getAttribute('description'));
+
         setEditClicked(true);
     }
 
@@ -72,12 +111,12 @@ export default function AdminCarTable() {
             <div className = "container-fluid"> 
                 <h2>Edit ID {editID}</h2>
                 <Form onSubmit={(e) => {onEdit(e)}}>
-                    <Form.Group controlId="newEditName">
-                        <Form.Label>New Name</Form.Label>
+                    <Form.Group controlId="make">
+                        <Form.Label>Make</Form.Label>
                         <Form.Control
-                            type="newEditName"
-                            value={newEditName}
-                            onChange={(e) => setNewEditName(e.target.value)}
+                            type="make"
+                            value={make}
+                            onChange={(e) => setMake(e.target.value)}
                         />
                     </Form.Group>
                     
@@ -142,6 +181,19 @@ export default function AdminCarTable() {
                                         <Button 
                                         className="" 
                                         id={e.id} 
+                                        make={e.make}
+                                        type={e.type}
+                                        class={e.class}
+                                        model={e.model}
+                                        year={e.year}
+                                        price={e.price}
+                                        exterior_color={e.exterior_color}
+                                        interior_color={e.interior_color}
+                                        engine={e.engine}
+                                        transmision={e.transmission}
+                                        mileage={e.mileage}
+                                        short_description={e.short_description}
+                                        description={e.description}
                                         block
                                         type="submit"
                                         onClick={(e) => {
