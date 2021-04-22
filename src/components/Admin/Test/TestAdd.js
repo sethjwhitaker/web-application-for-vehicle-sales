@@ -14,7 +14,7 @@ export default function TestAdd() {
     const [newQuantity, setNewQuantity] = useState(1);
 
     function validateForm() {
-        return newUserID.length > 0 && newSalesItems.length > 0 && newStatus.length > 0 && newDate.length > 0 && newAddress.length > 0;
+        return newStatus.length > 0 && newDate.length > 0 && newAddress.length > 0 && newDate.length > 0 && newVehicleID.length > 0;
     }
 
     function handleSubmit(event) {
