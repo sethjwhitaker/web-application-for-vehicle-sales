@@ -91,7 +91,7 @@ export default function AdminCarTable() {
         console.log(e.target.value);
 
         // POST request using fetch()
-        await fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${e.target.value}`, {
+        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${e.target.value}`, {
             
         // Adding method type
         method: "DELETE",
