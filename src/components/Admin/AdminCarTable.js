@@ -74,12 +74,23 @@ export default function AdminCarTable() {
     }, [deleted]); //only rerender when deleted changes
     //empty array for onMount only
 
-    //calls delete api with given id
+    //pops up a confirm alert for delete
     const onDelete = (e) => {
+        var res = confirm("Press OK to send delete request");
+        if (res == true) {
+            onDeleteConfirm(e);
+        }
+        else {
+
+        }
+    }
+
+    //calls delete api with given id
+    async function onDeleteConfirm(e) {
         console.log(e.target.value);
 
         // POST request using fetch()
-        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${e.target.value}`, {
+        await fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${e.target.value}`, {
             
         // Adding method type
         method: "DELETE",
@@ -104,7 +115,7 @@ export default function AdminCarTable() {
         .then(setDeleted(deleted + 1));
     }
 
-    //pops up a confirm alert
+    //pops up a confirm alert for edit
     const onEdit = (e) => {
         var res = confirm("Press OK to send update request");
         if (res == true) {
@@ -116,9 +127,9 @@ export default function AdminCarTable() {
     }
 
     //calls edit api with given id
-    const onEditConfirm = (e) => {
+    async function onEditConfirm(e) {
         // POST request using fetch()
-        fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${editID}`, {
+        await fetch(`${window.location.protocol}//${window.location.hostname}/vehicles/${editID}`, {
             
         // Adding method type
         method: "PUT",
