@@ -5,20 +5,28 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function Test() {
-    const url = "https://api.randomuser.me/";
+    const url = `${window.location.protocol}//${window.location.hostname}/sales`;
     const [deleted, setDeleted] = useState(0);
     const [data, setData] = useState(null);
     const [editID, setEditID] = useState(null);
-    const [editName, setEditName] = useState(null);
     const [newEditName, setNewEditName] = useState("");
     const [loading, setLoading] = useState(true);
     const [editClicked, setEditClicked] = useState(false);
+    const [userID, setUserID] = useState(null);
+    const [saleItems, setSaleItems] = useState(null);
+    const [status, setStatus] = useState(null);
+    const [date, setDate] = useState(null);
+    const [address, setAddress] = useState(null);
+
+    const [editSaleItems, setEditSaleItems] = useState(null);
+    const [editStatus, setEditStatus] = useState(null);
+    const [editDate, setEditDate] = useState(null);
+    const [editAddress, setEditAddress] = useState(null);
 
     useEffect(async () => {
         const response = await fetch(url);
         const data = await response.json();
-        const [item] = data.results;
-        setData(item);
+        setData(data);
         setLoading(false);
     }, [deleted]); //only rerender when deleted changes
     //empty array for onMount only
@@ -31,12 +39,23 @@ export default function Test() {
 
     //calls delete api with given id
     const onEdit = (e) => {
-        console.log(newEditName);
+        console.log(editSaleItems);
+        console.log(editStatus);
+        console.log(editDate);
+        console.log(editAddress);
     }
 
     const onEditClick = (e) => {
-        setEditID(e.target.getAttribute('first'));
-        setEditName(e.target.getAttribute('last'));
+        setUserID(e.target.getAttribute('user_id'));
+        setSaleItems(e.target.getAttribute('salesItems'));
+        setStatus(e.target.getAttribute('status'));
+        setDate(e.target.getAttribute('date'));
+        setAddress(e.target.getAttribute('address'));
+        console.log(userID);
+        console.log(saleItems);
+        console.log(status);
+        console.log(date);
+        console.log(address);
         setEditClicked(true);
     }
 
@@ -55,14 +74,41 @@ export default function Test() {
 
             //render Edit form
             <div className = "container-fluid"> 
-                <h2>Edit ID {editID}</h2>
+                <h2>Edit ID {userID}</h2>
                 <Form onSubmit={(e) => {onEdit(e)}}>
-                    <Form.Group controlId="newEditName">
-                        <Form.Label>New Name</Form.Label>
+                    <Form.Group controlId="editSaleItems">
+                        <Form.Label>New Sales Items</Form.Label>
                         <Form.Control
-                            type="newEditName"
-                            value={newEditName}
-                            onChange={(e) => setNewEditName(e.target.value)}
+                            type="editSaleItems"
+                            value={editSaleItems}
+                            onChange={(e) => setEditSaleItems(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="editStatus">
+                        <Form.Label>New Status</Form.Label>
+                        <Form.Control
+                            type="editStatus"
+                            value={editStatus}
+                            onChange={(e) => setEditStatus(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="editDate">
+                        <Form.Label>New Date</Form.Label>
+                        <Form.Control
+                            type="editDate"
+                            value={editDate}
+                            onChange={(e) => setEditDate(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="editAddress">
+                        <Form.Label>New Address</Form.Label>
+                        <Form.Control
+                            type="editAddress"
+                            value={editAddress}
+                            onChange={(e) => setEditAddress(e.target.value)}
                         />
                     </Form.Group>
                     
@@ -87,28 +133,54 @@ export default function Test() {
                     <Table striped bordered hover>
                         <thead>
                             <tr>
-                                <th>Make ID</th>
-                                <th>Make Name</th>
-                                <th>Edit</th>
+                                <th>User ID</th>
+                                <th>Sale Items</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Address</th>
+                                <th>Update</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             {/*loop to display each make on a row*/}
-                                <tr key={data.name.first}>
-                                    <td>{data.name.first}</td>
-                                    <td>{data.name.last}</td>
+                            {data.map((e) => (
+                                <tr key={e.user_id}>
+                                    <td>{e.user_id}</td>
+                                    <td>{e.sale_items}</td>
+                                    <td>{e.status}</td>
+                                    <td>{e.date}</td>
+                                    <td>{e.address}</td>
                                     <td>
-                                        <Button className="" first={data.name.first} last={data.name.last} onClick={(e) => {onEditClick(e)}} block type="submit">
+                                        <Button
+                                        className=""
+                                        user_id={e.user_id}
+                                        salesItems={e.sale_items}
+                                        status={e.status} 
+                                        date={e.date}
+                                        address={e.address}
+                                        onClick={(e) => {
+                                                onEditClick(e)}
+                                            }
+                                            block
+                                            type="submit">
                                             Edit
                                         </Button>
                                     </td>
                                     <td>
-                                        <Button className="" value={data.name.first} onClick={(e) => {onDelete(e)}} block type="submit">
+                                        <Button
+                                        className=""
+                                        value={e.user_id} 
+                                        onClick={(e) => {
+                                                onDelete(e)}
+                                            }
+                                            block 
+                                            type="submit">
                                             Delete
                                         </Button>
                                     </td>
                                 </tr>
+                            ))} 
                         </tbody>
                     </Table>
                 </div>

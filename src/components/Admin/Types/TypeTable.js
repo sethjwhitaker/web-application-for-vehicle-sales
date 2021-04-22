@@ -125,7 +125,7 @@ export default function TypeTable() {
             <h2>Add New Type</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="newMake">
-                    <Form.Label>New Make</Form.Label>
+                    <Form.Label>New Type</Form.Label>
                     <Form.Control
                         type="newMake"
                         value={newMake}

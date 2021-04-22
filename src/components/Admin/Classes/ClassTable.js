@@ -125,7 +125,7 @@ export default function ClassTable() {
             <h2>Add New Class</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="newMake">
-                    <Form.Label>New Make</Form.Label>
+                    <Form.Label>New Class</Form.Label>
                     <Form.Control
                         type="newMake"
                         value={newMake}
