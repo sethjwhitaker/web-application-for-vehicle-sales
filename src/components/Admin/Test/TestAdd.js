@@ -19,7 +19,7 @@ export default function TestAdd() {
 
     function handleSubmit(event) {
 
-        newSalesItems.push([newVehicleID]);
+        newSalesItems.push([1, 0, 1]);
 
         event.preventDefault();
         // POST request using fetch()
