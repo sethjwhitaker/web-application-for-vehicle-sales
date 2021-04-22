@@ -43,7 +43,7 @@ export default function AddNewCar() {
         const data = await response.json();
         setMakes(data);
         setMakesLoading(false);
-        console.log(makes);
+        console.log(data);
     }, []);
 
     function handleSubmit(event) {
