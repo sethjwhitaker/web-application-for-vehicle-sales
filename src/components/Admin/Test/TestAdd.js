@@ -14,7 +14,7 @@ export default function TestAdd() {
     const [newQuantity, setNewQuantity] = useState(1);
 
     function validateForm() {
-        return newStatus.length > 0 && newDate.length > 0 && newAddress.length > 0 && newDate.length > 0 && newVehicleID.length > 0;
+        return newStatus.length > 0 && newVehicleID.length > 0;
     }
 
     function handleSubmit(event) {
@@ -30,7 +30,6 @@ export default function TestAdd() {
           
         // Adding body or contents to send
         body: JSON.stringify({
-          sale_items: newSalesItems,
           status: newStatus,
           date: newDate,
           address: newAddress
