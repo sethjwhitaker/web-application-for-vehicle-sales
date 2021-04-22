@@ -7,7 +7,7 @@ import Calculate from '../Finance/Calculate';
 class FinanceCalculator extends Component {
     
     state = {
-        amount: this.props.cost,
+        amount: this.props.total,
         downPayment: '1000',
         interest: '4.99',
         term: '60'

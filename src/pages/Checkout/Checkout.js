@@ -88,7 +88,9 @@ class Checkout extends Component {
             <Container>
                 <Row>
                     <Col className="checkout-form" md="6">
-                        <CheckoutForm />
+                        <CheckoutForm 
+                        total = {this.state.total}
+                        />
                     </Col>
 
 

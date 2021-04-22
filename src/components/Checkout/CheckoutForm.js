@@ -31,12 +31,19 @@ class CheckoutForm extends Component {
             case 'finance':
                 return <div>
                     <FinanceCalculator
-                    cost = "10000" />
+                    total = {this.props.total} />
                     <br /><br />
                 </div>
         
             default:
                 return null;
+        }
+    }
+
+    displayFinance() {
+        if(this.props.total > 10000)
+        {
+            <Button outline className={paymentSelection ==='finance' ? 'active' : null} color="secondary" value="finance" onClick={this.toggleContent} >Finance</Button>
         }
     }
 
@@ -105,7 +112,7 @@ class CheckoutForm extends Component {
                 <h2 className = "checkout-title mb-3">Payment</h2>
 
                 <Button outline className= {paymentSelection ==='credit' ? 'active' : null} color="secondary" value="credit" onClick={this.toggleContent} >Credit Card</Button>
-                <Button outline className={paymentSelection ==='finance' ? 'active' : null} color="secondary" value="finance" onClick={this.toggleContent} >Finance</Button>
+                {this.displayFinance()}
                 <br /> <br />
 
                 {this.switchContent(paymentSelection)}
