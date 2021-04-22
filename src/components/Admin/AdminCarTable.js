@@ -15,6 +15,21 @@ export default function AdminCarTable() {
     const [loading, setLoading] = useState(true);
     const [editClicked, setEditClicked] = useState(false);
 
+    //variables for editing vehicle
+    const [editClass, setEditClass] = useState(null);
+    const [description, setDescription] = useState(null);
+    const [engine, setEngine] = useState(null);
+    const [exterior_color, setExterior_color] = useState(null);
+    const [interior_color, setInterior_color] = useState(null);
+    const [make, setMake] = useState(null);
+    const [mileage, setMileage] = useState(null);
+    const [model, setModel] = useState(null);
+    const [price, setPrice] = useState(null);
+    const [short_description, SetShort_description] = useState(null);
+    const [transmission, setTransmission] = useState(null);
+    const [type, setType] = useState(null);
+    const [year, setYear] = useState(null);
+
     //api fetch call
     useEffect(async () => {
         const response = await fetch(url);
@@ -27,17 +42,16 @@ export default function AdminCarTable() {
 
     //calls delete api with given id
     const onDelete = (e) => {
-        
+        console.log(e.target.value);
     }
 
     //calls delete api with given id
     const onEdit = (e) => {
-        
+        console.log(e.target.value);
     }
 
     const onEditClick = (e) => {
         setEditID(e.target.getAttribute('id'));
-        setEditName(e.target.getAttribute('name'));
         setEditClicked(true);
     }
 
@@ -87,9 +101,10 @@ export default function AdminCarTable() {
                     <Table striped bordered hover>
                         <thead>
                             <tr>
-                                <th>Make ID</th>
-                                <th>Type ID</th>
-                                <th>Class ID</th>
+                                <th>Vehicle ID</th>
+                                <th>Make</th>
+                                <th>Type</th>
+                                <th>Class</th>
                                 <th>Model</th>
                                 <th>Year</th>
                                 <th>Price</th>
@@ -100,23 +115,55 @@ export default function AdminCarTable() {
                                 <th>Mileage</th>
                                 <th>Short Description</th>
                                 <th>Full Description</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {/*loop to display each make on a row*/}
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        {data.map((e, index) => {
+                            return (
+                                <tr key={index} value={e.id}>
+
+                                    <td>{e.id}</td>
+                                    <td>{e.make}</td>
+                                    <td>{e.type}</td>
+                                    <td>{e.class}</td>
+                                    <td>{e.model}</td>
+                                    <td>{e.year}</td>
+                                    <td>{e.price}</td>
+                                    <td>{e.exterior_color}</td>
+                                    <td>{e.interior_color}</td>
+                                    <td>{e.engine}</td>
+                                    <td>{e.transmission}</td>
+                                    <td>{e.mileage}</td>
+                                    <td>{e.short_description}</td>
+                                    <td>{e.description}</td>
+                                    <td>
+                                        <Button 
+                                        className="" 
+                                        id={e.id} 
+                                        block
+                                        type="submit"
+                                        onClick={(e) => {
+                                            onEditClick(e)}
+                                        }>
+                                            Edit
+                                        </Button>
+                                    </td>
+                                    <td>
+                                        <Button 
+                                        className="" 
+                                        value={e.id} 
+                                        block 
+                                        type="submit"
+                                        onClick={(e) => {
+                                            onDelete(e)}
+                                        }>
+                                            Delete
+                                        </Button>
+                                    </td>
+                                </tr>)
+                            })}
                         </tbody>
                     </Table>
                 </div>
