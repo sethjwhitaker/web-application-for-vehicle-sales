@@ -115,9 +115,9 @@ export default function AdminCarTable() {
         // Adding body or contents to send
         body: JSON.stringify({
             id: editID,
-            make: make,
-            type: type,
-            class: editClass,
+            make_id: make,
+            type_id: type,
+            class_id: editClass,
             model: model,
             year: year,
             price: price,
@@ -192,12 +192,13 @@ export default function AdminCarTable() {
                     </Form.Group>
 
                     <Form.Group controlId="type">
-                    <Form.Control as="select"
-                        onChange={(e) => setType(e.target.value)}>
-                            <option>-</option>
-                            {types.map((e, index) => {
-                                return (<option key={index} value={e.id}>{e.name}</option>)
-                            })}
+                        <Form.Label>Type</Form.Label>
+                        <Form.Control as="select"
+                            onChange={(e) => setType(e.target.value)}>
+                                <option>-</option>
+                                {types.map((e, index) => {
+                                    return (<option key={index} value={e.id}>{e.name}</option>)
+                                })}
                         </Form.Control>
                     </Form.Group>
 
