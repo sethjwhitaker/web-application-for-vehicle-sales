@@ -7,7 +7,7 @@ import './Checkout.css';
 class Checkout extends Component {
 
     state = {
-        cart: {},
+        user_cart: {},
         cartItems: [],
         total: 0
     }
@@ -24,11 +24,13 @@ class Checkout extends Component {
         .then(data => {
             console.log("data is:");
             console.log(data);
-            this.setState({cart : data});
+            this.setState({user_cart : data});
         })
-    }
 
-    populateTable();
+        if(this.state.user_cart.sale_items) {
+            this.populateTable();
+        }
+    }
 
     async getItem(id, table, q) {
         try {
@@ -54,7 +56,7 @@ class Checkout extends Component {
     }
 
     populateTable() {
-        const cart = this.state.cart.sale_items;
+        const cart = this.state.user_cart.sale_items;
         this.setState({cartItems: []});
         for(let i = 0; i < cart.length; i++) {
             if(cart[i].vehicle_id) {
@@ -82,7 +84,6 @@ class Checkout extends Component {
         return (
             <div>
                 <Card className="cart-card">
-                    
                     <Card.Body>
                         <Card.Title>{name}</Card.Title>
 
@@ -101,7 +102,7 @@ class Checkout extends Component {
                 <Row>
                     <Col className="checkout-form" md="6">
                         <CheckoutForm 
-                        id = {this.state.cart.id}
+                        id = {this.state.user_cart.id}
                         total = {this.state.total}
                         />
                     </Col>
