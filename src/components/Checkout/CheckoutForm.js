@@ -62,11 +62,20 @@ class CheckoutForm extends Component {
                 </div>
 
             case 'finance':
-                return <div>
-                    <FinanceCalculator
-                    total = {this.props.total} />
-                    <br /><br />
-                </div>
+                if(this.props.total < 10000) {
+                    return <div>
+                        <h3 className="text-center">Sorry, Financing is only available for purchases over $10,000</h3>
+                        <br /><br />
+                    </div>
+                }
+                else {
+                    return <div>
+                        <FinanceCalculator
+                        total = {this.props.total} />
+                        <br /><br />
+                    </div>
+                }
+                
         
             default:
                 return null;
