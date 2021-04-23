@@ -9,6 +9,7 @@ import Types from "./Types/Types";
 import Classes from "./Classes/Classes";
 import Makes from './Makes/Makes';
 import Button from "react-bootstrap/Button";
+import styles from "./admin.css";
 
 export default function Admin_Interface() {
     
