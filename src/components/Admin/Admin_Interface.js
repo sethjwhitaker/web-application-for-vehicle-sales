@@ -9,11 +9,10 @@ import Types from "./Types/Types";
 import Classes from "./Classes/Classes";
 import Makes from './Makes/Makes';
 import Button from "react-bootstrap/Button";
-import Styles from './Styles';
 
 export default function Admin_Interface() {
     
-    const [res, setres] = useState('styles')
+    const [res, setres] = useState('adminCarTable')
 
     //chooses what to render based on res
     const render = () => {
@@ -27,7 +26,6 @@ export default function Admin_Interface() {
             case 'makes': return <Makes />;
             case 'types': return <Types />;
             case 'classes': return <Classes />;
-            case 'styles': return <Styles />;
 
             default: return <h1>This shouldn't happen, the switch statement is broken</h1>;
         }
@@ -47,7 +45,6 @@ export default function Admin_Interface() {
                 <Button className="col-6 col-md-4 adminButton" onClick={() => setres('types')}>View Types</Button>
                 <Button className="col-6 col-md-4 adminButton" onClick={() => setres('classes')}>View Classes</Button>
                 <Button className="col-12 col-md-4 adminButton" onClick={() => setres('adminEmployeeRegister')}>Register New User</Button>
-                <Button className="col-12 adminButton" onClick={() => setres('styles')}>Styles</Button>
             </div>
 
             {/* Actual rendering of selected component */}
