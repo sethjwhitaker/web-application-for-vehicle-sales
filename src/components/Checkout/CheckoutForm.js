@@ -59,56 +59,56 @@ class CheckoutForm extends Component {
                     <h2 className="checkout-title mb-3">Contact Information</h2>
     
                 <Form.Group>
-                    <Form.Control required type="email" name="email" id="email" placeholder="Email" value={email} />
+                    <Form.Control required type="email" name="email" placeholder="Email" value={email} />
                 </Form.Group>
 
                 <Row>
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Control required type="text" name="first_name" id="first_name" placeholder="First Name" value={first_name} />
+                            <Form.Control required type="text" name="first_name" placeholder="First Name" value={first_name} />
                         </Form.Group>
                     </Col>
 
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Control required type="text" name="last_name" id="last_name" placeholder="Last name" value={last_name} />
+                            <Form.Control required type="text" name="last_name" placeholder="Last name" value={last_name} />
                         </Form.Group>
                     </Col>
                 </Row>
 
                 <Form.Group>
-                    <Form.Control required type="text" name="cust_address" id="cust_address" placeholder="Address" value={cust_address} />
+                    <Form.Control required type="text" name="cust_address" placeholder="Address" value={cust_address} />
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Control required type="text" name="city" id="city" placeholder="City" value={city} />
+                    <Form.Control required type="text" name="city" placeholder="City" value={city} />
                 </Form.Group>
 
                 <Row>
                     <Col md={5}>
                         <Form.Group>
                             <Form.Label for="country">Country</Form.Label>
-                            <Form.Control required disabled type="text" name="country" id="country" value="United States" />
+                            <Form.Control required disabled type="text" name="country" value="United States" />
                         </Form.Group>
                     </Col>
 
                     <Col md={4}>
                         <Form.Group>
                             <Form.Label for="state">State</Form.Label>
-                            <Form.Control required type="text" name="state" id="state" placeholder="State" value={us_state} />
+                            <Form.Control required type="text" name="state" placeholder="State" value={us_state} />
                         </Form.Group>
                     </Col>
 
                     <Col md={3}>
                         <Form.Group>
                             <Form.Label for="zip">Zip</Form.Label>
-                            <Form.Control required type="text" name="zip" id="zip" placeholder="ZIP Code" value={zip}/>
+                            <Form.Control required type="text" name="zip" placeholder="ZIP Code" value={zip}/>
                         </Form.Group>
                     </Col>
                 </Row>
 
                 <Form.Group>
-                    <Form.Control type="phone" name="phone" id="phone" placeholder="Phone Number" />
+                    <Form.Control type="phone" name="phone" placeholder="Phone Number" />
                 </Form.Group>
 
 
@@ -121,25 +121,25 @@ class CheckoutForm extends Component {
                 {this.switchContent(paymentSelection)}
 
                 <Form.Group>
-                        <Form.Control required type="text" name="name" id="name" placeholder="Cardholder's Name" />
+                        <Form.Control required type="text" name="cust_name" placeholder="Cardholder's Name" />
                     </Form.Group>
 
                     <Row>
                         <Col md="6">
                             <Form.Group>
-                                <Form.Control required type="text" name="cardNum" id="cardNum" placeholder="Card Number" />
+                                <Form.Control required type="text" name="cardNum" placeholder="Card Number" />
                             </Form.Group>
                         </Col>
 
                         <Col md="3">
                             <Form.Group>
-                                <Form.Control required type="text" name="cardExp" id="cardExp" placeholder="MM/YY" />
+                                <Form.Control required type="text" name="cardExp" placeholder="MM/YY" />
                             </Form.Group>
                         </Col>
 
                         <Col md="3">
                             <Form.Group>
-                                <Form.Control required type="text" name="cardCVC" id="cardCVC" placeholder="CVC" />
+                                <Form.Control required type="text" name="cardCVC" placeholder="CVC" />
                             </Form.Group>
                         </Col>
                     </Row>
