@@ -10,13 +10,13 @@ class CheckoutForm extends Component {
 		
 		this.state = {
 			paymentSelection: 'credit',
-            email = "",
-            first_name = "",
-            last_name = "",
-            address = "",
-            city = "",
-            us_state = "",
-            zip = "",
+            email = '',
+            first_name = '',
+            last_name = '',
+            address = '',
+            city = '',
+            us_state = '',
+            zip = '',
 		}
 	}
 
@@ -54,7 +54,7 @@ class CheckoutForm extends Component {
     }
 
     render() {
-        const { paymentSelection } = this.state;
+        const { paymentSelection, email, first_name, last_name, address, city, us_state, zip } = this.state;
 
         return (
             <div>
@@ -62,29 +62,29 @@ class CheckoutForm extends Component {
                     <h2 className="checkout-title mb-3">Contact Information</h2>
     
                 <Form.Group>
-                    <Form.Control required type="email" name="email" id="email" placeholder="Email" value={this.state.email} />
+                    <Form.Control required type="email" name="email" id="email" placeholder="Email" value={email} />
                 </Form.Group>
 
                 <Row>
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Control required type="text" name="first_name" id="first_name" placeholder="First Name" value={this.state.first_name} />
+                            <Form.Control required type="text" name="first_name" id="first_name" placeholder="First Name" value={first_name} />
                         </Form.Group>
                     </Col>
 
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Control required type="text" name="last_name" id="last_name" placeholder="Last name" value={this.state.last_name} />
+                            <Form.Control required type="text" name="last_name" id="last_name" placeholder="Last name" value={last_name} />
                         </Form.Group>
                     </Col>
                 </Row>
 
                 <Form.Group>
-                    <Form.Control required type="text" name="address" id="address" placeholder="Address" value={this.state.address} />
+                    <Form.Control required type="text" name="address" id="address" placeholder="Address" value={address} />
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Control required type="text" name="city" id="city" placeholder="City" value={this.state.city} />
+                    <Form.Control required type="text" name="city" id="city" placeholder="City" value={city} />
                 </Form.Group>
 
                 <Row>
@@ -98,14 +98,14 @@ class CheckoutForm extends Component {
                     <Col md={4}>
                         <Form.Group>
                             <Form.Label for="state">State</Form.Label>
-                            <Form.Control required type="text" name="state" id="state" placeholder="State" value={this.state.us_state} />
+                            <Form.Control required type="text" name="state" id="state" placeholder="State" value={us_state} />
                         </Form.Group>
                     </Col>
 
                     <Col md={3}>
                         <Form.Group>
                             <Form.Label for="zip">Zip</Form.Label>
-                            <Form.Control required type="text" name="zip" id="zip" placeholder="ZIP Code" value={this.state.zip}/>
+                            <Form.Control required type="text" name="zip" id="zip" placeholder="ZIP Code" value={zip}/>
                         </Form.Group>
                     </Col>
                 </Row>
