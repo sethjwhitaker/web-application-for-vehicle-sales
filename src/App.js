@@ -12,6 +12,7 @@ import CarInfo from './pages/Info/CarInfo';
 import PartInfo from './pages/Info/PartInfo';
 import Finance from './pages/finance/Finance';
 import Cart from './pages/Cart';
+import Parts from './pages/Parts';
 import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 
 class App extends Component {
@@ -22,6 +23,9 @@ class App extends Component {
     }
 
     componentDidMount() {
+        // read logged in cache
+        const ud = window.localStorage.getItem("userData");
+        if(ud) this.setState({userData: JSON.parse(ud)});
         if(window.localStorage.getItem("IsLoggedIn")=="True")this.setState({isLoggedIn:true});
         this.getCart();
     }
@@ -29,10 +33,20 @@ class App extends Component {
     onLogin(userData) {
         console.log("Logged In");
         window.localStorage.setItem("IsLoggedIn", "True");
+        window.localStorage.setItem("userData", JSON.stringify(this.state.userData));
         this.setState({userData:userData, isLoggedIn:true});
+        this.getCart();
     }
 
-    // In order to add items to cart, we need to get the cart first, which means it has to be called when the app loads
+    onLogout() {
+        console.log("Logged Out");
+        window.localStorage.removeItem("IsLoggedIn");
+        window.localStorage.removeItem("userData");
+        this.setState({userData:{}, isLoggedIn:false});
+    }
+
+    // In order to add items to cart, we need to get the cart first, which means it 
+    // has to be called when the app loads or when the first item is added
     async getCart() {
         const options = {
             method: 'GET'
@@ -52,6 +66,7 @@ class App extends Component {
         }
     }
 
+    // If there is no cart, we must create one
     async createCart() {
         console.log("Creating Cart");
         console.log(this.props.userData);
@@ -86,13 +101,14 @@ class App extends Component {
             <Switch>
               <Route path ='/' render={(props) => (<Home {...props} cartId={this.state.cart.id} />)} exact />
               <Route path ='/login' render={(props) => (<Login {...props} onLogin={this.onLogin.bind(this)} />)} />
-              <Route path = '/logout' component={Logout} />
+              <Route path = '/logout' render={(props) => (<Logout {...props} onLogout={this.onLogout.bind(this)} />)} />
               <Route path ='/register' component={Register} />
               <Route path='/admin' component={Admin_Interface} />
               <Route path='/car/:id' component={CarInfo} />
               <Route path='/part/:id' component={PartInfo} />
               <Route path='/financing' component={Finance} />
               <Route path='/cart' render={(props) => (<Cart {...props} getCart={this.getCart.bind(this)} loggedIn={this.state.isLoggedIn} cart={this.state.cart} />)} />
+              <Route path='/parts' render={(props) => (<Parts {...props} cartId={this.state.cart.id} />)} />
             </Switch>
           </div>
         </HashRouter>
