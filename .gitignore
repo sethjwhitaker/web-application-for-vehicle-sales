@@ -1,5 +1,5 @@
 # This got committed for some reason
-
+nodemodules/.bin
 
 # Test DB Config
 test.db.config.js
