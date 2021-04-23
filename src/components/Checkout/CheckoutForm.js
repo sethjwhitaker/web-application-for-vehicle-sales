@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button';
 import FinanceCalculator from './FinanceCalculator';
 
 class CheckoutForm extends Component {
-    /*
     constructor(props) {
 		super(props);
 		
@@ -14,28 +13,6 @@ class CheckoutForm extends Component {
 
 		}
 	}
-    */
-
-    state = {
-        paymentSelection: 'credit',
-        first_name = "",
-        last_name = "",
-        address = "",
-        city = "",
-        us_state = "",
-        zip = ""
-    };
-
-    handleChange(e) {
-        let change = {}
-        change[e.target.name] = e.target.value
-        this.setState(change)
-    }
-
-    handleSubmit() {
-        //this.full_address = this.state.address + ", " + this.state.city + ", " + this.state.us_state + ", " + this.state.zip;
-        //console.log(this.full_address);
-    }
 
     toggleContent = (event) => {
 		event.preventDefault();
@@ -68,7 +45,7 @@ class CheckoutForm extends Component {
 
         return (
             <div>
-                <Form onSubmit={this.handleSubmit}>
+                <Form>
                     <h2 className="checkout-title mb-3">Contact Information</h2>
     
                 <Form.Group>
@@ -78,23 +55,23 @@ class CheckoutForm extends Component {
                 <Row>
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Control required type="text" name="first_name" id="first_name" placeholder="First Name" onChange={this.handleChange.bind(this)} value={this.state.first_name} />
+                            <Form.Control required type="text" name="first_name" id="first_name" placeholder="First Name" />
                         </Form.Group>
                     </Col>
 
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Control required type="text" name="last_name" id="last_name" placeholder="Last name" onChange={this.handleChange.bind(this)} value={this.state.last_name} />
+                            <Form.Control required type="text" name="last_name" id="last_name" placeholder="Last name" />
                         </Form.Group>
                     </Col>
                 </Row>
 
                 <Form.Group>
-                    <Form.Control required type="text" name="address" id="address" placeholder="Address" onChange={this.handleChange.bind(this)} value={this.state.address}/>
+                    <Form.Control required type="text" name="address" id="address" placeholder="Address" />
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Control required type="text" name="city" id="city" placeholder="City" onChange={this.handleChange.bind(this)} value={this.state.city}/>
+                    <Form.Control required type="text" name="city" id="city" placeholder="City" />
                 </Form.Group>
 
                 <Row>
@@ -108,14 +85,14 @@ class CheckoutForm extends Component {
                     <Col md={4}>
                         <Form.Group>
                             <Form.Label for="state">State</Form.Label>
-                            <Form.Control required type="text" name="state" id="state" placeholder="State" onChange={this.handleChange.bind(this)} value={this.state.us_state}/>
+                            <Form.Control required type="text" name="state" id="state" placeholder="State" />
                         </Form.Group>
                     </Col>
 
                     <Col md={3}>
                         <Form.Group>
                             <Form.Label for="zip">Zip</Form.Label>
-                            <Form.Control required type="text" name="zip" id="zip" placeholder="ZIP Code" onChange={this.handleChange.bind(this)} value={this.state.zip}/>
+                            <Form.Control required type="text" name="zip" id="zip" placeholder="ZIP Code" />
                         </Form.Group>
                     </Col>
                 </Row>
