@@ -7,29 +7,13 @@ import './Checkout.css';
 class Checkout extends Component {
 
     state = {
-        user_cart: {},
         cartItems: [],
         total: 0
     }
 
     componentDidMount() {
-        const id = this.props.match.params.id;
 
-        fetch(`${window.location.protocol}//${window.location.hostname}/sales/${id}`, {
-            headers: {
-                "Content-type": "application/json"
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("data is:");
-            console.log(data);
-            this.setState({user_cart : data});
-        })
-
-        console.log(user_cart);
-
-        if(this.state.user_cart.sale_items) {
+        if(this.props.cart.sale_items) {
             this.populateTable();
         }
     }
@@ -58,7 +42,7 @@ class Checkout extends Component {
     }
 
     populateTable() {
-        const cart = this.state.user_cart.sale_items;
+        const cart = this.props.cart.sale_items;
         this.setState({cartItems: []});
         for(let i = 0; i < cart.length; i++) {
             if(cart[i].vehicle_id) {
@@ -86,6 +70,7 @@ class Checkout extends Component {
         return (
             <div>
                 <Card className="cart-card">
+                    
                     <Card.Body>
                         <Card.Title>{name}</Card.Title>
 
@@ -104,7 +89,7 @@ class Checkout extends Component {
                 <Row>
                     <Col className="checkout-form" md="6">
                         <CheckoutForm 
-                        id = {this.state.user_cart.id}
+                        id = {this.props.cart.id}
                         total = {this.state.total}
                         />
                     </Col>
