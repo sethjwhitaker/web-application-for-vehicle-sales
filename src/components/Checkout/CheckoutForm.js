@@ -33,8 +33,8 @@ class CheckoutForm extends Component {
     }
 
     handleSubmit() {
-        this.full_address = this.state.address + ", " + this.state.city + ", " + this.state.us_state + ", " + this.state.zip;
-        console.log(this.full_address);
+        //this.full_address = this.state.address + ", " + this.state.city + ", " + this.state.us_state + ", " + this.state.zip;
+        //console.log(this.full_address);
     }
 
     toggleContent = (event) => {
