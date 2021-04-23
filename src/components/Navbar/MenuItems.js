@@ -36,7 +36,7 @@ export const MenuItems = [
     }, 
     {
         title: 'Cart',
-        url: '#',
+        url: '/cart',
         cName: 'nav-links'
     }
 ]
