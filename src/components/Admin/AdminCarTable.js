@@ -201,9 +201,8 @@ export default function AdminCarTable() {
             : editClicked ? 
 
             //render Edit form
-            <div className = "container-fluid"> 
+            <div className = "container"> 
                 <h2>Edit ID {editID}</h2>
-                <p>Make sure to select a make, type, and class from dropdowns before submit.</p>
                 <Form onSubmit={(e) => {onEdit(e)}}>
                     <Form.Group controlId="make">
                         <Form.Label>Make</Form.Label>
@@ -328,7 +327,7 @@ export default function AdminCarTable() {
                         />
                     </Form.Group>
                     
-                    <Button className="" block type="submit">
+                    <Button variant="success" className="" block type="submit">
                         Submit
                     </Button>
                 </Form>   

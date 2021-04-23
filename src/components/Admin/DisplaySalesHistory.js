@@ -136,7 +136,7 @@ export default function DisplaySalesHistory() {
             : editClicked ? 
 
             //render Edit form
-            <div className = "container-fluid"> 
+            <div className = "container"> 
                 <h2>Edit ID {id}</h2>
                 <Form onSubmit={(e) => {onEdit(e)}}>
 
@@ -171,7 +171,7 @@ export default function DisplaySalesHistory() {
                         </Form.Control>
                     </Form.Group>
                     
-                    <Button className="" block type="submit">
+                    <Button variant="success" className="" block type="submit">
                         Submit
                     </Button>
                 </Form>   
@@ -184,7 +184,7 @@ export default function DisplaySalesHistory() {
                     //else
                     :
 
-            <div className="tablediv">
+            <div className="container-fluid">
                 <h2>Sales Table</h2>
                 <Button variant="secondary" className="" onClick={(e) =>            
                     {setReload(reload + 1)}} block type="submit">

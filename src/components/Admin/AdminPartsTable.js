@@ -149,7 +149,7 @@ export default function AdminPartsTable() {
                 : editClicked ? 
 
                 //render Edit form
-                <div className = "container-fluid"> 
+                <div className = "container"> 
                     <h2>Edit ID {id}</h2>
                     <Form onSubmit={(e) => {onEdit(e)}}>
                         
@@ -216,7 +216,7 @@ export default function AdminPartsTable() {
                             />
                         </Form.Group>
                         
-                        <Button className="" block type="submit">
+                        <Button variant="success" className="" block type="submit">
                             Submit
                         </Button>
                     </Form>   

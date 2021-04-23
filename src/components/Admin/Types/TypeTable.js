@@ -155,7 +155,7 @@ export default function TypeTable() {
                     />
                 </Form.Group>
                 
-                <Button className="" block type="submit" disabled={!validateForm()}>
+                <Button variant="success" className="" block type="submit" disabled={!validateForm()}>
                     Add
                 </Button>
 
@@ -175,7 +175,7 @@ export default function TypeTable() {
             : editClicked ? 
 
             //render Edit form
-            <div className = "container-fluid"> 
+            <div className = "container"> 
                 <h2>Edit ID {editID}</h2>
                 <Form onSubmit={(e) => {onEdit(e)}}>
                     <Form.Group controlId="newEditName">
@@ -187,7 +187,7 @@ export default function TypeTable() {
                         />
                     </Form.Group>
                     
-                    <Button className="" block type="submit">
+                    <Button variant="success" className="" block type="submit">
                         Submit
                     </Button>
                 </Form>   

@@ -240,7 +240,7 @@ export default function AddNewCar() {
                             />
                             </Form.Group>
 
-                            <Button className="" block type="submit" disabled={!validateForm()}>
+                            <Button variant="success" className="" block type="submit" disabled={!validateForm()}>
                                 Add
                             </Button>
                         </Form>

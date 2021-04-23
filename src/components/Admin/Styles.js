@@ -43,7 +43,7 @@ export default function Styles() {
                                     </Button>
                                 </td>
                                 <td>
-                                    <Button variant="danger">
+                                    <Button variant="success">
                                         Delete
                                     </Button>
                                 </td>

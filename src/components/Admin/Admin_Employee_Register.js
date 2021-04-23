@@ -88,7 +88,7 @@ export default function Admin_Employee_Register() {
                 onChange={(e) => setnewType(e.target.value)}
             />
         </Form.Group>
-        <Button className="" block type="submit" disabled={!validateForm()}>
+        <Button variant="success" className="" block type="submit" disabled={!validateForm()}>
           Register
         </Button>
 

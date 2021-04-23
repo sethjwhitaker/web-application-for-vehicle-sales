@@ -121,7 +121,7 @@ export default function AddNewPart() {
                         />
                     </Form.Group>
                     
-                    <Button className="" block type="submit" disabled={!validateForm()}>
+                    <Button variant="success" className="" block type="submit" disabled={!validateForm()}>
                         Submit
                     </Button>
                 </Form>   
