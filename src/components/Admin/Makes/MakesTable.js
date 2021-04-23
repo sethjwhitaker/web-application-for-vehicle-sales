@@ -4,8 +4,8 @@ import Table from 'react-bootstrap/Table'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export default function TypeTable() {
-    const url = `${window.location.protocol}//${window.location.hostname}/types`;
+export default function MakesTable() {
+    const url = `${window.location.protocol}//${window.location.hostname}/makes`;
     const [newMake, setnewMake] = useState("");
     const [deleted, setDeleted] = useState(0);
     const [data, setData] = useState(null);
@@ -22,7 +22,7 @@ export default function TypeTable() {
 
     function handleSubmit(event) {
         // POST request using fetch()
-        fetch(`${window.location.protocol}//${window.location.hostname}/types`, {
+        fetch(`${window.location.protocol}//${window.location.hostname}/makes`, {
           
         // Adding method type
         method: "POST",
@@ -72,7 +72,7 @@ export default function TypeTable() {
         console.log(e.target.value);
 
         // POST request using fetch()
-        fetch(`${window.location.protocol}//${window.location.hostname}/types/${e.target.value}`, {
+        fetch(`${window.location.protocol}//${window.location.hostname}/makes/${e.target.value}`, {
             
         // Adding method type
         method: "DELETE",
@@ -111,7 +111,7 @@ export default function TypeTable() {
     //calls edit api with given id
     const onEditConfirm = (e) => {
         // POST request using fetch()
-        fetch(`${window.location.protocol}//${window.location.hostname}/types/${editID}`, {
+        fetch(`${window.location.protocol}//${window.location.hostname}/makes/${editID}`, {
             
         // Adding method type
         method: "PUT",
@@ -144,10 +144,10 @@ export default function TypeTable() {
     return (
         <div>
             <div className="container">
-            <h2>Add New Type</h2>
+            <h2>Add New Make</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="newMake">
-                    <Form.Label>New Type</Form.Label>
+                    <Form.Label>New Make</Form.Label>
                     <Form.Control
                         type="newMake"
                         value={newMake}
@@ -202,8 +202,8 @@ export default function TypeTable() {
 
             //display full table
             <div className = "container-fluid"> 
-                <h2>Types List</h2>
-                <p>Note: Types cannot be deleted if they exist in either sales history or current inventory.</p>
+                <h2>Makes List</h2>
+                <p>Note: Makes cannot be deleted if they exist in either sales history or current inventory.</p>
                 <div className="tablediv">
                     <Button variant="secondary" className="" onClick={(e) =>            
                             {setReload(reload + 1)}} block type="submit">
@@ -212,14 +212,14 @@ export default function TypeTable() {
                     <Table responsive striped hover className="admintable">
                         <thead>
                             <tr>
-                                <th>Type ID</th>
-                                <th>Type Name</th>
+                                <th>Make ID</th>
+                                <th>Make Name</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {/*loop to display each type on a row*/}
+                            {/*loop to display each make on a row*/}
                             {data.map((e) => (
                                 <tr key={e.id}>
                                     <td>{e.id}</td>

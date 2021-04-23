@@ -8,11 +8,12 @@ import Admin_Employee_Register from "./Admin_Employee_Register";
 import Types from "./Types/Types";
 import Classes from "./Classes/Classes";
 import Makes from './Makes/Makes';
-import Test from './Test/Test';
+import Button from "react-bootstrap/Button";
+import styles from "./admin.css";
 
 export default function Admin_Interface() {
     
-    const [res, setres] = useState('makes')
+    const [res, setres] = useState('adminCarTable')
 
     //chooses what to render based on res
     const render = () => {
@@ -26,7 +27,6 @@ export default function Admin_Interface() {
             case 'makes': return <Makes />;
             case 'types': return <Types />;
             case 'classes': return <Classes />;
-            case 'test': return <Test />;
 
             default: return <h1>This shouldn't happen, the switch statement is broken</h1>;
         }
@@ -37,16 +37,15 @@ export default function Admin_Interface() {
         <div>
             <div className="container-fluid">
                 <h1>Admin Interface</h1>
-                <button onClick={() => setres('adminCarTable')}>Car Table</button>
-                <button onClick={() => setres('adminPartTable')}>Part Table</button>
-                <button onClick={() => setres('addNewCar')}>Add New Car</button>
-                <button onClick={() => setres('addNewPart')}>Add New Part</button>
-                <button onClick={() => setres('displaySalesHistory')}>Sales History</button>
-                <button onClick={() => setres('adminEmployeeRegister')}>Register New Admin/Employee</button>
-                <button onClick={() => setres('makes')}>View Makes</button>
-                <button onClick={() => setres('types')}>View Types</button>
-                <button onClick={() => setres('classes')}>View Classes</button>
-                <button onClick={() => setres('test')}>Test</button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('adminCarTable')}>Car Table</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('adminPartTable')}>Part Table</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('addNewCar')}>Add Car</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('addNewPart')}>Add Part</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('displaySalesHistory')}>Sales History</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('makes')}>View Makes</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('types')}>View Types</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('classes')}>View Classes</Button>
+                <Button className="col-12 col-md-4 adminButton" onClick={() => setres('adminEmployeeRegister')}>Register New User</Button>
             </div>
 
             {/* Actual rendering of selected component */}
