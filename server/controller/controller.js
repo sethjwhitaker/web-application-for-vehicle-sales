@@ -131,7 +131,7 @@ class Controller {
         jwt.verify(token, process.env.SESSION_KEY, (err, decoded) => {
             if(err) {
                 callback(err, null);
-            } else if(!types.includes(decoded.type)) {
+            } else if (!decoded || !types.includes(decoded.type)) {
                 callback("Unauthorized", null);
             } else {
                 callback(null, decoded);

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "./login.css";
 
 
 class Logout extends Component {
@@ -28,6 +29,7 @@ class Logout extends Component {
             const data = await response.json();
             
             this.setState({message: data.message});
+            if(response.status == 200) this.props.onLogout();
 
         } catch (e) {
             console.log(e);
@@ -37,7 +39,7 @@ class Logout extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container Login">
                 <h2>{this.state.message}</h2>
             </div>
         );
