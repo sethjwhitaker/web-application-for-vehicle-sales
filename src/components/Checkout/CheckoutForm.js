@@ -25,8 +25,8 @@ class CheckoutForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        let cust_address = this.state.cust_address;
-        console.log(cust_address);
+        let customer_address = this.state.cust_address + ", " + this.state.city + ", " + this.state.us_state + ", " + this.state.zip;
+        console.log(customer_address);
         console.log(this.props.id);
     }
 
