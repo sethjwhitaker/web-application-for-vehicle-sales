@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import FinanceCalculator from './FinanceCalculator';
 
 class CheckoutForm extends Component {
+    /*
     constructor(props) {
 		super(props);
 		
@@ -13,8 +14,10 @@ class CheckoutForm extends Component {
 
 		}
 	}
+    */
 
     state = {
+        paymentSelection: 'credit',
         first_name = "",
         last_name = "",
         address = "",
@@ -30,8 +33,8 @@ class CheckoutForm extends Component {
     }
 
     handleSubmit() {
-        const full_address = this.state.address + ", " + this.state.city + ", " + this.state.us_state + ", " + this.state.zip;
-        console.log(full_address);
+        this.full_address = this.state.address + ", " + this.state.city + ", " + this.state.us_state + ", " + this.state.zip;
+        console.log(this.full_address);
     }
 
     toggleContent = (event) => {
