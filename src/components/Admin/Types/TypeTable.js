@@ -187,7 +187,7 @@ export default function TypeTable() {
                             {setReload(reload + 1)}} block type="submit">
                         Reload Table
                     </Button>
-                    <Table striped bordered hover>
+                    <Table responsive striped hover className="admintable">
                         <thead>
                             <tr>
                                 <th>Type ID</th>

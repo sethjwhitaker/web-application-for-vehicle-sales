@@ -349,7 +349,7 @@ export default function AdminCarTable() {
                             {setReload(reload + 1)}} block type="submit">
                         Reload Table
                     </Button>
-                    <Table striped bordered hover>
+                    <Table responsive striped hover className="admintable">
                         <thead>
                             <tr>
                                 <th>Vehicle ID</th>

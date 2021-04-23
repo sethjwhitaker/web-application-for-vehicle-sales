@@ -236,7 +236,7 @@ export default function AdminPartsTable() {
                                 {setReload(reload + 1)}} block type="submit">
                             Reload Table
                         </Button>
-                        <Table striped bordered hover>
+                        <Table responsive striped hover className="admintable">
                             <thead>
                                 <tr>
                                     <th>Part ID</th>

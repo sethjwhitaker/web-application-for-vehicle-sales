@@ -190,7 +190,7 @@ export default function DisplaySalesHistory() {
                     {setReload(reload + 1)}} block type="submit">
                     Reload Table
                 </Button>
-                <Table striped bordered hover>
+                <Table responsive striped hover className="admintable">
                     <thead>
                         <tr>
                             <th>Sale ID</th>
