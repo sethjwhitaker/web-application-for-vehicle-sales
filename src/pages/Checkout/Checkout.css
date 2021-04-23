@@ -15,3 +15,8 @@ Button {
     padding-bottom: 0.6em;
     padding-left: 26%;
 }
+
+.cart-card {
+    width: 80%;
+    padding-left: 10%;
+}

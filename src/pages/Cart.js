@@ -135,7 +135,7 @@ class Cart extends Component {
                     <br></br>
                     Total: {"$" + this.state.total.toFixed(2)}
                     <br></br>
-                    <Link to="/checkout">Checkout</Link>
+                    <Link to={`/checkout/${this.props.cart.id}`}>Checkout</Link>
                 </Container>
             );
         } else {

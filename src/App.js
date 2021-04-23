@@ -13,6 +13,7 @@ import PartInfo from './pages/Info/PartInfo';
 import Finance from './pages/finance/Finance';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout/Checkout';
+import Success from './pages/Checkout/Success';
 import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 
 class App extends Component {
@@ -94,7 +95,8 @@ class App extends Component {
               <Route path='/part/:id' component={PartInfo} />
               <Route path='/financing' component={Finance} />
               <Route path='/cart' render={(props) => (<Cart {...props} getCart={this.getCart.bind(this)} loggedIn={this.state.isLoggedIn} cart={this.state.cart} />)} />
-              <Route path='/checkout' render={(props) => (<Checkout {...props} cart={this.state.cart} />)} />
+              <Route path='/checkout/:id' component={Checkout} />
+              <Route path='/receipt/:id' component={Success} /> 
             </Switch>
           </div>
         </HashRouter>
