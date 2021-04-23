@@ -10,6 +10,13 @@ class CheckoutForm extends Component {
 		
 		this.state = {
 			paymentSelection: 'credit',
+            email = "",
+            first_name = "",
+            last_name = "",
+            address = "",
+            city = "",
+            state = "",
+            zip = "",
 		}
 	}
 
@@ -61,13 +68,13 @@ class CheckoutForm extends Component {
                 <Row>
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Control required type="text" name="first_name" id="first_name" placeholder="First Name"  />
+                            <Form.Control required type="text" name="first_name" id="first_name" placeholder="First Name" />
                         </Form.Group>
                     </Col>
 
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Control required type="text" name="last_name" id="last_name" placeholder="Last name" />
+                            <Form.Control required type="text" name="last_name" id="last_name" placeholder="Last name"  />
                         </Form.Group>
                     </Col>
                 </Row>
