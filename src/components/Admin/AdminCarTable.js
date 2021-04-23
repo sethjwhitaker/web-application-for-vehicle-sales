@@ -345,7 +345,7 @@ export default function AdminCarTable() {
             <div className = "container-fluid"> 
                 <h2>Car Table</h2>
                 <div className="tablediv">
-                    <Button className="" onClick={(e) =>            
+                    <Button variant="secondary" className="" onClick={(e) =>            
                             {setReload(reload + 1)}} block type="submit">
                         Reload Table
                     </Button>
@@ -390,7 +390,7 @@ export default function AdminCarTable() {
                                     <td>{e.short_description}</td>
                                     <td>{e.description}</td>
                                     <td>
-                                        <Button 
+                                        <Button variant="warning"
                                         className="" 
                                         id={e.id} 
                                         make={e.make}
@@ -415,7 +415,7 @@ export default function AdminCarTable() {
                                         </Button>
                                     </td>
                                     <td>
-                                        <Button 
+                                        <Button variant="danger" 
                                         className="" 
                                         value={e.id} 
                                         block 

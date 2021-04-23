@@ -38,15 +38,15 @@ export default function Admin_Interface() {
         <div>
             <div className="container-fluid">
                 <h1>Admin Interface</h1>
-                <Button className="col-6 col-md-3 adminButton" onClick={() => setres('adminCarTable')}>Car Table</Button>
-                <Button className="col-6 col-md-3 adminButton" onClick={() => setres('adminPartTable')}>Part Table</Button>
-                <Button className="col-6 col-md-3 adminButton" onClick={() => setres('addNewCar')}>Add Car</Button>
-                <Button className="col-6 col-md-3 adminButton" onClick={() => setres('addNewPart')}>Add Part</Button>
-                <Button className="col-6 col-md-3 adminButton" onClick={() => setres('displaySalesHistory')}>Sales History</Button>
-                <Button className="col-6 col-md-3 adminButton" onClick={() => setres('makes')}>View Makes</Button>
-                <Button className="col-6 col-md-3 adminButton" onClick={() => setres('types')}>View Types</Button>
-                <Button className="col-6 col-md-3 adminButton" onClick={() => setres('classes')}>View Classes</Button>
-                <Button className="col-12 adminButton" onClick={() => setres('adminEmployeeRegister')}>Register New Admin/Employee</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('adminCarTable')}>Car Table</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('adminPartTable')}>Part Table</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('addNewCar')}>Add Car</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('addNewPart')}>Add Part</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('displaySalesHistory')}>Sales History</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('makes')}>View Makes</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('types')}>View Types</Button>
+                <Button className="col-6 col-md-4 adminButton" onClick={() => setres('classes')}>View Classes</Button>
+                <Button className="col-12 col-md-4 adminButton" onClick={() => setres('adminEmployeeRegister')}>Register New User</Button>
                 <Button className="col-12 adminButton" onClick={() => setres('styles')}>Styles</Button>
             </div>
 

@@ -232,7 +232,7 @@ export default function AdminPartsTable() {
                 <div className = "container-fluid"> 
                     <h2>Part Table</h2>
                     <div className="tablediv">
-                        <Button className="" onClick={(e) =>            
+                        <Button variant="secondary" className="" onClick={(e) =>            
                                 {setReload(reload + 1)}} block type="submit">
                             Reload Table
                         </Button>
@@ -265,7 +265,7 @@ export default function AdminPartsTable() {
                                         <td>{e.color}</td>
                                         <td>{e.product_id}</td>
                                         <td>
-                                            <Button 
+                                            <Button variant="warning" 
                                             className="" 
                                             id={e.id} 
                                             price={e.price}
@@ -284,7 +284,7 @@ export default function AdminPartsTable() {
                                             </Button>
                                         </td>
                                         <td>
-                                            <Button 
+                                            <Button variant="danger" 
                                             className="" 
                                             value={e.id} 
                                             block 

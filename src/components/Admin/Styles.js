@@ -10,7 +10,7 @@ export default function Styles() {
         <div className = "container-fluid"> 
                 <h2>Car Table</h2>
                 <div className="">
-                    <Button className="reloadButton" onClick={(e) =>            
+                    <Button variant="secondary" className="reloadButton" onClick={(e) =>            
                             {setReload(reload + 1)}} block type="submit">
                         Reload Table
                     </Button>
@@ -37,8 +37,16 @@ export default function Styles() {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>-</td>
-                                <td>-</td>
+                                <td>
+                                    <Button variant="warning">
+                                        Edit
+                                    </Button>
+                                </td>
+                                <td>
+                                    <Button variant="danger">
+                                        Delete
+                                    </Button>
+                                </td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>

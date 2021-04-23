@@ -186,7 +186,7 @@ export default function DisplaySalesHistory() {
 
             <div className="tablediv">
                 <h2>Sales Table</h2>
-                <Button className="" onClick={(e) =>            
+                <Button variant="secondary" className="" onClick={(e) =>            
                     {setReload(reload + 1)}} block type="submit">
                     Reload Table
                 </Button>
@@ -219,7 +219,7 @@ export default function DisplaySalesHistory() {
                                     <td>{e.sale_items[index].part_id}</td>
                                     <td>{e.sale_items[index].vehicle_id}</td>
                                     <td>
-                                        <Button 
+                                        <Button variant="warning" 
                                         className="" 
                                         id={e.id} 
                                         address={e.address}
@@ -234,7 +234,7 @@ export default function DisplaySalesHistory() {
                                         </Button>
                                     </td>
                                     <td>
-                                        <Button 
+                                        <Button variant="danger" 
                                         className="" 
                                         value={e.id} 
                                         block 

@@ -56,8 +56,19 @@ export default function MakesTable() {
     }, [deleted, reload]); //only rerender when deleted changes
     //empty array for onMount only
 
-    //calls delete api with given id
+    //pops up a confirm alert for delete
     const onDelete = (e) => {
+        var res = confirm("Press OK to send delete request");
+        if (res == true) {
+            onDeleteConfirm(e);
+        }
+        else {
+
+        }
+    }
+
+    //calls delete api with given id
+    const onDeleteConfirm = (e) => {
         console.log(e.target.value);
 
         // POST request using fetch()
@@ -86,8 +97,19 @@ export default function MakesTable() {
         .then(setDeleted(deleted + 1));
     }
 
-    //calls delete api with given id
+    //pops up a confirm alert for edit
     const onEdit = (e) => {
+        var res = confirm("Press OK to send update request");
+        if (res == true) {
+            onEditConfirm(e);
+        }
+        else {
+
+        }
+    }
+
+    //calls edit api with given id
+    const onEditConfirm = (e) => {
         // POST request using fetch()
         fetch(`${window.location.protocol}//${window.location.hostname}/makes/${editID}`, {
             
@@ -183,7 +205,7 @@ export default function MakesTable() {
                 <h2>Makes List</h2>
                 <p>Note: Makes cannot be deleted if they exist in either sales history or current inventory.</p>
                 <div className="tablediv">
-                    <Button className="" onClick={(e) =>            
+                    <Button variant="secondary" className="" onClick={(e) =>            
                             {setReload(reload + 1)}} block type="submit">
                         Reload Table
                     </Button>
@@ -203,7 +225,7 @@ export default function MakesTable() {
                                     <td>{e.id}</td>
                                     <td>{e.name}</td>
                                     <td>
-                                        <Button className="" id={e.id} name={e.name} onClick={(e) => {
+                                        <Button variant="warning" className="" id={e.id} name={e.name} onClick={(e) => {
                                                 onEditClick(e)}
                                             }
                                             block
@@ -212,7 +234,7 @@ export default function MakesTable() {
                                         </Button>
                                     </td>
                                     <td>
-                                        <Button className="" value={e.id} onClick={(e) => {
+                                        <Button variant="danger" className="" value={e.id} onClick={(e) => {
                                                 onDelete(e)}
                                             }
                                             block 
