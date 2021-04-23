@@ -220,11 +220,18 @@ export default class SalesController extends Controller {
                             for(let i = 0; i < data.length; i++) {
                                 this.itemsModel.readBySaleId(data[i].id, (err, d) => {
                                     if (err) {
-                                        success = false;
-                                        res.status(500).send({
-                                            message:
-                                            err.message || `An error occurred while retrieving sale_item with sale_id ${data[i].id}.`
-                                        });
+                                        if (err.kind === "not_found") {
+                                            data[i].sale_items = [];
+                                            if(i == data.length-1) {
+                                                res.send(data);
+                                            }
+                                        } else {
+                                            console.log(err);
+                                            res.status(500).send({
+                                                message:
+                                                err.message || `An error occurred while retrieving sale_item with sale_id ${data[i].id}.`
+                                            });
+                                        }
                                     } else {
                                         data[i].sale_items = d;
                                         if(i == data.length-1) {
@@ -232,6 +239,7 @@ export default class SalesController extends Controller {
                                         }
                                     }
                                 });   
+
                             }
                         }
                     }
