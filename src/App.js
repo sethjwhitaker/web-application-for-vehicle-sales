@@ -87,6 +87,7 @@ class App extends Component {
         try {
             const response = await fetch(`${window.location.protocol}//${window.location.hostname}/sales`, options);
             const data = await response.json();
+            this.setState({cart:data});
             console.log(data);
             // check message
         } catch(e) {
