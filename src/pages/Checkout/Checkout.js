@@ -26,9 +26,9 @@ class Checkout extends Component {
             console.log(data);
             this.setState({cart : data});
         })
-
-        this.populateTable();
     }
+
+    populateTable();
 
     async getItem(id, table, q) {
         try {
