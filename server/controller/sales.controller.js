@@ -213,7 +213,6 @@ export default class SalesController extends Controller {
                             for(let i = 0; i < data.length; i++) {
                                 this.itemsModel.readBySaleId(data[i].id, (err, d) => {
                                     if (err) {
-                                        success = false;
                                         res.status(500).send({
                                             message:
                                             err.message || `An error occurred while retrieving sale_item with sale_id ${data[i].id}.`
