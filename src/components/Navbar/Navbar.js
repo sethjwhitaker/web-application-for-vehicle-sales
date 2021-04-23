@@ -13,7 +13,7 @@ class Navbar extends Component {
                     <ReactBootStrap.NavDropdown title="Products" id="collasible-nav-dropdown">
                         <ReactBootStrap.NavDropdown.Item as={NavLink} to="/">Cars</ReactBootStrap.NavDropdown.Item>
                         <ReactBootStrap.NavDropdown.Divider />
-                        <ReactBootStrap.NavDropdown.Item as={NavLink} to="#">Parts</ReactBootStrap.NavDropdown.Item>
+                        <ReactBootStrap.NavDropdown.Item as={NavLink} to="/parts">Parts</ReactBootStrap.NavDropdown.Item>
                     </ReactBootStrap.NavDropdown>
                     <ReactBootStrap.Nav.Link as={NavLink} to="/financing">Financing</ReactBootStrap.Nav.Link>
                     </ReactBootStrap.Nav>
