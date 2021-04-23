@@ -35,7 +35,7 @@ class App extends Component {
     onLogin(userData) {
         console.log("Logged In");
         window.localStorage.setItem("IsLoggedIn", "True");
-        window.localStorage.setItem("userData", JSON.stringify(this.state.userData));
+        window.localStorage.setItem("userData", JSON.stringify(userData));
         this.setState({userData:userData, isLoggedIn:true});
         this.getCart();
     }
@@ -58,9 +58,11 @@ class App extends Component {
             const response = await fetch(`${window.location.protocol}//${window.location.hostname}/cart`, options);
             const data = await response.json();
             if(data.id) { // there is a cart
+                console.log("Cart Found");
                 this.setState({cart:data});
                 console.log(data);
             } else {
+                console.log("Cart not found");
                 if(this.state.isLoggedIn) this.createCart();
             }
         } catch(e) {
@@ -71,12 +73,12 @@ class App extends Component {
     // If there is no cart, we must create one
     async createCart() {
         console.log("Creating Cart");
-        console.log(this.props.userData);
+        console.log(this.state.userData);
 
         const options = {
             method: 'POST',
             body: JSON.stringify({
-                user_id: this.props.userData.user_id,
+                user_id: this.state.userData.user_id,
                 sale_items: []
             }),
             headers: {
@@ -87,7 +89,9 @@ class App extends Component {
         try {
             const response = await fetch(`${window.location.protocol}//${window.location.hostname}/sales`, options);
             const data = await response.json();
-            this.setState({cart:data});
+            if(response.status == 200) {
+                this.getCart();
+            }
             console.log(data);
             // check message
         } catch(e) {

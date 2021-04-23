@@ -24,14 +24,19 @@ class Cards extends Component {
             }
         };
         
-        try {
+        if(this.props.cartId) {
+            try {
             
-            const response = await fetch(`${window.location.protocol}//${window.location.hostname}/sales/${this.props.cartId}/add_item`, options);
-            const data = await response.json();
-            
-        } catch(e) {
-            console.error(e);
+                const response = await fetch(`${window.location.protocol}//${window.location.hostname}/sales/${this.props.cartId}/add_item`, options);
+                const data = await response.json();
+                
+            } catch(e) {
+                console.error(e);
+            }
+        } else {
+            console.log("There is no cart!");
         }
+        
     }
 
     renderPart() {
