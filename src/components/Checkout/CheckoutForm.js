@@ -5,24 +5,21 @@ import Button from 'react-bootstrap/Button';
 import FinanceCalculator from './FinanceCalculator';
 
 class CheckoutForm extends Component {
-    constructor(props) {
-		super(props);
-		
-		this.state = {
-			paymentSelection: 'credit',
-            email = '',
-            first_name = '',
-            last_name = '',
-            address = '',
-            city = '',
-            us_state = '',
-            zip = '',
-		}
-	}
+	
+    state = {
+        paymentSelection: 'credit',
+        email = '',
+        first_name = '',
+        last_name = '',
+        cust_address = '',
+        city = '',
+        us_state = '',
+        zip = '',
+    }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        let cust_address = this.state.address;
+        let cust_address = this.state.cust_address;
         console.log(cust_address);
         console.log(this.props.id);
     }
@@ -54,7 +51,7 @@ class CheckoutForm extends Component {
     }
 
     render() {
-        const { paymentSelection, email, first_name, last_name, address, city, us_state, zip } = this.state;
+        const { paymentSelection, email, first_name, last_name, cust_address, city, us_state, zip } = this.state;
 
         return (
             <div>
@@ -80,7 +77,7 @@ class CheckoutForm extends Component {
                 </Row>
 
                 <Form.Group>
-                    <Form.Control required type="text" name="address" id="address" placeholder="Address" value={address} />
+                    <Form.Control required type="text" name="cust_address" id="cust_address" placeholder="Address" value={cust_address} />
                 </Form.Group>
 
                 <Form.Group>
