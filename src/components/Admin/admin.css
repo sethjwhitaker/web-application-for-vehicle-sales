@@ -1,11 +1,9 @@
-.tablediv { 
-    height: 90vh;
-    overflow-x:auto;
-    overflow-y:auto;
-}
-
-th {
-    position: sticky;
-    top: 0;
+.admintable > thead {
     background-color: lightblue;
 }
+
+.adminButton {
+    margin-bottom: 5px;
+}
+
+

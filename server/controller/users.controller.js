@@ -15,6 +15,7 @@ export default class UserController extends Controller {
         this.registerAdmin = this.registerAdmin.bind(this);
         this.createFirstAdmin = this.createFirstAdmin.bind(this);
         this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
         /*this.readAll = this.readAll.bind(this);
         this.read = this.read.bind(this);
         this.update = this.update.bind(this);
@@ -221,7 +222,7 @@ export default class UserController extends Controller {
             this.model.readByEmail(req.body.email, async (err, data) => {
                 if(err) {
                     if (err.kind === "not_found") {
-                        res.status(401).send({
+                        res.status(404).send({
                             message: `Not found: user with email ${req.body.email}.`
                         });
                     } else {
@@ -241,8 +242,10 @@ export default class UserController extends Controller {
                         res.cookie('token', token, {httpOnly: true});
                         res.send({
                             user_id: data.id,
+                            email: req.body.email,
                             first_name: data.first_name,
-                            last_name: data.last_name
+                            last_name: data.last_name,
+                            type: data.type
                         });
                     } else {
                         res.status(401).send({
@@ -252,6 +255,21 @@ export default class UserController extends Controller {
                 }
             });
         }
+    }
+
+    logout(req, res) {
+        Controller.verifyUser(req.cookies.token, ["admin", "employee", "customer"], (err, decoded) => {
+            if(err) {
+                res.status(400).send({
+                    message: "Not logged in."
+                });
+            } else {
+                res.cookie('token', {}, {httpOnly:true});
+                res.send({
+                    message: "Successfully logged out."
+                });
+            }
+        });
     }
 
     readAll(req, res) {
