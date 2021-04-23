@@ -10,9 +10,28 @@ class CheckoutForm extends Component {
 		
 		this.state = {
 			paymentSelection: 'credit',
-
+            email = "",
+            first_name = "",
+            last_name = "",
+            address = "",
+            city = "",
+            state = "",
+            zip = "",
 		}
 	}
+
+    handleChange = (event) => {
+        let nam = event.target.name;
+        let val = event.target.value;
+        this.setState({[nam]: val});
+      }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        let cust_address = this.state.address;
+        console.log(cust_address);
+        console.log(this.props.id);
+    }
 
     toggleContent = (event) => {
 		event.preventDefault();
@@ -45,23 +64,23 @@ class CheckoutForm extends Component {
 
         return (
             <div>
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
                     <h2 className="checkout-title mb-3">Contact Information</h2>
     
                 <Form.Group>
-                    <Form.Control required type="email" name="email" id="email" placeholder="Email" />
+                    <Form.Control required type="email" name="email" id="email" placeholder="Email" onChange={this.handleChange}/>
                 </Form.Group>
 
                 <Row>
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Control required type="text" name="first_name" id="first_name" placeholder="First Name" />
+                            <Form.Control required type="text" name="first_name" id="first_name" placeholder="First Name" onChange={this.handleChange} />
                         </Form.Group>
                     </Col>
 
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Control required type="text" name="last_name" id="last_name" placeholder="Last name" />
+                            <Form.Control required type="text" name="last_name" id="last_name" placeholder="Last name" onChange={this.handleChange} />
                         </Form.Group>
                     </Col>
                 </Row>
