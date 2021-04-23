@@ -81,14 +81,14 @@ export default function Admin_Employee_Register() {
             />
         </Form.Group>
         <Form.Group controlId="newType">
-            <Form.Label>Type (Admin/Employee)</Form.Label>
+            <Form.Label>Type (admin/employee)</Form.Label>
             <Form.Control
                 type="newType"
                 value={newType}
                 onChange={(e) => setnewType(e.target.value)}
             />
         </Form.Group>
-        <Button className="" block type="submit" disabled={!validateForm()}>
+        <Button variant="success" className="" block type="submit" disabled={!validateForm()}>
           Register
         </Button>
 
