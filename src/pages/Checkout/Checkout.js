@@ -25,6 +25,7 @@ class Checkout extends Component {
             console.log("data is:");
             console.log(data);
             this.setState({user_cart : data});
+            console.log(user_cart);
         })
 
         if(this.state.user_cart.sale_items) {
