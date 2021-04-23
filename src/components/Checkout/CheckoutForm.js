@@ -101,7 +101,7 @@ class CheckoutForm extends Component {
                     <Col md={4}>
                         <Form.Group>
                             <Form.Label for="state">State</Form.Label>
-                            <Form.Control required type="text" name="state" placeholder="State" value={us_state} onChange={this.handleChange} />
+                            <Form.Control required type="text" name="us_state" placeholder="State" value={us_state} onChange={this.handleChange} />
                         </Form.Group>
                     </Col>
 
