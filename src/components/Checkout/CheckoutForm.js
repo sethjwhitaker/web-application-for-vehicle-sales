@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import {Row, Col} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import FinanceCalculator from './FinanceCalculator';
+import { withRouter } from 'react-router-dom';
 
 class CheckoutForm extends Component {
 	
@@ -26,8 +27,24 @@ class CheckoutForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         let customer_address = this.state.cust_address + ", " + this.state.city + ", " + this.state.us_state + ", " + this.state.zip;
-        console.log(customer_address);
-        console.log(this.props.id);
+        
+        fetch(`${window.location.protocol}//${window.location.hostname}/sales/${this.props.id}`, {
+            method: "PUT",
+              
+            body: JSON.stringify({
+              address: customer_address,
+              status: "processing"
+          }),
+            
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+          })
+    
+          .then(response => response.json())
+          .then(json => console.log(json));
+
+          this.props.history.push('/receipt');
     }
 
     toggleContent = (event) => {
@@ -157,4 +174,4 @@ class CheckoutForm extends Component {
         );
     }
 }
-export default CheckoutForm;
+export default withRouter(CheckoutForm);

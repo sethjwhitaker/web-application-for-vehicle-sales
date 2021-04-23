@@ -96,7 +96,7 @@ class App extends Component {
               <Route path='/financing' component={Finance} />
               <Route path='/cart' render={(props) => (<Cart {...props} getCart={this.getCart.bind(this)} loggedIn={this.state.isLoggedIn} cart={this.state.cart} />)} />
               <Route path='/checkout' render={(props) => (<Checkout {...props} cart={this.state.cart} />)} />
-              <Route path='/receipt/:id' component={Success} /> 
+              <Route path='/receipt' component={Success} /> 
             </Switch>
           </div>
         </HashRouter>

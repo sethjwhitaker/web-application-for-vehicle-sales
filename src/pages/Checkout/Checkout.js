@@ -68,8 +68,8 @@ class Checkout extends Component {
             table = 'parts';
         }
         return (
-            <div>
-                <Card className="cart-card">
+            <div className="cart-card">
+                <Card>
                     
                     <Card.Body>
                         <Card.Title>{name}</Card.Title>
