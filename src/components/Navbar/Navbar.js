@@ -13,9 +13,9 @@ class Navbar extends Component {
             if(type == "admin") {
                 return (
                     <div>
-                        <ReactBootStrap.NavDropdown.Item as={NavLink} to="/admin">Admin</ReactBootStrap.NavDropdown.Item>
+                        <ReactBootStrap.NavDropdown.Item as={NavLink} exact to="/admin">Admin</ReactBootStrap.NavDropdown.Item>
                         <ReactBootStrap.NavDropdown.Divider />
-                        <ReactBootStrap.NavDropdown.Item as={NavLink} to="/logout">Logout</ReactBootStrap.NavDropdown.Item>
+                        <ReactBootStrap.NavDropdown.Item as={NavLink} exact to="/logout">Logout</ReactBootStrap.NavDropdown.Item>
                     </div>
                 )
             }
@@ -23,7 +23,7 @@ class Navbar extends Component {
             else {
                 return (
                     <div>
-                        <ReactBootStrap.NavDropdown.Item as={NavLink} to="/logout">Logout</ReactBootStrap.NavDropdown.Item>
+                        <ReactBootStrap.NavDropdown.Item as={NavLink} exact to="/logout">Logout</ReactBootStrap.NavDropdown.Item>
                     </div>
                 )
             }
@@ -33,9 +33,9 @@ class Navbar extends Component {
         else {
             return (
                 <div>
-                    <ReactBootStrap.NavDropdown.Item as={NavLink} to="/login">Login</ReactBootStrap.NavDropdown.Item>
+                    <ReactBootStrap.NavDropdown.Item as={NavLink} exact to="/login">Login</ReactBootStrap.NavDropdown.Item>
                     <ReactBootStrap.NavDropdown.Divider />
-                    <ReactBootStrap.NavDropdown.Item as={NavLink} to="/register">Register</ReactBootStrap.NavDropdown.Item>
+                    <ReactBootStrap.NavDropdown.Item as={NavLink} exact to="/register">Register</ReactBootStrap.NavDropdown.Item>
                 </div>
             )
         }
@@ -49,17 +49,17 @@ class Navbar extends Component {
                 <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
                     <ReactBootStrap.Nav className="mr-auto">
                     <ReactBootStrap.NavDropdown title="Products" id="collasible-nav-dropdown">
-                        <ReactBootStrap.NavDropdown.Item as={NavLink} to="/">Cars</ReactBootStrap.NavDropdown.Item>
+                        <ReactBootStrap.NavDropdown.Item as={NavLink} exact to="/">Cars</ReactBootStrap.NavDropdown.Item>
                         <ReactBootStrap.NavDropdown.Divider />
-                        <ReactBootStrap.NavDropdown.Item as={NavLink} to="/parts">Parts</ReactBootStrap.NavDropdown.Item>
+                        <ReactBootStrap.NavDropdown.Item as={NavLink} exact to="/parts">Parts</ReactBootStrap.NavDropdown.Item>
                     </ReactBootStrap.NavDropdown>
-                    <ReactBootStrap.Nav.Link as={NavLink} to="/financing">Financing</ReactBootStrap.Nav.Link>
+                    <ReactBootStrap.Nav.Link as={NavLink} exact to="/financing">Financing</ReactBootStrap.Nav.Link>
                     </ReactBootStrap.Nav>
                     <ReactBootStrap.Nav>
                     <ReactBootStrap.NavDropdown title="Account" id="collasible-nav-dropdown">
                         {this.getNav(this.props)}
                     </ReactBootStrap.NavDropdown>
-                    <ReactBootStrap.Nav.Link as={NavLink} to="/cart">Cart</ReactBootStrap.Nav.Link>
+                    <ReactBootStrap.Nav.Link as={NavLink} exact to="/cart">Cart</ReactBootStrap.Nav.Link>
                     </ReactBootStrap.Nav>
                 </ReactBootStrap.Navbar.Collapse>
             </ReactBootStrap.Navbar>
