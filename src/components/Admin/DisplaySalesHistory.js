@@ -215,9 +215,9 @@ export default function DisplaySalesHistory() {
                                     <td>{e.date}</td>
                                     <td>{e.status}</td>
                                     <td>{e.address}</td>
-                                    <td>{e.sale_items[index].quantity}</td>
-                                    <td>{e.sale_items[index].part_id}</td>
-                                    <td>{e.sale_items[index].vehicle_id}</td>
+                                    <td>{e.sale_items[0].quantity}</td>
+                                    <td>{e.sale_items[0].part_id}</td>
+                                    <td>{e.sale_items[0].vehicle_id}</td>
                                     <td>
                                         <Button variant="warning" 
                                         className="" 
