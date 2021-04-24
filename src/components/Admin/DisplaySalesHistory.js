@@ -198,11 +198,9 @@ export default function DisplaySalesHistory() {
                             <th>Date</th>
                             <th>Status</th>
                             <th>Address</th>
-                            <th>Sale Quantity</th>
-                            <th>Sale Part ID</th>
-                            <th>Sale Vehicle ID</th>
                             <th>Edit</th>
                             <th>Delete</th>
+                            <th colspan="10">Sale Items</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -215,9 +213,6 @@ export default function DisplaySalesHistory() {
                                     <td>{e.date}</td>
                                     <td>{e.status}</td>
                                     <td>{e.address}</td>
-                                    <td>{e.sale_items[0].quantity}</td>
-                                    <td>{e.sale_items[0].part_id}</td>
-                                    <td>{e.sale_items[0].vehicle_id}</td>
                                     <td>
                                         <Button variant="warning" 
                                         className="" 
@@ -245,6 +240,18 @@ export default function DisplaySalesHistory() {
                                             Delete
                                         </Button>
                                     </td>
+                                    
+                                        
+                                        {e.sale_items.map((i) => {
+                                            return (
+                                                <td className="saleItemTD">
+                                                        <p>Quantity: {i.quantity}</p>
+                                                        <p>Part ID: {i.part_id}</p>
+                                                        <p>Vehicle ID: {i.vehicle_id}</p>
+                                                </td>
+                                            )
+                                        })}
+
                                 </tr>)
                             })}
                         </tbody>

@@ -6,4 +6,9 @@
     margin-bottom: 5px;
 }
 
+.saleItemTD {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
 
