@@ -8,7 +8,7 @@ class Navbar extends Component {
         let status = props.loggedIn;
         let type = props.userInfo.type;
 
-        if(status == "true") {
+        if(status == true) {
 
             if(type == "admin") {
                 return (
