@@ -115,7 +115,7 @@ class App extends Component {
               <Route path='/part/:id' component={PartInfo} />
               <Route path='/financing' component={Finance} />
               <Route path='/cart' render={(props) => (<Cart {...props} getCart={this.getCart.bind(this)} loggedIn={this.state.isLoggedIn} cart={this.state.cart} />)} />
-              <Route path='/checkout' render={(props) => (<Checkout {...props} cart={this.state.cart} />)} />
+              <Route path='/checkout' render={(props) => (<Checkout {...props} cart={this.state.cart} createCart={this.createCart.bind(this)} />)} />
               <Route path='/receipt' component={Success} /> 
               <Route path='/parts' render={(props) => (<Parts {...props} cartId={this.state.cart.id} />)} />
             </Switch>

@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
-import { Card, Button} from 'react-bootstrap';
+import { Card, Button, Modal} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
 
 class Cards extends Component {
+
+    state = {
+        mIsOpen: false
+      };
+
+    openModal = () => this.setState({ mIsOpen: true });
+    closeModal = () => this.setState({ mIsOpen: false });
 
     async addToCart(id, table) {
         console.log(`Add ${table} ${id} to cart`);
@@ -29,12 +36,16 @@ class Cards extends Component {
             
                 const response = await fetch(`${window.location.protocol}//${window.location.hostname}/sales/${this.props.cartId}/add_item`, options);
                 const data = await response.json();
+
+                if(response.status == 401) this.openModal();
                 
             } catch(e) {
                 console.error(e);
             }
         } else {
+            this.openModal();
             console.log("There is no cart!");
+            
         }
         
     }
@@ -82,6 +93,16 @@ class Cards extends Component {
                 <Card style={{ width: '12rem', height: '30rem' }}>
                     {this.props.isCar ? this.renderCar() : this.renderPart()}
                 </Card>
+                <Modal show={this.state.mIsOpen} onHide={this.closeModal}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Unable to Add to Cart</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Please Login to add to cart</Modal.Body>
+                    <Modal.Footer>
+                        <Link to="/login" ><Button variant="primary">Login</Button></Link>
+                        <Button variant="secondary" onClick={this.closeModal}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         )
     }
