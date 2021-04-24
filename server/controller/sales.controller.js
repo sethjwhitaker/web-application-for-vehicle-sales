@@ -277,8 +277,6 @@ export default class SalesController extends Controller {
                     message = "Missing data: user_id";
                 } else if (!req.body.sale_items) {
                     message = "Missing array: sale_items";
-                } else if (req.body.sale_items.length <= 0) {
-                    message = "Missing data: sale_items must have at least one item";
                 }
 
                 if (message) {
@@ -302,51 +300,57 @@ export default class SalesController extends Controller {
                                 err.message || `An error occurred while creating sale.`
                             });
                         } else {
-                            // Add each of the sale items
-                            const sale_items = req.body.sale_items;
-                            const sale_id = data.id;
-                            let success = true;
+                            if(req.body.sale_items.length > 0) {
+                                // Add each of the sale items
+                                const sale_items = req.body.sale_items;
+                                const sale_id = data.id;
+                                let success = true;
 
-                            for (let i = 0; i < sale_items.length; i++) {
-                                const sale_item = sale_items[i];
-                                if (!sale_item.vehicle_id && !sale_item.part_id) {
-                                    message = "Missing data: sale_item " + i + " vehicle_id or part_id";
-                                } else if (sale_item.vehicle_id && sale_item.part_id) {
-                                    message = "sale_item " + i + " only one of part_id or vehicle_id can be specified";
+                                for (let i = 0; i < sale_items.length; i++) {
+                                    const sale_item = sale_items[i];
+                                    if (!sale_item.vehicle_id && !sale_item.part_id) {
+                                        message = "Missing data: sale_item " + i + " vehicle_id or part_id";
+                                    } else if (sale_item.vehicle_id && sale_item.part_id) {
+                                        message = "sale_item " + i + " only one of part_id or vehicle_id can be specified";
+                                    }
+
+                                    if (message) {
+                                        success = false;
+                                        res.status(400).send({
+                                            message: message
+                                        });
+                                        break;
+                                    } else {
+                                        const new_item = {
+                                            sale_id: sale_id
+                                        };
+        
+                                        if (sale_item.vehicle_id) new_item.vehicle_id = sale_item.vehicle_id;
+                                        if (sale_item.part_id) new_item.part_id = sale_item.part_id;
+                                        if (sale_item.quantity) new_item.quantity = sale_item.quantity;
+        
+                                        this.itemsModel.create(new_item, (err, data) => {
+                                            if (err) {
+                                                success = false;
+                                                res.status(500).send({
+                                                    message:
+                                                    err.message || `An error occurred while creating sale_item.`
+                                                });
+                                            } else if(i == sale_items.length-1) {
+                                                res.send({
+                                                    message: `Successfully added sale: ${sale_id}`
+                                                });
+                                            }
+                                        });
+                                    }
+
                                 }
-
-                                if (message) {
-                                    success = false;
-                                    res.status(400).send({
-                                        message: message
-                                    });
-                                    break;
-                                } else {
-                                    const new_item = {
-                                        sale_id: sale_id
-                                    };
-    
-                                    if (sale_item.vehicle_id) new_item.vehicle_id = sale_item.vehicle_id;
-                                    if (sale_item.part_id) new_item.part_id = sale_item.part_id;
-                                    if (sale_item.quantity) new_item.quantity = sale_item.quantity;
-    
-                                    this.itemsModel.create(new_item, (err, data) => {
-                                        if (err) {
-                                            success = false;
-                                            res.status(500).send({
-                                                message:
-                                                err.message || `An error occurred while creating sale_item.`
-                                            });
-                                        } else if(i == sale_items.length-1) {
-                                            res.send({
-                                                message: `Successfully added sale: ${sale_id}`
-                                            });
-                                        }
-                                    });
-                                }
-
+                            } else {
+                                res.send({
+                                    message: `Successfully added sale: ${data.id}`
+                                });
                             }
-                           
+
                         }
 
                     });
