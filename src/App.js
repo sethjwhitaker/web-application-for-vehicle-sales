@@ -99,10 +99,12 @@ class App extends Component {
       <div className="jumbotron">
         <HashRouter>
           <div>
-            <Navbar 
+              
+            <Navbar
             loggedIn={this.state.isLoggedIn}
             userInfo={this.state.userData}
             />
+
             <Switch>
               <Route path ='/' render={(props) => (<Home {...props} cartId={this.state.cart.id} />)} exact />
               <Route path ='/login' render={(props) => (<Login {...props} onLogin={this.onLogin.bind(this)} />)} />

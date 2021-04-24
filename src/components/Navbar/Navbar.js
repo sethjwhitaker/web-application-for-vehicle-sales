@@ -5,8 +5,8 @@ import { Link, NavLink } from 'react-router-dom';
 class Navbar extends Component {
 
     getNav(props) {
-        const status = props.loggedIn;
-        const type = props.userInfo.type;
+        let status = props.loggedIn;
+        let type = props.userInfo.type;
 
         if(status == "true") {
 
