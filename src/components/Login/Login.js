@@ -106,9 +106,8 @@ class Login extends Component {
                 </Button>
         
                 <br></br>
-                <Link to='/register'>Sign Up</Link>
-                <br></br>
-                <Link to='/admin'>Admin Page</Link>
+                <p>Not signed up? <Link to='/register'>Register</Link> </p>
+                <p><Link to='/admin'>Admin Page</Link></p>
               </Form>
         );
     }
