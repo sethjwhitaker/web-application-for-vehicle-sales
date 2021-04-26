@@ -20,7 +20,6 @@ export default function DisplaySalesHistory() {
 
     //api fetch call for part list
     useEffect(async () => {
-        setLoading(true);
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);
