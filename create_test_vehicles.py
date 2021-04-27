@@ -1,37 +1,82 @@
 import requests
 import json
 
-url = "http://localhost:80/vehicles"
-with open("data/db.json") as file:
-    data = json.load(file)
+s = requests.session()
 
-    #get makes classes types (add them manualy)
+def main():
+    url = input("Enter the base url you wish to insert to: ")
+    filename = input("Enter the path to the json file you wish to insert: ")
+    input("Press enter to insert: ")
+    insertVehicles(url, filename)
 
-    makes = []
-    classes = []
-    types = []
+def insertVehicles(url, filename):
+    with open(filename) as file:
 
+        login(url, "sjwhitaker@mail.fhsu.edu", "k,/hFz)8@>RMKJy$")
+       
+        data = json.load(file)
 
+        #get makes classes types (add them manualy)
 
-    d = data[0]
-    print(d)
+        makes = getItems(url + "/makes")
+        classes = getItems(url + "/classes")
+        types = getItems(url + "/types")
 
+        for d in data:
+            print(d)
+
+            if d["make "] not in makes.keys():
+                addItem(url + "/makes", d["make "])
+                makes = getItems(url + "/makes")
+            if d["type"] not in types.keys():
+                addItem(url + "/types", d["type"])
+                types = getItems(url + "/types")
+            if d["class"] not in classes.keys():
+                addItem(url + "/classes", d["class"])
+                classes = getItems(url + "/classes")
+
+            obj = {
+                "make_id": makes[d["make "]],
+                "type_id": types[d["type"]],
+                "class_id": classes[d["class"]],
+                "model": d["model"],
+                "year": d["year"],
+                "price": d["price"],
+                "exterior_color": d["exterior_color"],
+                "interior_color": d["interior_color"],
+                "engine": str(d["engine"]) + " L",
+                "transmission": "6-speed automatic",
+                "mileage": "30,000",
+                "short_description": d["short_description"],
+                "description": "Example full description"
+            }
+                
+            response = s.post(url + "/vehicles", json=obj)
+            print(response)
+
+def login(url, email, password):
     obj = {
-        "make_id": 1,
-        "type_id": 1,
-        "class_id": 1,
-        "model": d.model,
-        "year": d.year,
-        "price": d.price,
-        "exterior_color": d.exterior_color,
-        "interior_color": d.interior_color,
-        "engine": str(d.engine) + " L",
-        "transmission": "6-speed automatic",
-        "mileage": "30,000",
-        "short_description": d.short_description,
-        "description": "Example full description"
+        "email": email,
+        "password": password
     }
-        
-    response = requests.post(url, data=obj)
-    print(response)
+    response = s.post(url + "/users/login", json=obj)
+    print(response.json())
 
+def addItem(url, name):
+    obj = {
+        "name": name
+    }
+
+    response = s.post(url, json=obj)
+    print(response.json())
+    return
+
+
+def getItems(url):
+    response = s.get(url)
+    items = {}
+    for item in response.json():
+        items[item["name"]] = item["id"]
+    return items
+
+main()
