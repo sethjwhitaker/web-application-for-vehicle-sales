@@ -91,6 +91,7 @@ class Checkout extends Component {
                         <CheckoutForm 
                         id = {this.props.cart.id}
                         total = {this.state.total}
+                        createCart={this.props.createCart}
                         />
                     </Col>
 

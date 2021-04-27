@@ -1,20 +1,18 @@
 /* Login and Register divs */
 .Login {
     background-color: rgb(201, 206, 230);
-    height: 60vh;
-    width: 60vw;
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .loginForm {
     margin: auto;
-    width: 320px;
 }
 
 .loginButton {
     margin: auto;
-    width: 320px;
 }

@@ -11,7 +11,7 @@ export default function Register() {
     const [lastName, setlastName] = useState("");
 
     function validateForm() {
-        return true;//email.length > 0 && password.length > 0;
+        return newEmail.length > 0 && newPassword.length > 0 && firstName.length > 0 && lastName.length > 0;
     }
 
     function handleSubmit(event) {
@@ -46,11 +46,14 @@ export default function Register() {
 
     return (
 
-    <div className="Login">
+    <div className="Login container">
       <Form onSubmit={handleSubmit}>
+      <h2>Register</h2>
+      <br></br>
       <Form.Group controlId="firstName">
           <Form.Label>First Name</Form.Label>
           <Form.Control
+            autoFocus
             type="firstName"
             value={firstName}
             onChange={(e) => setfirstName(e.target.value)}
@@ -67,7 +70,6 @@ export default function Register() {
         <Form.Group controlId="newEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control
-            autoFocus
             type="newEmail"
             value={newEmail}
             onChange={(e) => setEmail(e.target.value)}
@@ -86,7 +88,7 @@ export default function Register() {
         </Button>
 
         <br></br>
-        <Link to='/login'>Login</Link>
+        <p>Already a user? <Link to='/login'>Login</Link> </p>
       </Form>
     </div>
   );
