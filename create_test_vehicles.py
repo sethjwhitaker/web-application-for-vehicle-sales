@@ -6,13 +6,15 @@ s = requests.session()
 def main():
     url = input("Enter the base url you wish to insert to: ")
     filename = input("Enter the path to the json file you wish to insert: ")
+    email = input("Enter admin email: ")
+    password = input("Enter admin password: ")
     input("Press enter to insert: ")
-    insertVehicles(url, filename)
+    insertVehicles(url, filename, email, password)
 
-def insertVehicles(url, filename):
+def insertVehicles(url, filename, email, password):
     with open(filename) as file:
 
-        login(url, "sjwhitaker@mail.fhsu.edu", "k,/hFz)8@>RMKJy$")
+        login(url, email, password)
        
         data = json.load(file)
 
