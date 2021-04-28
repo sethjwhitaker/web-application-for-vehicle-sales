@@ -7,7 +7,7 @@ class Header extends Component {
         return (
             <div>
                 <header>
-                    <Carousel>
+                    <Carousel indicators={false}>
                         <Carousel.Item>
                             <img className="d-block w-100" src = {'img/car-header.jpg'} />
                             <Carousel.Caption>
