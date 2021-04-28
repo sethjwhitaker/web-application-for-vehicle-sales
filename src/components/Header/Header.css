@@ -21,6 +21,7 @@ img {
 
     .caption {
          font-size: 0.6rem;
+         bottom: 0;
     }
 
     .carousel-caption {
