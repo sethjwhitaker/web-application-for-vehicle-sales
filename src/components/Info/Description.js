@@ -6,7 +6,7 @@ class Description extends Component {
         return (
             <Row>
                 <Col>
-                    <Table responsive bordered className="table-bordered">
+                    <Table bordered className="table-bordered">
                         <thead className="thead-dark">
                             <tr>
                                 <th><h2>Description</h2></th>

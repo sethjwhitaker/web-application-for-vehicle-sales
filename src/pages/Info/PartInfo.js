@@ -53,7 +53,7 @@ class PartInfo extends Component {
                     color = {this.state.part.color}
                      />
 
-                    <Col className="col-6">
+                    <Col md='6'>
                         <Description
                         desc = {this.state.part.description}
                         />

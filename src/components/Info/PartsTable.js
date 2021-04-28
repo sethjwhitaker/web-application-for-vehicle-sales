@@ -4,7 +4,7 @@ import { Table } from 'react-bootstrap';
 class PartsTable extends Component {
     render() {
         return (
-            <Table responsive bordered className="table-bordered">
+            <Table bordered className="table-bordered">
                 <thead className="thead-dark">
                     <tr>
                         <th colSpan="2"><h2>Parts Information</h2></th>
