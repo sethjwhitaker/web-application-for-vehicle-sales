@@ -24,6 +24,6 @@ img {
     }
 
     .carousel-caption {
-        bottom: 5%;
+        bottom: 0;
     }
 }
