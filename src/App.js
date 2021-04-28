@@ -29,6 +29,8 @@ class App extends Component {
         const ud = window.localStorage.getItem("userData");
         if(ud) this.setState({userData: JSON.parse(ud)});
         if(window.localStorage.getItem("IsLoggedIn")=="True")this.setState({isLoggedIn:true});
+
+        this.checkLoggedIn();
         this.getCart();
     }
 
