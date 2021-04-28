@@ -11,7 +11,7 @@ class ProductHeader extends Component {
             return (
                 <div>
                     <Row>
-                        <Col className="col-4">
+                        <Col md='4'>
                             <Table responsive>
                                 <thead>
                                     <tr>
@@ -26,7 +26,7 @@ class ProductHeader extends Component {
                             </Table>
                         </Col>
                         
-                        <Col className="col-4">
+                        <Col md='4'>
                             <Table responsive>
                                 <thead>
                                     <tr>
@@ -41,7 +41,7 @@ class ProductHeader extends Component {
                             </Table>
                         </Col>
         
-                        <Col className="col-4">
+                        <Col md='4'>
                             <Table responsive>
                                 <thead>
                                     <tr>
@@ -64,7 +64,7 @@ class ProductHeader extends Component {
             return (
                 <div>
                     <Row>
-                        <Col className="col-4">
+                        <Col md='4'>
                             <Table responsive>
                                 <thead>
                                     <tr>
@@ -79,11 +79,11 @@ class ProductHeader extends Component {
                             </Table>
                         </Col>
                         
-                        <Col className="col-4">
+                        <Col md='4'>
                             
                         </Col>
         
-                        <Col className="col-4">
+                        <Col md='4'>
                             <Table responsive>
                                 <thead>
                                     <tr>

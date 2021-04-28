@@ -60,7 +60,7 @@ class CarInfo extends Component {
                     interior_color = {this.state.car.interior_color}
                     />
     
-                    <Col className="col-6">
+                    <Col md='6'>
                         <Description 
                         desc = {this.state.car.description}
                         />

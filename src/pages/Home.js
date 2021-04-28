@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SearchBar from '../components/Searchbar/Searchbar';
 import Main from '../components/Main/Main';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import axios from "axios";
 
 class Home extends Component {
