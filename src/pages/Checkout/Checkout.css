@@ -6,7 +6,7 @@
     padding: 2rem 0;
 }
 
-Button {
+.checkout-button {
     width: 200px;
     height: 40px;
 }

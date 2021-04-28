@@ -149,8 +149,8 @@ class CheckoutForm extends Component {
 
                 <h2 className = "checkout-title mb-3">Payment</h2>
 
-                <Button outline className= {paymentSelection ==='credit' ? 'active' : null} color="secondary" value="credit" onClick={this.toggleContent} >Credit Card</Button>
-                <Button outline className={paymentSelection ==='finance' ? 'active' : null} color="secondary" value="finance" onClick={this.toggleContent} >Finance</Button>
+                <Button outline className={`checkout-button ${paymentSelection ==='credit' ? 'active' : null}`} color="secondary" value="credit" onClick={this.toggleContent} >Credit Card</Button>
+                <Button outline className={`checkout-button ${paymentSelection ==='finance' ? 'active' : null}`} color="secondary" value="finance" onClick={this.toggleContent} >Finance</Button>
                 <br /> <br />
 
                 {this.switchContent(paymentSelection)}
