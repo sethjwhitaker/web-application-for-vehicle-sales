@@ -69,11 +69,11 @@ class App extends Component {
         try {
             const response = await fetch(`${window.location.protocol}//${window.location.hostname}/cart`, options);
             const data = await response.json();
-            if(data.id) { // there is a cart
+            if(response.status == 200) { // there is a cart
                 console.log("Cart Found");
                 this.setState({cart:data});
                 console.log(data);
-            } else {
+            } else if (response.status == 404) {
                 console.log("Cart not found");
                 if(this.state.isLoggedIn) this.createCart();
             }
