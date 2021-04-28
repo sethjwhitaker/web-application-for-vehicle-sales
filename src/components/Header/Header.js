@@ -24,9 +24,6 @@ class Header extends Component {
 
                         <Carousel.Item>
                             <img className="d-block w-100" src = {'img/logo-header.png'} />
-                            <Carousel.Caption>
-                                <h3 className="caption">All in one convenient online store.</h3>
-                            </Carousel.Caption>
                         </Carousel.Item>
                     </Carousel>
                 </header>
