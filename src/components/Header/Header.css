@@ -1,6 +1,6 @@
 @media only screen and (max-width: 576px) {
     .carousel-item {
-        height: 150px;
+        height: 50px;
         width: 100%;
     }
 }
