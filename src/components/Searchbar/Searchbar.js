@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Container} from 'react-bootstrap';
 import './Searchbar.css'
 
 class Searchbar extends Component {
@@ -14,10 +15,10 @@ class Searchbar extends Component {
     render() {
         
         return(
-            <div className='center'>
-                 <input onChange={this.onChangeHandler} className="Searcbar" type="text" typeholder="Search" />
-                 <button onClick={() => this.props.searched(this.state.inputValue)}>Search</button>    
-            </div>        
+            <Container className='center form-group'>
+                <input onChange={this.onChangeHandler} className="form-control d-inline Searchbar" type="text" typeholder="Search" />
+                <button onClick={() => this.props.searched(this.state.inputValue)}>Search</button>    
+            </Container>        
         )   
     }
 }

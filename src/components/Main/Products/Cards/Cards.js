@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Card, Button, Modal} from 'react-bootstrap';
-import {Link} from "react-router-dom";
+import { Card, ButtonGroup, Button, Modal} from 'react-bootstrap';
+import {LinkContainer} from "react-router-bootstrap";
 
 
 class Cards extends Component {
@@ -59,9 +59,12 @@ class Cards extends Component {
                     
                 </Card.Text>
 
-                <Link to={`/part/${this.props.car.id}`}><Button variant="primary">More Info</Button></Link>
-                <Button variant="primary" onClick={(e) => {this.addToCart(this.props.car.id, "parts")}}>Add to Cart</Button>
-                <Button variant="primary">Compare</Button>
+                <ButtonGroup vertical>
+                    <LinkContainer to={`/part/${this.props.car.id}`}><Button>More Info</Button></LinkContainer>
+                    <Button variant="primary" onClick={(e) => {this.addToCart(this.props.car.id, "parts")}}>Add to Cart</Button>
+                    <Button variant="primary">Compare</Button>
+                </ButtonGroup>
+
             </Card.Body>
         );
     }
@@ -78,9 +81,11 @@ class Cards extends Component {
                     {this.props.car.short_description}
                 </Card.Text>
 
-                <Link to={`/car/${this.props.car.id}`}><Button variant="primary">More Info</Button></Link>
-                <Button variant="primary" onClick={(e) => {this.addToCart(this.props.car.id, "vehicles")}}>Add to Cart</Button>
-                <Button variant="primary">Compare</Button>
+                <ButtonGroup vertical>
+                    <LinkContainer to={`/car/${this.props.car.id}`}><Button variant="primary">More Info</Button></LinkContainer>
+                    <Button variant="primary" onClick={(e) => {this.addToCart(this.props.car.id, "vehicles")}}>Add to Cart</Button>
+                    <Button variant="primary">Compare</Button>
+                </ButtonGroup>
             </Card.Body>
         );
     }
@@ -90,7 +95,8 @@ class Cards extends Component {
         
         return (
             <div>
-                <Card style={{ width: '12rem', height: '30rem' }}>
+                <Card style={{ width: '12em', height: '30em' }}>
+                    <Card.Img variant="top" src="https://www.linkpicture.com/q/LPic604691ad669e8533277294.jpg" />
                     {this.props.isCar ? this.renderCar() : this.renderPart()}
                 </Card>
                 <Modal show={this.state.mIsOpen} onHide={this.closeModal}>
@@ -99,7 +105,7 @@ class Cards extends Component {
                     </Modal.Header>
                     <Modal.Body>Please Login to add to cart</Modal.Body>
                     <Modal.Footer>
-                        <Link to="/login" ><Button variant="primary">Login</Button></Link>
+                        <LinkContainer to="/login" ><Button variant="primary">Login</Button></LinkContainer>
                         <Button variant="secondary" onClick={this.closeModal}>Close</Button>
                     </Modal.Footer>
                 </Modal>
