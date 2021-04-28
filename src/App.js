@@ -35,7 +35,7 @@ class App extends Component {
     }
 
     async checkLoggedIn() {
-        const response = await fetch(`${window.location.protocol}//${window.location.hostname}/users/isLoggedIn`);
+        const response = await fetch(`${window.location.protocol}//${window.location.hostname}/users/is_logged_in`);
         if(response.status == 401) {
             console.log("Not logged in.");
             this.onLogout();
