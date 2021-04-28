@@ -4,6 +4,11 @@
         width: 100%;
     }
 
+    img {
+        height: 80px;
+        width: 100%;
+    }
+
     .caption {
          font-size: 1rem;   
     }
