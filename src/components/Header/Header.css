@@ -1,11 +1,6 @@
-.carousel-caption {
-    position: relative;
-    left: 0;
-    top: 0;
-}
-
 @media only screen and (max-width: 576px) {
     .carousel-item {
-        height: 200px;
+        height: 150px;
+        width: 100%;
     }
 }
