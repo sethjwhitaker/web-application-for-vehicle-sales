@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import {Link} from "react-router-dom";
 import equal from "fast-deep-equal";
 import { Card, Button, Container} from 'react-bootstrap'
