@@ -72,6 +72,7 @@ class Cards extends Component {
                 <Card.Text>
                     Make: {this.props.car.make}<br />
                     Model: {this.props.car.model}<br/>
+                    Type: {this.props.car.type} <br/>
                     Color: {this.props.car.exterior_color}<br />
                     Year: {this.props.car.year}<br />
                     {"$" + this.props.car.price.toFixed(2)}<br />

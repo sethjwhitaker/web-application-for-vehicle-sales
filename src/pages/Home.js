@@ -10,15 +10,18 @@ class Home extends Component {
         searchedProducts:[],
         carBrands:[],
         carModels:[],
-        carTypes:[]
-        
+        carTypes:[],
+        carTypesArr:[],
+        carColorArr:[],
+        carYearsArr:[]
       }
-     
+
+      
       componentDidMount(){
          axios.get(`${window.location.protocol}//${window.location.hostname}/vehicles`).then(response =>{
            this.setState({cars:response.data, searchedProducts:response.data, carBrands:response.data})
-         console.log("Data Loaded!")
-         console.log(response.data);
+           console.log("Data Loaded!");
+           console.log(response.data);
          }).catch(err => {
            console.error("Request Not Found!");
          })
@@ -61,6 +64,11 @@ class Home extends Component {
           carBrands.model.toLowerCase()
           .includes(models.toLowerCase())
         )
+        let carTypesArray = carModel.map(car => {
+          car.type;
+        })
+
+        this.setState({carTypesArr:carTypesArray})
         this.setState({searchedProducts: carModel});
         this.setState({carModels: carModel})
       }
@@ -71,34 +79,42 @@ class Home extends Component {
           carModels.type.toLowerCase()
           .includes(types.toLowerCase())
         )
+       
+        this.setState({carColorArr: carType});
         this.setState({searchedProducts: carType});
         this.setState({carTypes: carType});
       }
 
       // Filtering by color
       colorSelected = (userColor) => {
-        if(userColor){
-          let filteredByColor = this.state.carTypes.filter(car => car.exterior_color === userColor);
-          this.setState({searchedProducts:filteredByColor,carTypes:filteredByColor})
-        }else{
-          this.setState({searchedProducts:this.state.carTypes})
-        }
+        let carColor = this.state.carColorArr.filter((car) =>
+          car.exterior_color.toLowerCase()
+          .includes(userColor.toLowerCase())
+        )
+        
+        this.setState({carColorArr: carColor});
+        this.setState({carYearsArr: carColor});
+        this.setState({searchedProducts: carColor});
+      
       }
 
       // Filtering by year
       yearSelected = (userYear) => {
-        if(userYear){
-          let filteredByYear = this.state.carTypes.filter(car => car.year === userYear);
-          this.setState({searchedProducts:filteredByYear,carTypes:filteredByYear})
-        }else{
-          this.setState({searchedProducts:this.state.carTypes})
+
+        if(userYear == ""){
+          this.setState({searchedProducts: this.state.carYearsArr});
+          return 
         }
-        
+       let lastResult = this.state.carYearsArr.filter((car) => +userYear == car.year)
+
+       this.setState({searchedProducts: lastResult});
+
+       
+
       }
 
       // sort 
       sortSelected = (num) =>{
-        console.log("num",num);
         switch(num){
           case "1":
               allcars = this.state.cars
@@ -114,14 +130,14 @@ class Home extends Component {
             break;
 
           case "3":
-             allcars = this.state.cars
+            allcars = this.state.cars
             allcars.sort((a, b) => (a.price > b.price) ? 1 : -1)
             allcars.sort((a, b) => (a.price > b.price) ? 1 : (a.price === b.price) ? ((a.size > b.size) ? 1 : -1) : -1 )
             this.setState({searchedProducts:allcars})
           break;
 
           case "4":
-             allcars = this.state.cars
+            allcars = this.state.cars
             allcars.sort((a, b) => (a.price > b.price) ? 1 : -1)
             allcars.sort((a, b) => (a.price < b.price) ? 1 : (a.price === b.price) ? ((a.size > b.size) ? 1 : -1) : -1 )
             this.setState({searchedProducts:allcars})
@@ -135,7 +151,7 @@ class Home extends Component {
             <div>
                  <Header />
                  <SearchBar searched={this.searched}/>
-                 <Main cartId={this.props.cartId} sortSelected={this.sortSelected} yearSelected={this.yearSelected} modelSelected={this.modelSelected} typeSelected={this.typeSelected} colorSelected={this.colorSelected} carTypes = {this.state.carTypes} carBrands={this.state.carBrands} optionSelected={this.optionSelected} dataCar={this.state.cars} data={this.state.searchedProducts}/>
+                 <Main  carYearsArr={this.state.carYearsArr} carColorArr={this.state.carColorArr} carModels={this.state.carModels} cartId={this.props.cartId} sortSelected={this.sortSelected} yearSelected={this.yearSelected} modelSelected={this.modelSelected} typeSelected={this.typeSelected} colorSelected={this.colorSelected} carTypes={this.state.carTypes} carBrands={this.state.carBrands} optionSelected={this.optionSelected} dataCar={this.state.cars} data={this.state.searchedProducts}/>
             </div>        
         )   
     }

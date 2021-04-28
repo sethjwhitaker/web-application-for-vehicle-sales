@@ -44,11 +44,37 @@ class Sidebar extends Component {
         carModels = Array.from(carModels).sort()
 
         let carTypes = new Set()
-        let types = this.props.carBrands.map(car =>  {
+        let types = this.props.carTypes.map(car =>  {
+            
             carTypes.add(car.type)
         })
         carTypes = Array.from(carTypes).sort()
-    
+
+
+        let carTypes2 = new Set()
+
+        let types2 = this.props.carModels.map(car =>  {
+            
+            carTypes2.add(car.type)
+        })
+        carTypes2 = Array.from(carTypes2).sort()
+
+
+
+
+
+        let carColors = new Set()
+
+        let colors = this.props.carColorArr.map(car =>  {
+            
+            carColors.add(car.exterior_color)
+        })
+        carColors = Array.from(carColors).sort()
+
+
+
+
+
         return (
             <div>
                 <Form className="Form">
@@ -96,7 +122,7 @@ class Sidebar extends Component {
                         <Form.Control as="select" size="sm" custom onChange={this.typeChangeHandler}>
                             <option value=''> All Types </option>
                             {   
-                                carTypes.map((type,index) => (
+                                carTypes2.map((type,index) => (
                                 <option key={index} value={type}>{type}</option>
                             ))}
                         </Form.Control>
@@ -109,8 +135,8 @@ class Sidebar extends Component {
                         <Form.Control as="select" size="sm" custom onChange={this.colorChangeHandler}>
                             <option value={''}>Any Colors</option>
                             {
-                                this.props.carTypes.map((car,index) => (
-                                <option key={index} value={car.exterior_color}>{car.exterior_color}</option>
+                                carColors.map((color,index) => (
+                                <option key={index} value={color}>{color}</option>
                             ))}
                         </Form.Control>
                     </Form.Group>
@@ -120,8 +146,7 @@ class Sidebar extends Component {
                         <Form.Label>Year</Form.Label>
                         <Form.Control as="select" size="sm" custom onChange={this.yearChangeHandler}>
                             <option value="">All Year</option>
-                            {this.props.carTypes.map((car,index) => (
-                                
+                            {this.props.carYearsArr.map((car,index) => (
                                 <option key={index} value={car.year}>{car.year}</option>
                                 ))}
                         </Form.Control>
@@ -129,7 +154,7 @@ class Sidebar extends Component {
 
                     {/* Sorting */}
                     <h4>Sort By: </h4>
-                    <Form.Group controlId="formBasicYear">
+                    <Form.Group controlId="formBasicSort">
                         <Form.Control as="select" size="sm" custom onChange={this.sortChangeHandler}>
 
                             <option value="1">Newest</option>
