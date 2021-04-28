@@ -29,7 +29,7 @@ class Logout extends Component {
             const data = await response.json();
             
             this.setState({message: data.message});
-            if(response.status == 200) this.props.onLogout();
+            if(response.status == 200 || response.status == 400) this.props.onLogout();
 
         } catch (e) {
             console.log(e);
