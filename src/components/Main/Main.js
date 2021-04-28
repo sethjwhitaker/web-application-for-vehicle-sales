@@ -10,7 +10,7 @@ class Main extends Component {
         return (
             <Container>
                 <Row>
-                    <Col md={2}><Sidebar sortSelected={this.props.sortSelected} carBrands={this.props.carBrands} yearSelected={this.props.yearSelected} colorSelected={this.props.colorSelected} carTypes = {this.props.carTypes} typeSelected={this.props.typeSelected} optionSelected={this.props.optionSelected} modelSelected={this.props.modelSelected} data={this.props.dataCar}/></Col>
+                    <Col md={2}><Sidebar carYearsArr={this.props.carYearsArr} carColorArr={this.props.carColorArr} carModels={this.props.carModels} sortSelected={this.props.sortSelected} carBrands={this.props.carBrands} yearSelected={this.props.yearSelected} colorSelected={this.props.colorSelected} carTypes = {this.props.carTypes} typeSelected={this.props.typeSelected} optionSelected={this.props.optionSelected} modelSelected={this.props.modelSelected} data={this.props.dataCar}/></Col>
                     <Col md={10}><Products cartId={this.props.cartId} data={this.props.data} isCar={true}/></Col>
                 </Row>
             </Container>
