@@ -15,6 +15,7 @@ export default class UserController extends Controller {
         this.registerAdmin = this.registerAdmin.bind(this);
         this.createFirstAdmin = this.createFirstAdmin.bind(this);
         this.login = this.login.bind(this);
+        this.isLoggedIn = this.isLoggedIn.bind(this);
         this.logout = this.logout.bind(this);
         /*this.readAll = this.readAll.bind(this);
         this.read = this.read.bind(this);
@@ -255,6 +256,20 @@ export default class UserController extends Controller {
                 }
             });
         }
+    }
+
+    isLoggedIn(req, res) {
+        Controller.verifyUser(req.cookies.token, ["admin", "employee", "customer"], (err, decoded) => {
+            if(err) {
+                res.status(401).send({
+                    message: "Not logged in."
+                });
+            } else {
+                res.send({
+                    message: "Logged in."
+                });
+            }
+        })
     }
 
     logout(req, res) {

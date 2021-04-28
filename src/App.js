@@ -32,6 +32,16 @@ class App extends Component {
         this.getCart();
     }
 
+    async checkLoggedIn() {
+        const response = await fetch(`${window.location.protocol}//${window.location.hostname}/users/isLoggedIn`);
+        if(response.status == 401) {
+            console.log("Not logged in.");
+            this.onLogout();
+        } else if (response.status == 200) {
+            console.log("Logged In.");
+        }
+    }
+
     onLogin(userData) {
         console.log("Logged In");
         window.localStorage.setItem("IsLoggedIn", "True");
