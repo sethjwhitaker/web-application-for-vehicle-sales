@@ -7,18 +7,33 @@ class Sidebar extends Component {
     onChangeHandler = (event) => {
         let brandName = event.target.value
         this.props.optionSelected(event.target.value)
-    
     } 
 
     modelChangeHandler = (event) => {
         this.props.modelSelected(event.target.value)
+    }
+
+    typeChangeHandler = (event) => {
+        this.props.typeSelected(event.target.value)
+    }
+
+    colorChangeHandler = (event) => {
+        this.props.colorSelected(event.target.value)
+    }
+
+    yearChangeHandler = (event) => {
+        this.props.yearSelected(event.target.value)
+    }
+
+    sortChangeHandler = (event) => {
+        this.props.sortSelected(event.target.value)
     }
     
     render() {
 
         let brandset = new Set()
         let brands = this.props.data.map(car => {
-            brandset.add(car.brand)
+            brandset.add(car.make)
             })
         brandset = Array.from(brandset).sort()
 
@@ -27,7 +42,39 @@ class Sidebar extends Component {
         carModels.add(car.model)
         })
         carModels = Array.from(carModels).sort()
-    
+
+        let carTypes = new Set()
+        let types = this.props.carTypes.map(car =>  {
+            
+            carTypes.add(car.type)
+        })
+        carTypes = Array.from(carTypes).sort()
+
+
+        let carTypes2 = new Set()
+
+        let types2 = this.props.carModels.map(car =>  {
+            
+            carTypes2.add(car.type)
+        })
+        carTypes2 = Array.from(carTypes2).sort()
+
+
+
+
+
+        let carColors = new Set()
+
+        let colors = this.props.carColorArr.map(car =>  {
+            
+            carColors.add(car.exterior_color)
+        })
+        carColors = Array.from(carColors).sort()
+
+
+
+
+
         return (
             <div>
                 <Form className="Form">
@@ -46,11 +93,11 @@ class Sidebar extends Component {
                     
                     {/* Filtering by Brand */}
                     <Form.Group controlId="formBasicBrand">
-                        <Form.Label>Brand</Form.Label>
+                        <Form.Label>Make</Form.Label>
                         <Form.Control as="select" size="sm" onChange={this.onChangeHandler}>
                             <option value={''}>All Cars</option>
-                        {brandset.map((brand,index) => (
-                            <option value={brand} key={index}>{brand}</option>
+                        {brandset.map((make,index) => (
+                            <option value={make} key={index}>{make}</option>
                         ))}
                      
                                 
@@ -68,62 +115,57 @@ class Sidebar extends Component {
                             ))}
                         </Form.Control>
                     </Form.Group>
+
+                    {/* Filtering by Type */}
+                    <Form.Group controlId="formBasicType">
+                        <Form.Label>Type</Form.Label>
+                        <Form.Control as="select" size="sm" custom onChange={this.typeChangeHandler}>
+                            <option value=''> All Types </option>
+                            {   
+                                carTypes2.map((type,index) => (
+                                <option key={index} value={type}>{type}</option>
+                            ))}
+                        </Form.Control>
+                    </Form.Group>
+
                     
                     {/* Filtering by Color */}
                     <Form.Group controlId="formBasicColor">
                         <Form.Label>Color</Form.Label>
-                        <Form.Control as="select" size="sm" custom>
-                            <option>Red</option>
-                            <option>Green</option>
-                            <option>Blue</option>
-                            <option>Purple</option>
-                            <option>Black</option>
+                        <Form.Control as="select" size="sm" custom onChange={this.colorChangeHandler}>
+                            <option value={''}>Any Colors</option>
+                            {
+                                carColors.map((color,index) => (
+                                <option key={index} value={color}>{color}</option>
+                            ))}
                         </Form.Control>
                     </Form.Group>
                     
                     {/*Filtering by Year*/}
                     <Form.Group controlId="formBasicYear">
                         <Form.Label>Year</Form.Label>
-                        <Form.Control as="select" size="sm" custom>
-                            <option value="2017">2017</option>
-                            <option value="2016">2016</option>
-                            <option value="2015">2015</option>
-                            <option value="2014">2014</option>
-                            <option value="2013">2013</option>
-                            <option value="2012">2012</option>
-                            <option value="2011">2011</option>
-                            <option value="2010">2010</option>
-                            <option value="2009">2009</option>
-                            <option value="2008">2008</option>
-                            <option value="2007">2007</option>
-                            <option value="2006">2006</option>
-                            <option value="2005">2005</option>
-                            <option value="2004">2004</option>
-                            <option value="2003">2003</option>
-                            <option value="2002">2002</option>
-                            <option value="2001">2001</option>
-                            <option value="2000">2000</option>
+                        <Form.Control as="select" size="sm" custom onChange={this.yearChangeHandler}>
+                            <option value="">All Year</option>
+                            {this.props.carYearsArr.map((car,index) => (
+                                <option key={index} value={car.year}>{car.year}</option>
+                                ))}
                         </Form.Control>
                     </Form.Group>
 
                     {/* Sorting */}
                     <h4>Sort By: </h4>
-                    <Form.Group controlId="formBasicYear">
-                        <Form.Control as="select" size="sm" custom>
-                            <option value="">Newest</option>
-                            
-                            <option value="">Oldest</option>
-                            
-                            <option value="">Most Popular</option>
-                            
-                            <option value="">Most Viewed</option>
-                            
-                            <option value="">Cheapest</option>
+                    <Form.Group controlId="formBasicSort">
+                        <Form.Control as="select" size="sm" custom onChange={this.sortChangeHandler}>
 
-                            <option value="">Most Expensive</option>
+                            <option value="1">Newest</option>
+                            
+                            <option value="2">Oldest</option>
+                            
+                            <option value="3">Cheapest</option>
+
+                            <option value="4">Most Expensive</option>
                         </Form.Control>
                     </Form.Group>
-
                 </Form>
 
             </div>

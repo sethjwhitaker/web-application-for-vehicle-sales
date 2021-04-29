@@ -20,10 +20,10 @@ class Model {
                 console.log("error: ", err);
                 result(err, null);
                 return;
+            } else {
+                console.log("created item: ", { id: res.insertId, ...newItem });
+                result(null, { id: res.insertId, ...newItem });
             }
-        
-            console.log("created item: ", { id: res.insertId, ...newItem });
-            result(null, { id: res.insertId, ...newItem });
         });
     }
 
@@ -89,19 +89,17 @@ class Model {
         const values = [this.tableName, id];
         this.db.query(query, values, (err, res) => {
             if (err) {
-            console.log("error: ", err);
-            result(null, err);
-            return;
+                console.log("error: ", err);
+                result(null, err);
+                return;
+            } else if (res.affectedRows == 0) {
+                // not found item with the id
+                result({ kind: "not_found" }, null);
+                return;
+            } else {
+                console.log("deleted item with id: ", id);
+                result(null, res);
             }
-
-            if (res.affectedRows == 0) {
-            // not found item with the id
-            result({ kind: "not_found" }, null);
-            return;
-            }
-
-            console.log("deleted item with id: ", id);
-            result(null, res);
         });
     }
 
@@ -111,13 +109,13 @@ class Model {
 
         this.db.query(query, value, (err, res) => {
             if (err) {
-            console.log("error: ", err);
-            result(null, err);
-            return;
+                console.log("error: ", err);
+                result(null, err);
+                return;
+            } else {
+                console.log(`deleted ${res.affectedRows} items`);
+                result(null, res);
             }
-
-            console.log(`deleted ${res.affectedRows} items`);
-            result(null, res);
         });
     }
 }

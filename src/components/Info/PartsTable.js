@@ -4,7 +4,7 @@ import { Table } from 'react-bootstrap';
 class PartsTable extends Component {
     render() {
         return (
-            <Table responsive bordered className="table-bordered">
+            <Table bordered className="table-bordered">
                 <thead className="thead-dark">
                     <tr>
                         <th colSpan="2"><h2>Parts Information</h2></th>
@@ -14,19 +14,19 @@ class PartsTable extends Component {
                 <tbody className="info-body">
                     <tr>
                         <td>Product #:</td>
-                        <td></td>
+                        <td>{this.props.prod_num}</td>
                     </tr>
                     <tr>
                         <td>Warranty:</td>
-                        <td></td>
+                        <td>{this.props.warranty}</td>
                     </tr>
                     <tr>
                         <td>Compatability:</td>
-                        <td></td>
+                        <td>{this.props.compatability}</td>
                     </tr>
                     <tr>
                         <td>Color:</td>
-                        <td></td>
+                        <td>{this.props.color}</td>
                     </tr>
                 </tbody>
             </Table>

@@ -10,7 +10,7 @@ export default class Email extends Component {
         return (
             <Row>
                 <Col>
-                    <Table bordered responsive className="table-bordered">
+                    <Table bordered className="table-bordered">
                         <thead className="thead-dark">
                             <tr>
                                 <th><h2>Email Dealership</h2></th>

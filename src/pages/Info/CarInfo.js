@@ -36,6 +36,7 @@ class CarInfo extends Component {
             <Container className="flex-container">
                 
                 <ProductHeader
+                prod = "vehicle"
                 title_header = "Vehicle Title"
                 mileage_header = "Mileage"
                 price_header = "Price"
@@ -59,7 +60,7 @@ class CarInfo extends Component {
                     interior_color = {this.state.car.interior_color}
                     />
     
-                    <Col className="col-6">
+                    <Col md='6'>
                         <Description 
                         desc = {this.state.car.description}
                         />

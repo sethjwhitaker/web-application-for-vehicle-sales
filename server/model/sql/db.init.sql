@@ -1,11 +1,11 @@
+DROP TABLE IF EXISTS sale_items;
 DROP TABLE IF EXISTS sales;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS vehicles;
 DROP TABLE IF EXISTS makes;
 DROP TABLE IF EXISTS types;
 DROP TABLE IF EXISTS classes;
-DROP TABLE IF EXISTS vehicles;
-
-
+DROP TABLE IF EXISTS parts;
 
 CREATE TABLE IF NOT EXISTS users (
     id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -51,13 +51,38 @@ CREATE TABLE IF NOT EXISTS vehicles (
     FOREIGN KEY (class_id) REFERENCES classes(id)
 );
 
+CREATE TABLE IF NOT EXISTS parts (
+    id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    price DECIMAL(8, 2) NOT NULL,
+    quantity int(11) NOT NULL DEFAULT 1,
+    short_description VARCHAR(255) NOT NULL,
+    description VARCHAR(65535),
+    warranty VARCHAR(255),
+    compatibility VARCHAR(255),
+    color VARCHAR(255),
+    product_id VARCHAR(255),
+    image LONGBLOB
+);
+
 CREATE TABLE IF NOT EXISTS sales (
     id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, 
     user_id int(11) NOT NULL,
-    vehicle_id int(11) NOT NULL,
-    quantity int(11) NOT NULL DEFAULT 1,
-    order_status ENUM('processing', 'complete', 'canceled') NOT NULL,
+    status ENUM('in_cart', 'processing', 'complete', 'canceled') NOT NULL,
     date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
+    address VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS sale_items (
+    id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    sale_id int(11) NOT NULL,
+    vehicle_id int(11),
+    part_id int(11),
+    quantity int(11) NOT NULL DEFAULT 1,
+    FOREIGN KEY (sale_id) REFERENCES sales(id) ON DELETE CASCADE,
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id) ON DELETE CASCADE,
+    FOREIGN KEY (part_id) REFERENCES parts(id) ON DELETE CASCADE,
+    CONSTRAINT vehicle_or_part CHECK 
+        ((vehicle_id IS NULL OR part_id IS NULL) AND NOT
+        (vehicle_id IS NULL AND part_id IS NULL))
 );

@@ -61,12 +61,14 @@ class Controller {
     // Retrieve all items from the database.
     readAll(req, res) {
         this.model.readAll((err, data) => {
-            if (err)
-              res.status(500).send({
-                message:
-                  err.message || `An error occurred while retrieving ${this.itemName} list.`
-              });
-            else res.send(data);
+            if (err) {
+                res.status(500).send({
+                    message:
+                      err.message || `An error occurred while retrieving ${this.itemName} list.`
+                  });
+            } else {
+                res.send(data);
+            }
         });
     } 
 
@@ -114,25 +116,40 @@ class Controller {
 
     deleteAll(req, res) {
         this.model.deleteAll((err, data) => {
-            if (err)
+            if (err) {
                 res.status(500).send({
                     message:
                     err.message || `An error occurred while deleting every ${this.itemName}.`
                 });
-            else res.send({ message: `Every ${this.itemName} was deleted successfully!` });
-          });
+            } else  {
+                res.send({ message: `Every ${this.itemName} was deleted successfully!` });
+            }
+        });
     }
 
     static async verifyUser(token, types, callback) {
         jwt.verify(token, process.env.SESSION_KEY, (err, decoded) => {
             if(err) {
                 callback(err, null);
-            } else if(!types.includes(decoded.type)) {
+            } else if (!decoded || !types.includes(decoded.type)) {
                 callback("Unauthorized", null);
             } else {
                 callback(null, decoded);
             }
         });
+    }
+
+    static sendError(err, res) {
+        if(err == "Unauthorized") {
+            res.status(403).send({
+                message: "You are not authorized to make this request."
+            })
+        } else {
+            res.status(401).send({
+                message:
+                "Invalid or Expired Credentials."
+            });
+        }
     }
 
 }

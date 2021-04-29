@@ -1,0 +1,22 @@
+.checkout-form, .cart-details {
+    text-align: center;
+}
+
+.checkout-title {
+    padding: 2rem 0;
+}
+
+.checkout-button {
+    width: 200px;
+    height: 40px;
+}
+
+.finance-form {
+    padding-bottom: 0.6em;
+    padding-left: 26%;
+}
+
+.cart-card {
+    width: 80%;
+    margin-left: 10%;
+}

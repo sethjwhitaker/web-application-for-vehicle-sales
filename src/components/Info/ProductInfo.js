@@ -23,7 +23,12 @@ class ProductInfo extends Component {
         }
 
         else {
-            return <PartsTable />
+            return <PartsTable 
+                prod_num = {props.prod_num}
+                warranty = {props.warranty}
+                compatability = {props.compatability}
+                color = {props.color}
+            />
         }
         
     }
@@ -31,7 +36,7 @@ class ProductInfo extends Component {
 
     render() {
         return (
-            <Col className="col-6">
+            <Col md='6'>
                 <div className="well">
                     <img src={ this.props.imgURL } alt="Product image" width="100%" height="100%" />
                     {this.productTable(this.props)}
