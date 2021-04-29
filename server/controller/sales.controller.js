@@ -26,7 +26,6 @@ export default class SalesController extends Controller {
                 Controller.sendError(err, res);
             } else {
                 this.model.getCart(decoded.user_id, (err, data) => {
-                    data = data[0];
                     if (err) {
                         if (err.kind === "not_found") {
                             res.status(404).send({
@@ -38,9 +37,10 @@ export default class SalesController extends Controller {
                             err.message || `An error occurred while retrieving cart.`
                             });
                         }
-                    } else if (decoded.type =="customer" && data.user_id != decoded.user_id) {
+                    } else if (decoded.type =="customer" && data && data[0].user_id != decoded.user_id) {
                         Controller.sendError("Unauthorized", res);
                     } else {
+                        data = data[0];
                         this.itemsModel.readBySaleId(data.id, (err, d) => {
                             if (err) {
                                 if (err.kind === "not_found") {
