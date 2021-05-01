@@ -62,7 +62,7 @@ class Cards extends Component {
                 <ButtonGroup vertical>
                     <LinkContainer to={`/part/${this.props.car.id}`}><Button>More Info</Button></LinkContainer>
                     <Button variant="primary" onClick={(e) => {this.addToCart(this.props.car.id, "parts")}}>Add to Cart</Button>
-                    <Button variant="primary">Compare</Button>
+                    <Button variant="primary" >Compare</Button>
                 </ButtonGroup>
 
             </Card.Body>
@@ -70,6 +70,28 @@ class Cards extends Component {
     }
 
     renderCar() {
+
+        const compareClicked = (car)=>{
+            if(localStorage.getItem('localcar1')){
+                if(localStorage.getItem('localcar2')){
+                var localcar3 = car;
+                localStorage.setItem('localcar3', JSON.stringify(localcar3));
+                }else{
+                    var localcar2 = car;
+                    localStorage.setItem('localcar2', JSON.stringify(localcar2));
+                }
+
+            }else{
+                var localcar1 = car;
+                localStorage.setItem('localcar1', JSON.stringify(localcar1));
+            }
+            
+            var turnlocalcar = localStorage.getItem('localcar');
+            console.log('retrievedObject: ', JSON.parse(turnlocalcar));
+            console.log('retrievedObject: ', car);
+
+        }
+
         return (
             <Card.Body>
                 <Card.Text>
@@ -85,14 +107,13 @@ class Cards extends Component {
                 <ButtonGroup vertical>
                     <LinkContainer to={`/car/${this.props.car.id}`}><Button variant="primary">More Info</Button></LinkContainer>
                     <Button variant="primary" onClick={(e) => {this.addToCart(this.props.car.id, "vehicles")}}>Add to Cart</Button>
-                    <Button variant="primary">Compare</Button>
+                    <Button variant="primary" onClick={() => compareClicked(this.props.car)} >Compare</Button>
                 </ButtonGroup>
             </Card.Body>
         );
     }
 
     render() {
-
         
         return (
             <div>

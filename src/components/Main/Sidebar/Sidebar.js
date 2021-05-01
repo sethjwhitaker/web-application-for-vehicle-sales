@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap'
 import './Sidebar.css';
+import {NavLink} from 'react-router-dom'
 
 class Sidebar extends Component {
+
+    state={
+        selectedCar1:{},
+        selectedCar2:{},
+        selectedCar3:{}
+    }
 
     onChangeHandler = (event) => {
         let brandName = event.target.value
@@ -27,6 +34,31 @@ class Sidebar extends Component {
 
     sortChangeHandler = (event) => {
         this.props.sortSelected(event.target.value)
+    }
+
+    deleteLocal = (event) => {
+        event.preventDefault()
+        localStorage.clear();
+    }
+   
+
+    componentDidMount () {
+        var localcar1 = localStorage.getItem('localcar1');
+        var localcar2 = localStorage.getItem('localcar2');
+        var localcar3 = localStorage.getItem('localcar3');
+        this.setState({selectedCar1: JSON.parse(localcar1,localcar2,localcar3)})
+        this.setState({selectedCar2: JSON.parse(localcar2)})
+        this.setState({selectedCar3: JSON.parse(localcar3)})
+        console.log("state",JSON.parse(localcar1));
+    }
+    compareClicked = () => {
+        var localcar1 = localStorage.getItem('localcar1');
+        var localcar2 = localStorage.getItem('localcar2');
+        var localcar3 = localStorage.getItem('localcar3');
+        this.setState({selectedCar1: JSON.parse(localcar1,localcar2,localcar3)})
+        this.setState({selectedCar2: JSON.parse(localcar2)})
+        this.setState({selectedCar3: JSON.parse(localcar3)})
+        console.log("state",JSON.parse(localcar1));
     }
     
     render() {
@@ -79,12 +111,19 @@ class Sidebar extends Component {
             <div>
                 <Form className="Form">
 
-                    <InputGroup className="InputGroup">
-                        <Button variant="primary" type="submit" >
+                <InputGroup className="InputGroup">
+                    <NavLink to='/compare'>
+                    <Button variant="primary" type="submit">
                             Compare
-                        </Button>
+                            </Button>
+                   
+                        </NavLink>
+                        <Button onClick={this.deleteLocal}variant="danger" type="submit">
+                            Delete
+                            </Button>
                         <InputGroup.Prepend>
-                            <InputGroup.Text>3</InputGroup.Text>
+                            
+                             
                         </InputGroup.Prepend>
                     </InputGroup>
 
