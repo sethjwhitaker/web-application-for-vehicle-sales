@@ -15,6 +15,7 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout/Checkout';
 import Success from './pages/Checkout/Success';
 import Parts from './pages/Parts';
+import Compare from './pages/Compare';
 import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 
 class App extends Component {
@@ -128,6 +129,7 @@ class App extends Component {
               <Route path = '/logout' render={(props) => (<Logout {...props} onLogout={this.onLogout.bind(this)} />)} />
               <Route path ='/register' component={Register} />
               <Route path='/admin' component={Admin_Interface} />
+              <Route path='/compare' component={Compare} />
               <Route path='/car/:id' component={CarInfo} />
               <Route path='/part/:id' component={PartInfo} />
               <Route path='/financing' component={Finance} />
