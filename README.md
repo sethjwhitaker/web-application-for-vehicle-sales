@@ -7,7 +7,7 @@ https://bfts.herokuapp.com
 ## Contributors
 - Seth Whitaker
 - Taylor Cook
-- Fatih Gurbuz (Spicy)
+- Fatih Gurbuz
 - Brady Neumann
 
 ## Demo Videos
